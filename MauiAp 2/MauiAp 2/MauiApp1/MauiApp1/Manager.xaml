@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:MauiApp1"
+             x:Class="MauiApp1.Manager">
+             <!--<ListView x:Name="MyListView" ItemSelected="OnItemSelected">-->
+             <StackLayout>
+    
+        <!-- Libellés en haut -->
+        <StackLayout Orientation="Horizontal" Padding="10" Spacing="10">
+            <Label Text="Id" WidthRequest="40"/>
+            <Label Text="Reference" WidthRequest="150"/>
+            <Label Text="Code" WidthRequest="90"/>
+            <Label Text="Dimension" WidthRequest="90"/>
+            <Label Text="Color" WidthRequest="70"/>
+            <Label Text="Price Supplier1" WidthRequest="40"/>
+            <Label Text="Delay Supplier1" WidthRequest="40"/>
+            <Label Text="Price Supplier2" WidthRequest="40"/>
+            <Label Text="Delay Supplier2" WidthRequest="40"/>
+            <Label Text="Stock Available" WidthRequest="40"/>
+            <Label Text="Stock Ordered" WidthRequest="40"/>
+            <Label Text="Stock Reserved" WidthRequest="40"/>
+        </StackLayout>
+        <Line Stroke="black" X2="1000" />
+             <ListView x:Name="MyListView">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <ViewCell>
+                        <HorizontalStackLayout Padding="10" Spacing="10" HorizontalOptions="FillAndExpand">
+                            <Label Text="{Binding Path=Id}" HorizontalOptions="FillAndExpand" WidthRequest="40"/>
+                            <Label Text="{Binding Path=Reference}" HorizontalOptions="FillAndExpand" WidthRequest="150"/>
+                            <Label Text="{Binding Path=Code}" HorizontalOptions="FillAndExpand" WidthRequest="90"/>
+                            <Label Text="{Binding Path=Dimension}" HorizontalOptions="FillAndExpand" WidthRequest="90"/>
+                            <Label Text="{Binding Path=color}" HorizontalOptions="FillAndExpand" WidthRequest="70"/>
+                            <Label Text="{Binding Path=priceSupplier1}" IsVisible="{Binding Path=isEditingL}" HorizontalOptions="FillAndExpand" WidthRequest="40"/>
+                            <!--<Entry Text="{Binding Path=priceSupplier1}" IsVisible="{Binding Path=isEditingE}" HorizontalOptions="FillAndExpand" WidthRequest="45"/>-->
+                            <Label Text="{Binding Path=delaySupplier1}" IsVisible="{Binding Path=isEditingL}" HorizontalOptions="FillAndExpand" WidthRequest="40"/>
+                            <!--<Entry Text="{Binding Path=delaySupplier1}" IsVisible="{Binding Path=isEditingE}" HorizontalOptions="FillAndExpand" WidthRequest="45"/>-->
+                            <Label Text="{Binding Path=priceSupplier2}" IsVisible="{Binding Path=isEditingL}" HorizontalOptions="FillAndExpand" WidthRequest="40"/>
+                            <!--<Entry Text="{Binding Path=priceSupplier2}" IsVisible="{Binding Path=isEditingE}" HorizontalOptions="FillAndExpand" WidthRequest="45"/>-->
+                            <Label Text="{Binding Path=delaySupplier2}" IsVisible="{Binding Path=isEditingL}" HorizontalOptions="FillAndExpand" WidthRequest="40"/>
+                            <!--<Entry Text="{Binding Path=delaySupplier2}" IsVisible="{Binding Path=isEditingE}" HorizontalOptions="FillAndExpand" WidthRequest="45"/>-->
+                            <Label Text="{Binding Path=stockAvailable}" IsVisible="{Binding Path=isEditingL}" HorizontalOptions="FillAndExpand" WidthRequest="40"/>
+                            <!--<Entry Text="{Binding Path=stockAvailable}" IsVisible="{Binding Path=isEditingE}" HorizontalOptions="FillAndExpand" WidthRequest="45"/>-->
+                            <Label Text="{Binding Path=stockOrdered}" IsVisible="{Binding Path=isEditingL}" HorizontalOptions="FillAndExpand" WidthRequest="40"/>
+                            <!--<Entry Text="{Binding Path=stockOrdered}" IsVisible="{Binding Path=isEditingE}" HorizontalOptions="FillAndExpand" WidthRequest="45"/>-->
+                            <Label Text="{Binding Path=stockReserved}" IsVisible="{Binding Path=isEditingL}" HorizontalOptions="FillAndExpand" WidthRequest="40"/>
+                            <!--<Entry Text="{Binding Path=stockReserved}" IsVisible="{Binding Path=isEditingE}" HorizontalOptions="FillAndExpand" WidthRequest="45"/>-->
+                            <!--<ImageButton Source="edit.png" ClassId="Button1" IsVisible="{Binding Path=isEditingL}" Clicked="OnImageButtonClicked" WidthRequest="30" HeightRequest="30" />
+                            <ImageButton Source="checked.png" ClassId="Button2" IsVisible="{Binding Path=isEditingE}" Clicked="OnImageButtonClicked" WidthRequest="30" HeightRequest="30"/>-->
+                        </HorizontalStackLayout >
+                    </ViewCell>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+        <Button x:Name="Disconnect" Margin="10,0,0,0" HeightRequest= "10" WidthRequest=" 200" Text="Disconnect" Clicked="disconnect"></Button>
+        </StackLayout>
+
+</ContentPage>
