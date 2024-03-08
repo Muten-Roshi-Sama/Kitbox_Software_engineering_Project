@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "WQVlhIOuQYdsr2FgAM07L0wdYkgV0M9ilvEf4v2DUvB4qA5xdrwDTSI8EGPqGgnXPITAGD/QQwQ89ojZrihCiA==",
+  "dgSpecHash": "jzrTdoAbWHAoMDzL1HWUi4/zzIZJXY1Nj7fgNtXd2FOhzsw57f2RfctNcZSTNYarpuavdP2ZdDWV7H0TJ7Kq1w==",
   "success": true,
-  "projectFilePath": "C:\\Users\\Morar\\Desktop\\ECAM\\Projet logiciel\\MauiAp 2\\MauiApp1\\MauiApp1\\MauiApp1.csproj",
+  "projectFilePath": "C:\\Users\\Morar\\Desktop\\ECAM\\Projet logiciel\\Kitbox_Software_engineering_Project\\MauiAp 2\\MauiApp1\\MauiApp1\\MauiApp1.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Morar\\.nuget\\packages\\bouncycastle.cryptography\\2.2.1\\bouncycastle.cryptography.2.2.1.nupkg.sha512",
     "C:\\Users\\Morar\\.nuget\\packages\\communitytoolkit.maui\\7.0.1\\communitytoolkit.maui.7.0.1.nupkg.sha512",

@@ -5923,11 +5923,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Morar\\Desktop\\ECAM\\Projet logiciel\\MauiAp 2\\MauiApp1\\MauiApp1\\MauiApp1.csproj",
+      "projectUniqueName": "C:\\Users\\Morar\\Desktop\\ECAM\\Projet logiciel\\Kitbox_Software_engineering_Project\\MauiAp 2\\MauiApp1\\MauiApp1\\MauiApp1.csproj",
       "projectName": "MauiApp1",
-      "projectPath": "C:\\Users\\Morar\\Desktop\\ECAM\\Projet logiciel\\MauiAp 2\\MauiApp1\\MauiApp1\\MauiApp1.csproj",
+      "projectPath": "C:\\Users\\Morar\\Desktop\\ECAM\\Projet logiciel\\Kitbox_Software_engineering_Project\\MauiAp 2\\MauiApp1\\MauiApp1\\MauiApp1.csproj",
       "packagesPath": "C:\\Users\\Morar\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Morar\\Desktop\\ECAM\\Projet logiciel\\MauiAp 2\\MauiApp1\\MauiApp1\\obj\\",
+      "outputPath": "C:\\Users\\Morar\\Desktop\\ECAM\\Projet logiciel\\Kitbox_Software_engineering_Project\\MauiAp 2\\MauiApp1\\MauiApp1\\obj\\",
       "projectStyle": "PackageReference",
       "crossTargeting": true,
       "configFilePaths": [
