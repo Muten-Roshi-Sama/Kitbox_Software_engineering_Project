@@ -1,0 +1,12 @@
+use projet;
+CREATE TABLE IF NOT EXISTS Commands (
+    Id INT UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    Reference VARCHAR(30) NOT NULL UNIQUE,
+    DateC DATE not null default CURRENT_TIMESTAMP,
+    Description TEXT NOT NULL,
+    NameFile VARCHAR(200)
+);
+
+GRANT INSERT ON Commands TO 'interface'@'%';
+GRANT SELECT, INSERT, UPDATE, DELETE ON Commands TO 'Secretary'@'%';
+FLUSH PRIVILEGES;

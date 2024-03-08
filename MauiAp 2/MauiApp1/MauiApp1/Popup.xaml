@@ -1,0 +1,42 @@
+<toolkit:Popup xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+               xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+               xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
+               xmlns:local="clr-namespace:aaa"
+               x:Class="aaa.SimplePopup">
+
+    <StackLayout>
+
+    <HorizontalStackLayout Padding="10" Spacing="10" HorizontalOptions="FillAndExpand">
+                    <Label Text="Reference" WidthRequest="150"/>
+                    <Label Text="Code" WidthRequest="90"/>
+                    <Label Text="Length" WidthRequest="40"/>
+                    <Label Text="Height" WidthRequest="40"/>
+                    <Label Text="Depth" WidthRequest="40"/>
+                    <Label Text="Color" WidthRequest="70"/>
+                    <Label Text="priceSupplier1" WidthRequest="70"/>
+                    <Label Text="delaySupplier1" WidthRequest="40"/>
+                    <Label Text="priceSupplier2" WidthRequest="40"/>
+                    <Label Text="delaySupplier2" WidthRequest="40"/>
+                    <Label Text="Stock Available" WidthRequest="40"/>
+                    <Label Text="Stock Ordered" WidthRequest="40"/>
+                    <Label Text="Stock Reserved" WidthRequest="40"/>
+                </HorizontalStackLayout>
+                <HorizontalStackLayout Padding="10" Spacing="10" HorizontalOptions="FillAndExpand">
+                    <Entry Placeholder="Reference" x:Name="ReferenceEntry"/>
+                    <Entry Placeholder="Code" x:Name="CodeEntry"/>
+                    <Entry Placeholder="Length" x:Name="LengthEntry"/>
+                    <Entry Placeholder="Height" x:Name="HeightEntry"/>
+                    <Entry Placeholder="Depth" x:Name="DepthEntry"/>
+                    <Entry Placeholder="Color" x:Name="ColorEntry"/>
+                    <Entry Placeholder="priceSupplier1" x:Name="priceSupplier1Entry"/>
+                    <Entry Placeholder="delaySupplier1" x:Name="delaySupplier1Entry"/>
+                    <Entry Placeholder="priceSupplier2" x:Name="priceSupplier2Entry"/>
+                    <Entry Placeholder="delaySupplier2" x:Name="delaySupplier2Entry"/>
+                    <Entry Placeholder="Stock Available" x:Name="AvailableEntry"/>
+                    <Entry Placeholder="Stock Ordered" x:Name="OrderedEntry"/>
+                    <Entry Placeholder="Stock Reserved" x:Name="ReservedEntry"/>
+                </HorizontalStackLayout>
+                <Button Text="Confirmer" Clicked="OnAddLineConfirmed"/>
+                </StackLayout>
+    
+</toolkit:Popup>
