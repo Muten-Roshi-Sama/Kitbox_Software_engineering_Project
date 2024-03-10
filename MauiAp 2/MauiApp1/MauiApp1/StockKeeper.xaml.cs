@@ -31,8 +31,8 @@ public partial class StockKeeper : ContentPage
     public void disconnect(object sender, EventArgs e)
     {
         this.connection.disconnection();
-        Navigation.PushModalAsync(new Admin());
-        //LaunchAppShell();
+        //Navigation.PushModalAsync(new Admin());
+        LaunchAppShell();
     }
 
     public void getComponents(){
