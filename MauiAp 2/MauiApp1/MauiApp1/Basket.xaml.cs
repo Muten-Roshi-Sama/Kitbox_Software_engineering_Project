@@ -95,8 +95,8 @@ public partial class Basket : ContentPage
     
     public async void ConfirmCommand(object sender, EventArgs e)
     {
-        LaunchAppShell();
         await DisplayAlert("Commande validé", "Votre commande a été validé avec succes ! ", "OK");
+        LaunchAppShell();
         
     }
 
