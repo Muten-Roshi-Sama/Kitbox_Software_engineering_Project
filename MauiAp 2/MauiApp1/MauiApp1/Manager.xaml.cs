@@ -56,6 +56,7 @@ public partial class Manager : ContentPage
             case "delLineBtn":
                 try{
                     this.connection.deleteComponent(Int32.Parse(component.id));
+                    components.Remove(component);
                     MyListView.ItemsSource = null;
                     MyListView.ItemsSource = components;
                 }catch(Exception ex){
@@ -74,6 +75,7 @@ public partial class Manager : ContentPage
             this.connection.addComponent(result);
             this.components.Add(result);
             MyListView.ItemsSource = null;
+            //components = components.OrderBy(c => c.id).ToList();
             MyListView.ItemsSource = components;
         }catch(Exception ex){
             Console.WriteLine($"Erreur lors de l'insertion : {ex.Message}");
@@ -92,6 +94,7 @@ public partial class Manager : ContentPage
 
     public void getComponents(){
         this.components = this.connection.getAllComponents();
+        //components = components.OrderBy(c => c.id).ToList();
         MyListView.ItemsSource = components;
     }
 }

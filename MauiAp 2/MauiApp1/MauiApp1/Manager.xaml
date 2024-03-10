@@ -52,21 +52,21 @@
                             </HorizontalStackLayout >
                             <VerticalStackLayout Margin="10,0,10,0" BackgroundColor="{StaticResource LightGrayColor}" IsVisible="{Binding Path=infoSupOn}">
                                 <StackLayout Orientation="Horizontal" Padding="10" Spacing="10">
-                                    <Label Text="Price Supplier" WidthRequest="40"/>
-                                    <Label Text="Delay Supplier" WidthRequest="40"/>
+                                    <Label Text="Price Supplier" WidthRequest="100"/>
+                                    <Label Text="Delay Supplier" WidthRequest="100"/>
                                 </StackLayout>
                                 <Line Stroke="black" X2="1000" />
                                 <HorizontalStackLayout Padding="10" Spacing="10" HorizontalOptions="FillAndExpand">
-                                    <Label Text="{Binding Path=priceSupplier1}" IsVisible="{Binding Path=isEditingL}" HorizontalOptions="FillAndExpand" WidthRequest="40"/>
-                                    <Entry Text="{Binding Path=priceSupplier1}" IsVisible="{Binding Path=isEditingE}" HorizontalOptions="FillAndExpand" WidthRequest="45"/>
-                                    <Label Text="{Binding Path=delaySupplier1}" IsVisible="{Binding Path=isEditingL}" HorizontalOptions="FillAndExpand" WidthRequest="40"/>
-                                    <Entry Text="{Binding Path=delaySupplier1}" IsVisible="{Binding Path=isEditingE}" HorizontalOptions="FillAndExpand" WidthRequest="45"/>
+                                    <Label Text="{Binding Path=priceSupplier1}" IsVisible="{Binding Path=isEditingL}" HorizontalOptions="FillAndExpand" WidthRequest="100"/>
+                                    <Entry Text="{Binding Path=priceSupplier1}" IsVisible="{Binding Path=isEditingE}" HorizontalOptions="FillAndExpand" WidthRequest="105"/>
+                                    <Label Text="{Binding Path=delaySupplier1}" IsVisible="{Binding Path=isEditingL}" HorizontalOptions="FillAndExpand" WidthRequest="100"/>
+                                    <Entry Text="{Binding Path=delaySupplier1}" IsVisible="{Binding Path=isEditingE}" HorizontalOptions="FillAndExpand" WidthRequest="105"/>
                                 </HorizontalStackLayout>
                                 <HorizontalStackLayout Padding="10" Spacing="10" HorizontalOptions="FillAndExpand">
-                                    <Label Text="{Binding Path=priceSupplier2}" IsVisible="{Binding Path=isEditingL}" HorizontalOptions="FillAndExpand" WidthRequest="40"/>
-                                    <Entry Text="{Binding Path=priceSupplier2}" IsVisible="{Binding Path=isEditingE}" HorizontalOptions="FillAndExpand" WidthRequest="45"/>
-                                    <Label Text="{Binding Path=delaySupplier2}" IsVisible="{Binding Path=isEditingL}" HorizontalOptions="FillAndExpand" WidthRequest="40"/>
-                                    <Entry Text="{Binding Path=delaySupplier2}" IsVisible="{Binding Path=isEditingE}" HorizontalOptions="FillAndExpand" WidthRequest="45"/>
+                                    <Label Text="{Binding Path=priceSupplier2}" IsVisible="{Binding Path=isEditingL}" HorizontalOptions="FillAndExpand" WidthRequest="100"/>
+                                    <Entry Text="{Binding Path=priceSupplier2}" IsVisible="{Binding Path=isEditingE}" HorizontalOptions="FillAndExpand" WidthRequest="105"/>
+                                    <Label Text="{Binding Path=delaySupplier2}" IsVisible="{Binding Path=isEditingL}" HorizontalOptions="FillAndExpand" WidthRequest="100"/>
+                                    <Entry Text="{Binding Path=delaySupplier2}" IsVisible="{Binding Path=isEditingE}" HorizontalOptions="FillAndExpand" WidthRequest="105"/>
                                 </HorizontalStackLayout>
                             </VerticalStackLayout>
                         </StackLayout>

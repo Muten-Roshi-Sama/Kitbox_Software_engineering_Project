@@ -42,7 +42,7 @@
                             <Label Text="{Binding Path=colorDoors}" IsVisible="{Binding Path=isEditingL}" HorizontalOptions="FillAndExpand" WidthRequest="50"/>
                             <Entry Text="{Binding Path=colorDoors}" IsVisible="{Binding Path=isEditingE}" HorizontalOptions="FillAndExpand" WidthRequest="50"/>
                             <ImageButton Source="edit.png" ClassId="Button1" IsVisible="{Binding Path=isEditingL}" Clicked="OnImageButtonClicked" WidthRequest="30" HeightRequest="30" />
-                            <ImageButton Source="croix.png" ClassId="Button2" IsVisible="{Binding Path=isEditingL}" Clicked="OnImageButtonClicked" CommandParameter="{Binding .}" WidthRequest="30" HeightRequest="30" />
+                            <ImageButton Source="cross.png" ClassId="Button2" IsVisible="{Binding Path=isEditingL}" Clicked="OnImageButtonClicked" CommandParameter="{Binding .}" WidthRequest="30" HeightRequest="30" />
                             <ImageButton Source="checked.png" ClassId="Button3" IsVisible="{Binding Path=isEditingE}" Clicked="OnImageButtonClicked" WidthRequest="30" HeightRequest="30"/>
                         </HorizontalStackLayout >
                     </ViewCell>
