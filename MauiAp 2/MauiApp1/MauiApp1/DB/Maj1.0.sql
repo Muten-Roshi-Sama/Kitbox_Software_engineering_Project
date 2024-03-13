@@ -1,11 +1,14 @@
 use projet;
 CREATE TABLE IF NOT EXISTS Commands (
     Id INT UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
-    Reference VARCHAR(30) NOT NULL UNIQUE,
-    DateC DATE not null default CURRENT_TIMESTAMP,
-    Description TEXT NOT NULL,
-    NameFile VARCHAR(200)
+    Reference VARCHAR(30) NOT NULL,
+    DateC DATE NOT NULL DEFAULT '2020-01-01',
+    Description LONGTEXT NOT NULL,
+    NameFile VARCHAR(200),
+    UNIQUE(Reference)
 );
+
+CREATE TRIGGER auto_curr_date BEFORE INSERT ON CommandsFOR EACH ROW SET NEW.DateC = CURRENT_DATE();
 
 GRANT INSERT ON Commands TO 'interface'@'%';
 GRANT SELECT, INSERT, UPDATE, DELETE ON Commands TO 'Secretary'@'%';
