@@ -8,7 +8,7 @@ CREATE TABLE IF NOT EXISTS Commands (
     UNIQUE(Reference)
 );
 
-CREATE TRIGGER auto_curr_date BEFORE INSERT ON CommandsFOR EACH ROW SET NEW.DateC = CURRENT_DATE();
+CREATE TRIGGER auto_curr_date BEFORE INSERT ON Commands FOR EACH ROW SET NEW.DateC = CURRENT_DATE();
 
 GRANT INSERT ON Commands TO 'interface'@'%';
 GRANT SELECT, INSERT, UPDATE, DELETE ON Commands TO 'Secretary'@'%';
