@@ -481,9 +481,7 @@ VALUES
 ('Panel horizontal'  ,'PAH6262BR',62,62,3, 1,10.41,12, ROUND(RAND() * (1500 - 10) + 10)),
 ('Panel horizontal'  ,'PAH6280BR',62,80,3, 2,12.21,18, ROUND(RAND() * (1500 - 10) + 10)),
 ('Panel horizontal'  ,'PAH62100BR',62,100,3, 3,15.11,17, ROUND(RAND() * (1500 - 10) + 10)),
-('Panel horizontal'  ,'PAH62120BR',62,120,3, 4,18.22,9, ROUND(RAND() * (1500 - 10) + 10));
-INSERT INTO Components(Reference, Code, DepthC, LengthC, Color, IdSupplier, PriceSupplier, DelaySupplier, StockAvailable)
-VALUES
+('Panel horizontal'  ,'PAH62120BR',62,120,3, 4,18.22,9, ROUND(RAND() * (1500 - 10) + 10)),
 ('Panel horizontal','PAH3232BL',32,32,1, 5,4.31,7, ROUND(RAND() * (1500 - 10) + 10)),
 ('Panel horizontal','PAH3242BL',32,42,1, 6,5.41,4, ROUND(RAND() * (1500 - 10) + 10)),
 ('Panel horizontal','PAH3252BL',32,52,1, 7,6.66,11, ROUND(RAND() * (1500 - 10) + 10)),
