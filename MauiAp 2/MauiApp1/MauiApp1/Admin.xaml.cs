@@ -36,17 +36,14 @@ public partial class Admin : ContentPage
                 {
                     case "Stock Manager": 
                         this.connection.disconnection();
-                        Manager main = new Manager();
                         Navigation.PushModalAsync(new Manager());
                         break;
                     case "Secretary":
                         this.connection.disconnection();
-                        Secretary main2 = new Secretary();
                         Navigation.PushModalAsync(new Secretary());
                         break;
                     case "Stock Keeper":
                         this.connection.disconnection();
-                        StockKeeper main3 = new StockKeeper();
                         Navigation.PushModalAsync(new StockKeeper());
                         break;
                     

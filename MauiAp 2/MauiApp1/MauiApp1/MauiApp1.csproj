@@ -75,6 +75,14 @@
         <MauiImage Include="cross.png" />
         <None Remove="plus.png" />
         <MauiImage Include="plus.png" />
+        <None Remove="Icon\plus16.png" />
+        <MauiImage Include="Icon\plus16.png" />
+        <None Remove="Icon\check16.png" />
+        <MauiImage Include="Icon\check16.png" />
+        <None Remove="Icon\delete16.png" />
+        <MauiImage Include="Icon\delete16.png" />
+        <None Remove="Icon\edit16.png" />
+        <MauiImage Include="Icon\edit16.png" />
     </ItemGroup>
 
     <ItemGroup>

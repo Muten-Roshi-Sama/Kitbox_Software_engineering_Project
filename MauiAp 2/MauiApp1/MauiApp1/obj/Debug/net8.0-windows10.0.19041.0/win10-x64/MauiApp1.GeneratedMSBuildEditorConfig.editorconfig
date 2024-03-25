@@ -12,6 +12,12 @@ build_property.ProjectDir = C:\Users\Morar\Desktop\ECAM\Projet logiciel\Kitbox_S
 build_property.EnableComHosting = 
 build_property.EnableGeneratedComInterfaceComImportInterop = 
 
+[C:/Users/Morar/Desktop/ECAM/Projet logiciel/Kitbox_Software_engineering_Project/MauiAp 2/MauiApp1/MauiApp1/addSuppPopup.xaml]
+build_metadata.AdditionalFiles.GenKind = Xaml
+build_metadata.AdditionalFiles.ManifestResourceName = MauiApp1.addSuppPopup.xaml
+build_metadata.AdditionalFiles.TargetPath = addSuppPopup.xaml
+build_metadata.AdditionalFiles.RelativePath = addSuppPopup.xaml
+
 [C:/Users/Morar/Desktop/ECAM/Projet logiciel/Kitbox_Software_engineering_Project/MauiAp 2/MauiApp1/MauiApp1/Admin.xaml]
 build_metadata.AdditionalFiles.GenKind = Xaml
 build_metadata.AdditionalFiles.ManifestResourceName = MauiApp1.Admin.xaml

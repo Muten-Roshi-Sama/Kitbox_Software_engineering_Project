@@ -1295,3 +1295,11 @@ C:\Users\Morar\Desktop\ECAM\Projet logiciel\Kitbox_Software_engineering_Project\
 C:\Users\Morar\Desktop\ECAM\Projet logiciel\Kitbox_Software_engineering_Project\MauiAp 2\MauiApp1\MauiApp1\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\qualifiers.txt
 C:\Users\Morar\Desktop\ECAM\Projet logiciel\Kitbox_Software_engineering_Project\MauiAp 2\MauiApp1\MauiApp1\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\qualifiers.txt.intermediate
 C:\Users\Morar\Desktop\ECAM\Projet logiciel\Kitbox_Software_engineering_Project\MauiAp 2\MauiApp1\MauiApp1\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\MultipleQualifiersPerDimensionFound.txt
+C:\Users\Morar\Desktop\ECAM\Projet logiciel\Kitbox_Software_engineering_Project\MauiAp 2\MauiApp1\MauiApp1\bin\Debug\net8.0-windows10.0.19041.0\win10-x64\plus16.scale-100.png
+C:\Users\Morar\Desktop\ECAM\Projet logiciel\Kitbox_Software_engineering_Project\MauiAp 2\MauiApp1\MauiApp1\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\plus16.scale-100.png
+C:\Users\Morar\Desktop\ECAM\Projet logiciel\Kitbox_Software_engineering_Project\MauiAp 2\MauiApp1\MauiApp1\bin\Debug\net8.0-windows10.0.19041.0\win10-x64\edit16.scale-100.png
+C:\Users\Morar\Desktop\ECAM\Projet logiciel\Kitbox_Software_engineering_Project\MauiAp 2\MauiApp1\MauiApp1\bin\Debug\net8.0-windows10.0.19041.0\win10-x64\delete16.scale-100.png
+C:\Users\Morar\Desktop\ECAM\Projet logiciel\Kitbox_Software_engineering_Project\MauiAp 2\MauiApp1\MauiApp1\bin\Debug\net8.0-windows10.0.19041.0\win10-x64\check16.scale-100.png
+C:\Users\Morar\Desktop\ECAM\Projet logiciel\Kitbox_Software_engineering_Project\MauiAp 2\MauiApp1\MauiApp1\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\edit16.scale-100.png
+C:\Users\Morar\Desktop\ECAM\Projet logiciel\Kitbox_Software_engineering_Project\MauiAp 2\MauiApp1\MauiApp1\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\delete16.scale-100.png
+C:\Users\Morar\Desktop\ECAM\Projet logiciel\Kitbox_Software_engineering_Project\MauiAp 2\MauiApp1\MauiApp1\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\check16.scale-100.png

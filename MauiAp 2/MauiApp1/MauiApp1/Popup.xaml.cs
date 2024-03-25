@@ -1,23 +1,35 @@
 
 using CommunityToolkit.Maui.Views;
+using Google.Protobuf;
 namespace aaa;
 public partial class SimplePopup : Popup
 {
-    private int id{get;}
-    public SimplePopup(int id)
+    private List<CompoSupplier> supplierList;
+    public SimplePopup()
     {
-        this.Size = new Size(800,600);
-        this.id = id;
+        //this.Size = new Size(800,600);
+        this.supplierList = new List<CompoSupplier>();
+        this.supplierList.Add(new CompoSupplier(0,0,0));
         InitializeComponent();
+        SuppListView.ItemsSource = this.supplierList;
     }
     async void OnAddLineConfirmed(object sender, EventArgs e){
         var cts = new CancellationTokenSource(TimeSpan.FromSeconds(5));
-        Component compo = new Component(Int32.Parse(IdEntry.Text),ReferenceEntry.Text,CodeEntry.Text,Int32.Parse(LengthEntry.Text),
+        Component compo = new Component(ReferenceEntry.Text,CodeEntry.Text,Int32.Parse(LengthEntry.Text),
         Int32.Parse(HeightEntry.Text),Int32.Parse(DepthEntry.Text),Int32.Parse(ColorEntry.Text),
-        float.Parse(priceSupplier1Entry.Text),Int32.Parse(delaySupplier1Entry.Text),
-        float.Parse(priceSupplier2Entry.Text),Int32.Parse(delaySupplier2Entry.Text),Int32.Parse(AvailableEntry.Text),
+        Int32.Parse(AvailableEntry.Text),
         Int32.Parse(OrderedEntry.Text),Int32.Parse(ReservedEntry.Text),true,false);
+        foreach (var item in supplierList)
+        {
+            Console.WriteLine(item.priceSupplier);
+        }
+        compo.listSuppliers = this.supplierList;
         await CloseAsync(compo, cts.Token);
-        //AddLinePopup.IsVisible = false;
+    }
+
+    void OnButtonClicked(object sender, EventArgs e){
+        this.supplierList.Add(new CompoSupplier(0,0,0));
+        SuppListView.ItemsSource = null;
+        SuppListView.ItemsSource = this.supplierList;
     }
 }

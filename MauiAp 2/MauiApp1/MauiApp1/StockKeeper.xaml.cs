@@ -31,7 +31,6 @@ public partial class StockKeeper : ContentPage
     public void disconnect(object sender, EventArgs e)
     {
         this.connection.disconnection();
-        //Navigation.PushModalAsync(new Admin());
         LaunchAppShell();
     }
 
@@ -41,7 +40,7 @@ public partial class StockKeeper : ContentPage
     }
 
     void OnImageButtonClicked(object sender, EventArgs e){
-        var button = (ImageButton)sender;
+        var button = (Image)sender;
         var component = (Component)button.BindingContext;
         switch (button.ClassId)
         {

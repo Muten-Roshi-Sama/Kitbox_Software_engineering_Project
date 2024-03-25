@@ -30,48 +30,74 @@ public class DBConnection{
 
     public List<Component> getAllComponents(){
         List<Component> components = new List<Component>();
-        using (var command = new MySqlCommand("SELECT * FROM Components;", connection)){
+        using (var command = new MySqlCommand("SELECT * FROM Components ORDER BY Code;", connection)){
             using (var reader = command.ExecuteReader()){
+                Component compo = null;
+                string Code = null;
+                
                 while (reader.Read()){
-                    Component compo = new Component(reader.GetInt16("Id"),reader.GetString("Reference"),
-                    reader.GetString("Code"),reader.GetInt16("LengthC"),reader.GetInt16("HeightC"),reader.GetInt16("DepthC"), 
-                    reader.GetInt16("Color"), reader.GetFloat("PriceSupplier1"),reader.GetInt16("DelaySupplier1"),
-                    reader.GetFloat("PriceSupplier2"), reader.GetInt16("DelaySupplier2"),reader.GetInt16("StockAvailable"),
-                    reader.GetInt16("StockOrdered"), reader.GetInt16("StockReserved"), true, false);
-                    components.Add(compo);
+                    if(Code != reader.GetString("Code")){
+                        if(compo is not null){
+                            components.Add(compo);
+                        }
+                        Code = reader.GetString("Code");
+                        compo = new Component(reader.GetString("Reference"),
+                            reader.GetString("Code"),reader.GetInt16("LengthC"),reader.GetInt16("HeightC"),reader.GetInt16("DepthC"), 
+                            reader.GetInt16("Color"),reader.GetInt16("StockAvailable"),
+                            reader.GetInt16("StockOrdered"), reader.GetInt16("StockReserved"), true, false);
+                    }
+                    compo.addSupplier(new CompoSupplier(reader.GetInt16("IdSupplier"), reader.GetFloat("PriceSupplier"), reader.GetInt16("DelaySupplier")));
                 }
+                components.Add(compo);
                 return components;
             }
         }
     }
 
     public void updateStockComponents(Component compo){
-        using var command = new MySqlCommand($"UPDATE Components SET StockAvailable={compo.stockAvailable}, StockOrdered={compo.stockOrdered},StockReserved={compo.stockReserved} WHERE Id={compo.id};", connection);
+        using var command = new MySqlCommand($"UPDATE Components SET StockAvailable={compo.stockAvailable}, StockOrdered={compo.stockOrdered},StockReserved={compo.stockReserved} WHERE Code='{compo.code}';", connection);
 		using var reader = command.ExecuteReader();
         Console.WriteLine("UPDATE");
     }
-    public void updatePriceDelayComponents(Component compo){
-        using var command = new MySqlCommand($"UPDATE Components SET PriceSupplier1={compo.priceSupplier1.ToString().Replace(',','.')}, DelaySupplier1={compo.delaySupplier1},PriceSupplier2={compo.priceSupplier2.ToString().Replace(',','.')},DelaySupplier2={compo.delaySupplier2} WHERE Id={compo.id};", connection);
+    public void updatePriceDelayComponents(string Code, CompoSupplier supp){
+        Console.WriteLine($"UPDATE Components SET PriceSupplier={supp.priceSupplier.ToString().Replace(',','.')}, DelaySupplier={supp.delaySupplier} WHERE Code='{Code}' AND IdSupplier={supp.idSupplier};");
+        using var command = new MySqlCommand($"UPDATE Components SET PriceSupplier={supp.priceSupplier.ToString().Replace(',','.')}, DelaySupplier={supp.delaySupplier} WHERE Code='{Code}' AND IdSupplier={supp.idSupplier};", connection);
         using var reader = command.ExecuteReader();
         Console.WriteLine("UPDATE");
     }
 
     public void updateComponents(Component compo){
-        using var command = new MySqlCommand($"UPDATE Components SET PriceSupplier1={compo.priceSupplier1.ToString().Replace(',','.')}, DelaySupplier1={compo.delaySupplier1},PriceSupplier2={compo.priceSupplier2.ToString().Replace(',','.')},DelaySupplier2={compo.delaySupplier2}, StockAvailable={compo.stockAvailable}, StockOrdered={compo.stockOrdered},StockReserved={compo.stockReserved} WHERE Id={compo.id};", connection);
+        using var command = new MySqlCommand($"UPDATE Components SET StockAvailable={compo.stockAvailable}, StockOrdered={compo.stockOrdered},StockReserved={compo.stockReserved} WHERE Code='{compo.code}';", connection);
         using var reader = command.ExecuteReader();
         Console.WriteLine("UPDATE");
     }
     public void addComponent(Component compo){
-        Console.WriteLine($"INSERT INTO Components (Id,Reference, Code, LengthC, HeightC, DepthC , Color, PriceSupplier1, DelaySupplier1, PriceSupplier2, DelaySupplier2, StockAvailable,StockOrdered,StockReserved) VALUES({compo.id},'{compo.reference}','{compo.code}',{compo.length},{compo.height},{compo.depth}, {compo.getColorCode()},{compo.priceSupplier1.ToString().Replace(',','.')},{compo.delaySupplier1},{compo.priceSupplier2.ToString().Replace(',','.')},{compo.delaySupplier2},{compo.stockAvailable},{compo.stockOrdered},{compo.stockReserved});");
-        using var command = new MySqlCommand($"INSERT INTO Components (Id,Reference, Code, LengthC, HeightC, DepthC , Color, PriceSupplier1, DelaySupplier1, PriceSupplier2, DelaySupplier2, StockAvailable,StockOrdered,StockReserved) VALUES({compo.id},'{compo.reference}','{compo.code}',{compo.length},{compo.height},{compo.depth}, {compo.getColorCode()},{compo.priceSupplier1.ToString().Replace(',','.')},{compo.delaySupplier1},{compo.priceSupplier2.ToString().Replace(',','.')},{compo.delaySupplier2},{compo.stockAvailable},{compo.stockOrdered},{compo.stockReserved});",this.connection);
-        command.ExecuteNonQuery();
+        int i = 0;
+        foreach (var supp in compo.listSuppliers)
+        {
+            Console.WriteLine($"INSERT INTO Components (Reference, Code, LengthC, HeightC, DepthC , Color, IdSupplier, PriceSupplier, DelaySupplier, StockAvailable,StockOrdered,StockReserved) VALUES('{compo.reference}','{compo.code}',{compo.length},{compo.height},{compo.depth}, {compo.getColorCode()},{supp.idSupplier.ToString()},{supp.priceSupplier.ToString().Replace(',','.')},{supp.delaySupplier},{compo.stockAvailable},{compo.stockOrdered},{compo.stockReserved});");
+            using var command = new MySqlCommand($"INSERT INTO Components (Reference, Code, LengthC, HeightC, DepthC , Color, IdSupplier, PriceSupplier, DelaySupplier, StockAvailable,StockOrdered,StockReserved) VALUES('{compo.reference}','{compo.code}',{compo.length},{compo.height},{compo.depth}, {compo.getColorCode()},{supp.idSupplier.ToString()},{supp.priceSupplier.ToString().Replace(',','.')},{supp.delaySupplier},{compo.stockAvailable},{compo.stockOrdered},{compo.stockReserved});",this.connection);
+            command.ExecuteNonQuery();
+            i++;
+        }
+        
         Console.WriteLine("INSERT");
     }
 
-    public void deleteComponent(int id){
-        using var command = new MySqlCommand($"DELETE FROM Components WHERE Id = {id};",this.connection);
+    public void addSupplier(Component compo, CompoSupplier supp){
+        Console.WriteLine($"INSERT INTO Components (Reference, Code, LengthC, HeightC, DepthC , Color, IdSupplier, PriceSupplier, DelaySupplier, StockAvailable,StockOrdered,StockReserved) VALUES('{compo.reference}','{compo.code}',{compo.length},{compo.height},{compo.depth}, {compo.getColorCode()},{supp.idSupplier.ToString()},{supp.priceSupplier.ToString().Replace(',','.')},{supp.delaySupplier},{compo.stockAvailable},{compo.stockOrdered},{compo.stockReserved});");
+        using var command = new MySqlCommand($"INSERT INTO Components (Reference, Code, LengthC, HeightC, DepthC , Color, IdSupplier, PriceSupplier, DelaySupplier, StockAvailable,StockOrdered,StockReserved) VALUES('{compo.reference}','{compo.code}',{compo.length},{compo.height},{compo.depth}, {compo.getColorCode()},{supp.idSupplier.ToString()},{supp.priceSupplier.ToString().Replace(',','.')},{supp.delaySupplier},{compo.stockAvailable},{compo.stockOrdered},{compo.stockReserved});",this.connection);
         command.ExecuteNonQuery();
-        Console.WriteLine($"DELETE FROM Components WHERE Id = {id};");
+    }
+    public void deleteComponent(string Code){
+        using var command = new MySqlCommand($"DELETE FROM Components WHERE Code = '{Code}';",this.connection);
+        command.ExecuteNonQuery();
+        Console.WriteLine($"DELETE FROM Components WHERE Code = {Code};");
+    }
+    public void deleteSuppOfComponent(int idSupplier, string Code){
+        using var command = new MySqlCommand($"DELETE FROM Components WHERE Code = '{Code}' AND IdSupplier = {idSupplier};",this.connection);
+        command.ExecuteNonQuery();
+        Console.WriteLine($"DELETE FROM Components WHERE Code = '{Code}' AND IdSupplier = {idSupplier};");
     }
 
     public Account getUserAccount(string name){

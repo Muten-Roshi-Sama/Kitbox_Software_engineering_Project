@@ -4,100 +4,71 @@
                xmlns:local="clr-namespace:aaa"
                x:Class="aaa.SimplePopup">
 
-    <StackLayout>
+    <StackLayout HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
         <HorizontalStackLayout Padding="10" Spacing="5" HorizontalOptions="FillAndExpand">
             <VerticalStackLayout Padding="10" Spacing="5" HorizontalOptions="FillAndExpand">
                 <HorizontalStackLayout Padding="10" Spacing="5" HorizontalOptions="FillAndExpand">
-                    <Label Text="Id"/>
-                    <Entry Placeholder="Id" x:Name="IdEntry"/>
-                </HorizontalStackLayout>
-                <HorizontalStackLayout Padding="10" Spacing="5" HorizontalOptions="FillAndExpand">
-                    <Label Text="Reference"/>
+                    <Label Text="Reference" VerticalOptions="Center"/>
                     <Entry Placeholder="Reference" x:Name="ReferenceEntry"/>
                 </HorizontalStackLayout>
                 <HorizontalStackLayout Padding="10" Spacing="5" HorizontalOptions="FillAndExpand">
-                    <Label Text="Code"/>
+                    <Label Text="Code" VerticalOptions="Center"/>
                     <Entry Placeholder="Code" x:Name="CodeEntry"/>
                 </HorizontalStackLayout>
                 <HorizontalStackLayout Padding="10" Spacing="5" HorizontalOptions="FillAndExpand">
-                    <Label Text="Length"/>
+                    <Label Text="Length" VerticalOptions="Center"/>
                     <Entry Placeholder="Length" x:Name="LengthEntry"/>
                 </HorizontalStackLayout>
                 <HorizontalStackLayout Padding="10" Spacing="5" HorizontalOptions="FillAndExpand">
-                    <Label Text="Height"/>
+                    <Label Text="Height" VerticalOptions="Center"/>
                     <Entry Placeholder="Height" x:Name="HeightEntry"/>
                 </HorizontalStackLayout>
                 <HorizontalStackLayout Padding="10" Spacing="5" HorizontalOptions="FillAndExpand">
-                    <Label Text="Depth"/>
+                    <Label Text="Depth" VerticalOptions="Center"/>
                     <Entry Placeholder="Depth" x:Name="DepthEntry"/>
                     </HorizontalStackLayout>
-                <HorizontalStackLayout Padding="10" Spacing="5" HorizontalOptions="FillAndExpand">
-                    <Label Text="Color"/>
-                    <Entry Placeholder="Color" x:Name="ColorEntry"/>
-                </HorizontalStackLayout>
             </VerticalStackLayout>
             <VerticalStackLayout Padding="10" Spacing="5" HorizontalOptions="FillAndExpand">
                 <HorizontalStackLayout Padding="10" Spacing="5" HorizontalOptions="FillAndExpand">
-                    <Label Text="priceSupplier1"/>
-                    <Entry Placeholder="priceSupplier1" x:Name="priceSupplier1Entry"/>
-                </HorizontalStackLayout>
-                <HorizontalStackLayout Padding="10" Spacing="5" HorizontalOptions="FillAndExpand">
-                    <Label Text="delaySupplier1"/>
-                    <Entry Placeholder="delaySupplier1" x:Name="delaySupplier1Entry"/>
-                </HorizontalStackLayout>
-                <HorizontalStackLayout Padding="10" Spacing="5" HorizontalOptions="FillAndExpand">
-                    <Label Text="priceSupplier2"/>
-                    <Entry Placeholder="priceSupplier2" x:Name="priceSupplier2Entry"/>
-                </HorizontalStackLayout>
-                <HorizontalStackLayout Padding="10" Spacing="5" HorizontalOptions="FillAndExpand">
-                    <Label Text="delaySupplier2"/>
-                    <Entry Placeholder="delaySupplier2" x:Name="delaySupplier2Entry"/>
-                </HorizontalStackLayout>
-                <HorizontalStackLayout Padding="10" Spacing="5" HorizontalOptions="FillAndExpand">
-                    <Label Text="Stock Available"/>
+                    <Label Text="Stock Available" VerticalOptions="Center"/>
                     <Entry Placeholder="Stock Available" x:Name="AvailableEntry"/>
                 </HorizontalStackLayout>
                 <HorizontalStackLayout Padding="10" Spacing="5" HorizontalOptions="FillAndExpand">
-                    <Label Text="Stock Ordered"/>
+                    <Label Text="Stock Ordered" VerticalOptions="Center"/>
                     <Entry Placeholder="Stock Ordered" x:Name="OrderedEntry"/>
                 </HorizontalStackLayout>
                 <HorizontalStackLayout Padding="10" Spacing="5" HorizontalOptions="FillAndExpand">
-                    <Label Text="Stock Reserved"/>
+                    <Label Text="Stock Reserved" VerticalOptions="Center"/>
                     <Entry Placeholder="Stock Reserved" x:Name="ReservedEntry"/>
                 </HorizontalStackLayout>
-            </VerticalStackLayout>   
+                <HorizontalStackLayout Padding="10" Spacing="5" HorizontalOptions="FillAndExpand">
+                    <Label Text="Color" VerticalOptions="Center"/>
+                    <Entry Placeholder="Color" x:Name="ColorEntry"/>
+                </HorizontalStackLayout>
+            </VerticalStackLayout>
+            <VerticalStackLayout HorizontalOptions="FillAndExpand">
+            <ListView x:Name="SuppListView" HorizontalOptions="FillAndExpand">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <StackLayout>
+                                <HorizontalStackLayout Padding="10" Spacing="5" HorizontalOptions="FillAndExpand">
+                                    <Label Text="Id" VerticalOptions="Center"/>
+                                    <Entry Placeholder="Id" x:Name="IdSuppEntry" Text="{Binding Path=idSupplier}"/>
+                                    <Label Text="Price" VerticalOptions="Center"/>
+                                    <Entry Placeholder="Prce" x:Name="PriceSuppEntry" Text="{Binding Path=priceSupplier}"/>
+                                    <Label Text="delay" VerticalOptions="Center"/>
+                                    <Entry Placeholder="dlay" x:Name="DelaySuppEntry" Text="{Binding Path=delaySupplier}"/>
+                                </HorizontalStackLayout>
+                            </StackLayout>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+            <Button Text="Add" Clicked="OnButtonClicked" />
+            </VerticalStackLayout>
         </HorizontalStackLayout>
+        
         <Button Text="Confirmer" Clicked="OnAddLineConfirmed"/>
     </StackLayout>
 </toolkit:Popup>
-
-<!--<HorizontalStackLayout Padding="10" Spacing="10" HorizontalOptions="FillAndExpand">
-                    <Label Text="Reference" WidthRequest="150"/>
-                    <Label Text="Code" WidthRequest="90"/>
-                    <Label Text="Length" WidthRequest="40"/>
-                    <Label Text="Height" WidthRequest="40"/>
-                    <Label Text="Depth" WidthRequest="40"/>
-                    <Label Text="Color" WidthRequest="70"/>
-                    <Label Text="priceSupplier1" WidthRequest="70"/>
-                    <Label Text="delaySupplier1" WidthRequest="40"/>
-                    <Label Text="priceSupplier2" WidthRequest="40"/>
-                    <Label Text="delaySupplier2" WidthRequest="40"/>
-                    <Label Text="Stock Available" WidthRequest="40"/>
-                    <Label Text="Stock Ordered" WidthRequest="40"/>
-                    <Label Text="Stock Reserved" WidthRequest="40"/>
-                </HorizontalStackLayout>
-                <HorizontalStackLayout Padding="10" Spacing="10" HorizontalOptions="FillAndExpand">
-                    <Entry Placeholder="Reference" x:Name="ReferenceEntry"/>
-                    <Entry Placeholder="Code" x:Name="CodeEntry"/>
-                    <Entry Placeholder="Length" x:Name="LengthEntry"/>
-                    <Entry Placeholder="Height" x:Name="HeightEntry"/>
-                    <Entry Placeholder="Depth" x:Name="DepthEntry"/>
-                    <Entry Placeholder="Color" x:Name="ColorEntry"/>
-                    <Entry Placeholder="priceSupplier1" x:Name="priceSupplier1Entry"/>
-                    <Entry Placeholder="delaySupplier1" x:Name="delaySupplier1Entry"/>
-                    <Entry Placeholder="priceSupplier2" x:Name="priceSupplier2Entry"/>
-                    <Entry Placeholder="delaySupplier2" x:Name="delaySupplier2Entry"/>
-                    <Entry Placeholder="Stock Available" x:Name="AvailableEntry"/>
-                    <Entry Placeholder="Stock Ordered" x:Name="OrderedEntry"/>
-                    <Entry Placeholder="Stock Reserved" x:Name="ReservedEntry"/>
-                </HorizontalStackLayout>-->
