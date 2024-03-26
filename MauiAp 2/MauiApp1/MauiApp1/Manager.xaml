@@ -21,6 +21,11 @@
             <Label Text="Stock Available" WidthRequest="100"/>
             <Label Text="Stock Ordered" WidthRequest="100"/>
             <Label Text="Stock Reserved" WidthRequest="100"/>
+            <Image Source="plus16.png" ClassId="addLineBtn">
+                <Image.GestureRecognizers>
+                    <TapGestureRecognizer Tapped="OnAddLineButtonClicked" />
+                </Image.GestureRecognizers>
+            </Image>
             <Label x:Name="label" Text="Filtre">
                 <FlyoutBase.ContextFlyout>
                     <MenuFlyout>
@@ -29,13 +34,6 @@
                     </MenuFlyout>
                 </FlyoutBase.ContextFlyout>
             </Label>
-
-
-            <Image Source="plus16.png" ClassId="addLineBtn">
-                <Image.GestureRecognizers>
-                    <TapGestureRecognizer Tapped="OnAddLineButtonClicked" />
-                </Image.GestureRecognizers>
-            </Image>
         </StackLayout>
         <Line Stroke="black" X2="1000" />
         <ListView x:Name="MyListView">

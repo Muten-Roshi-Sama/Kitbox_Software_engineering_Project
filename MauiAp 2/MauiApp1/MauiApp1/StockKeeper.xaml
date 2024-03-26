@@ -18,6 +18,14 @@
             <Label Text="Stock Available" WidthRequest="100"/>
             <Label Text="Stock Ordered" WidthRequest="100"/>
             <Label Text="Stock Reserved" WidthRequest="100"/>
+            <Label x:Name="label" Text="Filtre">
+                <FlyoutBase.ContextFlyout>
+                    <MenuFlyout>
+                        <MenuFlyoutItem x:Name="MissingStock" Text="Missing Stock" Clicked="FiltreLabelClicked"/>
+                        <MenuFlyoutItem x:Name="All" Text="All" Clicked="FiltreLabelClicked"/>
+                    </MenuFlyout>
+                </FlyoutBase.ContextFlyout>
+            </Label>
         </StackLayout>
         <Line Stroke="black" X2="1000" />
              <ListView x:Name="MyListView">

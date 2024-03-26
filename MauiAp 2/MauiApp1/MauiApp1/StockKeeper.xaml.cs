@@ -13,6 +13,7 @@ public partial class StockKeeper : ContentPage
 {
     List<Component> components;
     DBConnection connection;
+    static int valueLimiteStock = 20;
 
     public StockKeeper()
     {
@@ -57,6 +58,30 @@ public partial class StockKeeper : ContentPage
         }
         //MyListView.ItemsSource = null;
         //MyListView.ItemsSource = components;
+    }
+
+    void FiltreLabelClicked(object sender, EventArgs e){
+        var choice = (MenuFlyoutItem)sender;
+        switch (choice.Text)
+        {
+            case "Missing Stock":
+                List<Component> compoFiltre = new List<Component>();
+                foreach (var item in components)
+                {
+                    if(item.stockAvailable < valueLimiteStock){
+                        compoFiltre.Add(item);
+                    }
+                }
+                MyListView.ItemsSource  = null;
+                MyListView.ItemsSource  = compoFiltre;
+                break;
+            case "All":
+                MyListView.ItemsSource = null;
+                MyListView.ItemsSource = components;
+                break;
+
+            default:break;
+        }
     }
     
 }
