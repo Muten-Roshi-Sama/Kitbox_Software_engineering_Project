@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="MauiApp1.Seller">
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <Color x:Key="LightGrayColor">#F0F0F0</Color>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+    <StackLayout>
+        <StackLayout Orientation="Horizontal" Padding="10" Spacing="10">
+            <Label Text="Id" WidthRequest="100"/>
+            <Label Text="Reference" WidthRequest="100"/>
+            <Label Text="DateC" WidthRequest="100"/>
+            <Label Text="Description" WidthRequest="100"/>
+            <Label Text="NameFile" WidthRequest="100"/>
+        </StackLayout>
+        <Line Stroke="black" X2="1000" />
+        <ListView x:Name="MyListView">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <ViewCell>
+                        <StackLayout>
+                            <HorizontalStackLayout Padding="10" Spacing="10" HorizontalOptions="FillAndExpand">
+                                <Label Text="{Binding Path=Id}" HorizontalOptions="FillAndExpand" WidthRequest="100"/>
+                                <Label Text="{Binding Path=Reference}" HorizontalOptions="FillAndExpand" WidthRequest="100"/>
+                                <Label Text="{Binding Path=DateC}" HorizontalOptions="FillAndExpand" WidthRequest="100"/>
+                                <Label Text="{Binding Path=Description}" HorizontalOptions="FillAndExpand" WidthRequest="100"/>
+                               <Label Text="{Binding Path=NameFile}" HorizontalOptions="FillAndExpand" WidthRequest="100"/>
+                                <ImageButton Source="sort_down.png" ClassId="Button3" IsVisible="{Binding Path=infoSupOff}" WidthRequest="20" HeightRequest="20" />
+                            </HorizontalStackLayout >
+                        </StackLayout>
+                    </ViewCell>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+        <Button x:Name="Disconnect" Margin="10,0,0,0" HeightRequest= "10" WidthRequest=" 200" Text="Disconnect" Clicked="disconnect"></Button>
+    </StackLayout>
+
+</ContentPage>

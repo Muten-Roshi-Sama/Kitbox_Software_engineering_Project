@@ -4,7 +4,7 @@
                xmlns:local="clr-namespace:aaa"
                x:Class="aaa.AddSuppPopup">
 
-    <StackLayout>
+    <StackLayout HorizontalOptions="FillAndExpand">
         <HorizontalStackLayout Padding="10" Spacing="5" HorizontalOptions="FillAndExpand">
             <HorizontalStackLayout Padding="10" Spacing="5" HorizontalOptions="FillAndExpand">
                 <Label Text="Id Supplier"/>

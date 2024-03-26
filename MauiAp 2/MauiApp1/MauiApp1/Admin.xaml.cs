@@ -46,6 +46,11 @@ public partial class Admin : ContentPage
                         this.connection.disconnection();
                         Navigation.PushModalAsync(new StockKeeper());
                         break;
+                    case"Seller":
+                        this.connection.disconnection();
+                        Seller main4 = new Seller();
+                        Navigation.PushModalAsync(new Seller());
+                        break; 
                     
                     default:
                         throw new ErrorConnectionException("Unknow Function or not have autorisation");

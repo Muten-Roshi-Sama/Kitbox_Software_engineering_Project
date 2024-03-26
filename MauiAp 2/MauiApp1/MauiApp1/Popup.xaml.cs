@@ -7,7 +7,7 @@ public partial class SimplePopup : Popup
     private List<CompoSupplier> supplierList;
     public SimplePopup()
     {
-        //this.Size = new Size(800,600);
+        this.Size = new Size(800,420);
         this.supplierList = new List<CompoSupplier>();
         this.supplierList.Add(new CompoSupplier(0,0,0));
         InitializeComponent();

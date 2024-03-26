@@ -66,6 +66,12 @@ build_metadata.AdditionalFiles.ManifestResourceName = MauiApp1.Manager.xaml
 build_metadata.AdditionalFiles.TargetPath = Manager.xaml
 build_metadata.AdditionalFiles.RelativePath = Manager.xaml
 
+[C:/Users/Morar/Desktop/ECAM/Projet logiciel/Kitbox_Software_engineering_Project/MauiAp 2/MauiApp1/MauiApp1/ModifyBasket.xaml]
+build_metadata.AdditionalFiles.GenKind = Xaml
+build_metadata.AdditionalFiles.ManifestResourceName = MauiApp1.ModifyBasket.xaml
+build_metadata.AdditionalFiles.TargetPath = ModifyBasket.xaml
+build_metadata.AdditionalFiles.RelativePath = ModifyBasket.xaml
+
 [C:/Users/Morar/Desktop/ECAM/Projet logiciel/Kitbox_Software_engineering_Project/MauiAp 2/MauiApp1/MauiApp1/Panier.xaml]
 build_metadata.AdditionalFiles.GenKind = Xaml
 build_metadata.AdditionalFiles.ManifestResourceName = MauiApp1.Panier.xaml
@@ -95,6 +101,12 @@ build_metadata.AdditionalFiles.GenKind = Xaml
 build_metadata.AdditionalFiles.ManifestResourceName = MauiApp1.Secretary.xaml
 build_metadata.AdditionalFiles.TargetPath = Secretary.xaml
 build_metadata.AdditionalFiles.RelativePath = Secretary.xaml
+
+[C:/Users/Morar/Desktop/ECAM/Projet logiciel/Kitbox_Software_engineering_Project/MauiAp 2/MauiApp1/MauiApp1/Seller.xaml]
+build_metadata.AdditionalFiles.GenKind = Xaml
+build_metadata.AdditionalFiles.ManifestResourceName = MauiApp1.Seller.xaml
+build_metadata.AdditionalFiles.TargetPath = Seller.xaml
+build_metadata.AdditionalFiles.RelativePath = Seller.xaml
 
 [C:/Users/Morar/Desktop/ECAM/Projet logiciel/Kitbox_Software_engineering_Project/MauiAp 2/MauiApp1/MauiApp1/StockKeeper.xaml]
 build_metadata.AdditionalFiles.GenKind = Xaml

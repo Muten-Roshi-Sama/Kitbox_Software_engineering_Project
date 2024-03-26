@@ -100,6 +100,29 @@ public class DBConnection{
         Console.WriteLine($"DELETE FROM Components WHERE Code = '{Code}' AND IdSupplier = {idSupplier};");
     }
 
+    public List<Command> getAllCommand()
+    {
+        List<Command> commands = new List<Command>();
+        using (var command = new MySqlCommand("SELECT * FROM Commands;", connection)){
+            using (var reader = command.ExecuteReader()){
+                while (reader.Read()){
+                    Command com = new Command(reader.GetInt16("Id"),reader.GetString("Reference"),
+                        reader.GetDateTime("DateC").ToString(),reader.GetString("Description"),reader.GetString("NameFile"));
+                    commands.Add(com);
+                }
+                return commands;
+            }
+        }
+        
+    }
+    public void addComand(Command com)
+    {
+        Console.WriteLine($"INSERT INTO Commands (Reference, Description, NameFile) VALUES({com.Id},'{com.Reference}',{com.Description},{com.NameFile});");
+        using var command = new MySqlCommand($"INSERT INTO Commands (Reference, Description, NameFile) VALUES('{com.Reference}','{com.Description}','{com.NameFile}');",this.connection);
+        command.ExecuteNonQuery();
+        Console.WriteLine("INSERT");
+    }
+
     public Account getUserAccount(string name){
         try{
             using (var command = new MySqlCommand($"SELECT Password, Fonction FROM Account WHERE Name='{name}';", connection)){

@@ -27,9 +27,9 @@
                         <HorizontalStackLayout Padding="10" Spacing="10" HorizontalOptions="FillAndExpand">
                             <Label Text="{Binding Path=Casier}" HorizontalOptions="FillAndExpand" WidthRequest="60"/>
                             <Label Text="{Binding Path=depth}" IsVisible="{Binding Path=isEditingL}" HorizontalOptions="FillAndExpand" WidthRequest="60"/>
-                            <Entry Text="{Binding Path=depth}" IsVisible="{Binding Path=isEditingE}" HorizontalOptions="FillAndExpand" WidthRequest="60"/>
+                            <Picker SelectedItem="{Binding Depth}" IsVisible="{Binding Path=isEditingE}" ItemsSource="{Binding DepthsOptions}" />
                             <Label Text="{Binding Path=length}" IsVisible="{Binding Path=isEditingL}" HorizontalOptions="FillAndExpand" WidthRequest="90"/>
-                            <Entry Text="{Binding Path=length}" IsVisible="{Binding Path=isEditingE}" HorizontalOptions="FillAndExpand" WidthRequest="90"/>
+                            <Entry x:Name="myEntry" Text="{Binding Path=length}" IsVisible="{Binding Path=isEditingE}" HorizontalOptions="FillAndExpand" WidthRequest="90"/>
                             <Label Text="{Binding Path=nbBoxe}" HorizontalOptions="FillAndExpand" WidthRequest="90"/>
                             <Label Text="{Binding Path=color}"  IsVisible="{Binding Path=isEditingL}" HorizontalOptions="FillAndExpand" WidthRequest="70"/>
                             <Entry Text="{Binding Path=color}"  IsVisible="{Binding Path=isEditingE}" HorizontalOptions="FillAndExpand" WidthRequest="70"/>
@@ -41,9 +41,9 @@
                             <Entry Text="{Binding Path=typeDoors}" IsVisible="{Binding Path=isEditingE}" HorizontalOptions="FillAndExpand" WidthRequest="40"/>
                             <Label Text="{Binding Path=colorDoors}" IsVisible="{Binding Path=isEditingL}" HorizontalOptions="FillAndExpand" WidthRequest="50"/>
                             <Entry Text="{Binding Path=colorDoors}" IsVisible="{Binding Path=isEditingE}" HorizontalOptions="FillAndExpand" WidthRequest="50"/>
-                            <ImageButton Source="edit.png" ClassId="Button1" IsVisible="{Binding Path=isEditingL}" Clicked="OnImageButtonClicked" WidthRequest="30" HeightRequest="30" />
+                            <ImageButton Source="edit.png" ClassId="Button1" IsVisible="{Binding Path=isEditingL}" Clicked="OnImageButtonClicked" CommandParameter="{Binding .}" WidthRequest="30" HeightRequest="30" />
                             <ImageButton Source="cross.png" ClassId="Button2" IsVisible="{Binding Path=isEditingL}" Clicked="OnImageButtonClicked" CommandParameter="{Binding .}" WidthRequest="30" HeightRequest="30" />
-                            <ImageButton Source="checked.png" ClassId="Button3" IsVisible="{Binding Path=isEditingE}" Clicked="OnImageButtonClicked" WidthRequest="30" HeightRequest="30"/>
+                            <ImageButton Source="checked.png" ClassId="Button3" IsVisible="{Binding Path=isEditingE}" Clicked="OnImageButtonClicked" CommandParameter="{Binding .}" WidthRequest="30" HeightRequest="30"/>
                         </HorizontalStackLayout >
                     </ViewCell>
                 </DataTemplate>

@@ -25,21 +25,43 @@ public class Box
     {
         return height;
     }
+    public void setHeight(String h)
+    {
+        this.height= h;
+    }
 
     public String getColor()
     {
         return color;
     }
+    
+    public void setColor(String color)
+    {
+        this.color = color;
+    }
+    
 
     public String getTypeDoors()
     {
         return typedoors;
     }
 
+    public void setTypeDoors(String typeDoors)
+    {
+        this.typedoors = typeDoors; 
+    }
+
     public Boolean getDoors()
     {
         return doors;
     }
+
+    public void setDoors(Boolean d)
+    {
+        this.doors = d; 
+    }
+    
+    
 
     public String displayBox()
     {

@@ -15,15 +15,25 @@ public partial class Basket : ContentPage
     public Compose compose; 
     public ObservableCollection<Element> elements = new ObservableCollection<Element>();
     private Boolean confirmer= false;
+    public ObservableCollection<string> DepthsOptions { get; set; }
+    private DBConnection connexion; 
+
     
     public Basket()
     {
+       
         this.casier = new List<Casier>();
         InitializeComponent();
     }
 
     public Basket(List<Casier>casier, Compose compose)
     {
+        DepthsOptions = new ObservableCollection<string>
+        {
+            "Option 1",
+            "Option 2",
+            "Option 3"
+        };
         this.compose = compose; 
         bool isEditE= false;
         bool isEditL = true; 
@@ -95,26 +105,53 @@ public partial class Basket : ContentPage
     
     public async void ConfirmCommand(object sender, EventArgs e)
     {
+        this.connexion = new DBConnection("interface","1234","projet","pat.infolab.ecam.be",63416);
+        List<Command> c =connexion.getAllCommand();
+        DateTime currentdate= DateTime.Now;
+        String reference =currentdate.Day+currentdate.Month+currentdate.Year+ "_"+ (c.Count + 1 ).ToString();
+        connexion.addComand(new Command(1, reference, " ", "commandTest", "NameFileTest"));
         await DisplayAlert("Commande validé", "Votre commande a été validé avec succes ! ", "OK");
         LaunchAppShell();
+        //this.connexion.disconnection();
         
     }
 
-    public void OnImageButtonClicked(object sender, EventArgs e)
+    public async void OnImageButtonClicked(object sender, EventArgs e)
     {
         
         
         var button = (ImageButton)sender;
         var component = (Element)button.BindingContext;
+        int index = elements.IndexOf(component);
         switch (button.ClassId)
         {
             case "Button1":
                 component.isEditingL = false;
                 component.isEditingE = true;
+                
+                var button12 = (ImageButton)sender;
+                var itemToDelete12 = (Element)button12.CommandParameter;
+                
+                
+                ModifyBasket popup = new ModifyBasket();
+                await Navigation.PushModalAsync(new ModifyBasket(compose, itemToDelete12, index)); 
                 break;
             case "Button3":
                 component.isEditingL = true;
-                component.isEditingE = false; 
+                component.isEditingE = false;
+                
+                var button3 = (ImageButton)sender;
+                
+                var itemToDelete1 = (Element)button3.CommandParameter;
+                if (MyListView.ItemsSource is ObservableCollection<Element> items1)
+                {
+                    //myEntry.Text = "10";
+                    compose.SetHeight(int.Parse(itemToDelete1.Casier), int.Parse(itemToDelete1.boxe), "52");
+                    //compose.setCasiers(int.Parse(itemToDelete.Casier), int.Parse(itemToDelete.boxe));
+                }
+                MyListView.ItemsSource = null;
+                MyListView.ItemsSource = elements;
+                
                 break;
             case "Button2":
                 var button2 = (ImageButton)sender;

@@ -23,6 +23,10 @@ public partial class Compose : ContentPage
 
     List<Casier> Casiers = new List<Casier>();
     Basket menu = new Basket();
+    
+    
+    Picker choixVerre = new Picker();
+    Picker choiceColor = new Picker();
     public Compose()
     {
         InitializeComponent();
@@ -86,6 +90,22 @@ public partial class Compose : ContentPage
         ColorsPicker.ItemsSource = colors; 
         this.Casiers = Casiers; 
     }
+
+
+    public void OnPicker1SelectedIndexChanged(object sender, EventArgs e)
+    {
+        var picker2 = sender as Picker;
+        if (picker2.SelectedItem == "No")
+        {
+            choixVerre.IsEnabled = false;
+            choiceColor.IsEnabled = false;
+        }
+        else
+        {
+            choixVerre.IsEnabled = true;
+            choiceColor.IsEnabled = true;
+        }
+    }    
         private void DisplayBoxes(object sender, EventArgs e)
         {
             
@@ -116,18 +136,19 @@ public partial class Compose : ContentPage
                     labels.Add(verre);
                     verre.Text = "Do you want a glass door ? ";
                     Picker choixPorte = new Picker();
+                    
                     choixPorte.Items.Add("Yes");
                     choixPorte.Items.Add("No");
                     DoorsBoxes.Add(choixPorte);
-                    Picker choixVerre = new Picker();
+                    choixVerre = new Picker();
                     choixVerre.Items.Add("Yes");
                     choixVerre.Items.Add("No");
                     TypeDoors.Add(choixVerre);
-
+                    choixPorte.SelectedIndexChanged += OnPicker1SelectedIndexChanged; 
                     Label color = new Label();
                     labels.Add(color);
                     color.Text = "Chose the color of the door: ";
-                    Picker choiceColor = new Picker();
+                    choiceColor = new Picker();
                     choiceColor.Items.Add("Marron");
                     choiceColor.Items.Add("Black");
                     choiceColor.Items.Add("White");
@@ -226,7 +247,7 @@ public partial class Compose : ContentPage
             List<String> ReceiptContent = new List<string>();
             String Titre = "Command number 1234";
             ReceiptContent.Add(Titre);
-            for (int i = 0; i < int.Parse(AddPartPicker2.SelectedItem.ToString()); i++)
+            /*for (int i = 0; i < int.Parse(AddPartPicker2.SelectedItem.ToString()); i++)
             {
                 String Boxe = "Box "+ i.ToString();
                 String Doors= "Doors: "+DoorsBoxes[i].SelectedItem.ToString();
@@ -238,7 +259,7 @@ public partial class Compose : ContentPage
                 ReceiptContent.Add(TypeDoor);
                 ReceiptContent.Add(ColorDoor);
                 ReceiptContent.Add(HeightDoor);
-            }
+            }*/
 
             List<Box> _boxxes = new List<Box>();
             Box tBox= new Box(); 
@@ -251,8 +272,8 @@ public partial class Compose : ContentPage
                 }
                 else
                 { 
-                    tBox = new Box(HeightBoxes[i].SelectedItem.ToString(), ColorsDoors[i].SelectedItem.ToString(),
-                        TypeDoors[i].SelectedItem.ToString(), false);
+                    tBox = new Box(HeightBoxes[i].SelectedItem.ToString(), "/",
+                        "/", false);
                 }
                 
                 _boxxes.Add(tBox);
@@ -266,10 +287,6 @@ public partial class Compose : ContentPage
 
             Casiers.Add(cas);
             WriteFile("OK"); 
-            //Navigation.PushAsync(new AppShell());
-            //Navigation.PushAsync(new Compose(Casiers));
-            //LaunchAppShell();
-            //Shell.Current.GoToAsync("Compose?reset=true");
             for (int i = 0; i < HeightBoxes.Count; i++)
             {
                 
@@ -318,7 +335,7 @@ public partial class Compose : ContentPage
             if (Casiers.Count == 0)
             {
                 Page menu1 = new Basket();
-                Navigation.PushModalAsync(menu);
+                Navigation.PushModalAsync(menu1);
             }
             else
             {
@@ -358,7 +375,32 @@ public partial class Compose : ContentPage
             this.Casiers[i]._boxes.RemoveAt(j);
         }
 
+        public void SetHeight(int i, int j, String h)
+        {
+            this.Casiers[i]._boxes[j].setHeight(h);
+        }
+        
+        public void SetColor(int i, int j, String h)
+        {
+            this.Casiers[i]._boxes[j].setColor(h);
+        }
+        
+        public void setTypeDoors(int i, int j, String h)
+        {
+            this.Casiers[i]._boxes[j].setTypeDoors(h);
+        }
+        
+        public void setDoors(int i, int j, Boolean h)
+        {
+            this.Casiers[i]._boxes[j].setDoors(h);
+        }
+        
+        
+        
         
     
 
+        
+        //Changer le nombre passer de 4 a 2 
+        //CHangement du panier 
 }
