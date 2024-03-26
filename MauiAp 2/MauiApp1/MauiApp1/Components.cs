@@ -1,5 +1,6 @@
 using System.ComponentModel;
 
+
 public class CompoSupplier: INotifyPropertyChanged{
     public int idSupplier{get;set;}
     private float _priceSupplier;
@@ -198,8 +199,8 @@ public class Component: INotifyPropertyChanged{
         this.infoSupOn = false;
         this.listSuppliers = new List<CompoSupplier>();
     }
-    public int getColorCode(){
-        switch (this.color){
+    public static int getColorCode(string color){
+        switch (color){
             case "White": return 1;break;
             case "Black": return 2;break;
             case "Marron": return 3;break;

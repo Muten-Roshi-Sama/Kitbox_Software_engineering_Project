@@ -16,6 +16,7 @@ public partial class Manager : ContentPage
 {
     List<Component> components;
     DBConnection connection;
+    static int valueLimiteStock = 20;
 
     public Manager()
     {
@@ -79,6 +80,30 @@ public partial class Manager : ContentPage
         }
     }
 
+
+    void FiltreLabelClicked(object sender, EventArgs e){
+        var choice = (MenuFlyoutItem)sender;
+        switch (choice.Text)
+        {
+            case "Missing Stock":
+                List<Component> compoFiltre = new List<Component>();
+                foreach (var item in components)
+                {
+                    if(item.stockAvailable < valueLimiteStock){
+                        compoFiltre.Add(item);
+                    }
+                }
+                MyListView.ItemsSource  = null;
+                MyListView.ItemsSource  = compoFiltre;
+                break;
+            case "All":
+                MyListView.ItemsSource = null;
+                MyListView.ItemsSource = components;
+                break;
+
+            default:break;
+        }
+    }
     async void OnAddSuppButtonClicked(object sender, EventArgs e){
         try{
             var button = (Image)sender;

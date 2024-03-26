@@ -75,8 +75,8 @@ public class DBConnection{
         int i = 0;
         foreach (var supp in compo.listSuppliers)
         {
-            Console.WriteLine($"INSERT INTO Components (Reference, Code, LengthC, HeightC, DepthC , Color, IdSupplier, PriceSupplier, DelaySupplier, StockAvailable,StockOrdered,StockReserved) VALUES('{compo.reference}','{compo.code}',{compo.length},{compo.height},{compo.depth}, {compo.getColorCode()},{supp.idSupplier.ToString()},{supp.priceSupplier.ToString().Replace(',','.')},{supp.delaySupplier},{compo.stockAvailable},{compo.stockOrdered},{compo.stockReserved});");
-            using var command = new MySqlCommand($"INSERT INTO Components (Reference, Code, LengthC, HeightC, DepthC , Color, IdSupplier, PriceSupplier, DelaySupplier, StockAvailable,StockOrdered,StockReserved) VALUES('{compo.reference}','{compo.code}',{compo.length},{compo.height},{compo.depth}, {compo.getColorCode()},{supp.idSupplier.ToString()},{supp.priceSupplier.ToString().Replace(',','.')},{supp.delaySupplier},{compo.stockAvailable},{compo.stockOrdered},{compo.stockReserved});",this.connection);
+            Console.WriteLine($"INSERT INTO Components (Reference, Code, LengthC, HeightC, DepthC , Color, IdSupplier, PriceSupplier, DelaySupplier, StockAvailable,StockOrdered,StockReserved) VALUES('{compo.reference}','{compo.code}',{compo.length},{compo.height},{compo.depth}, {Component.getColorCode(compo.color)},{supp.idSupplier.ToString()},{supp.priceSupplier.ToString().Replace(',','.')},{supp.delaySupplier},{compo.stockAvailable},{compo.stockOrdered},{compo.stockReserved});");
+            using var command = new MySqlCommand($"INSERT INTO Components (Reference, Code, LengthC, HeightC, DepthC , Color, IdSupplier, PriceSupplier, DelaySupplier, StockAvailable,StockOrdered,StockReserved) VALUES('{compo.reference}','{compo.code}',{compo.length},{compo.height},{compo.depth}, {Component.getColorCode(compo.color)},{supp.idSupplier.ToString()},{supp.priceSupplier.ToString().Replace(',','.')},{supp.delaySupplier},{compo.stockAvailable},{compo.stockOrdered},{compo.stockReserved});",this.connection);
             command.ExecuteNonQuery();
             i++;
         }
@@ -85,8 +85,8 @@ public class DBConnection{
     }
 
     public void addSupplier(Component compo, CompoSupplier supp){
-        Console.WriteLine($"INSERT INTO Components (Reference, Code, LengthC, HeightC, DepthC , Color, IdSupplier, PriceSupplier, DelaySupplier, StockAvailable,StockOrdered,StockReserved) VALUES('{compo.reference}','{compo.code}',{compo.length},{compo.height},{compo.depth}, {compo.getColorCode()},{supp.idSupplier.ToString()},{supp.priceSupplier.ToString().Replace(',','.')},{supp.delaySupplier},{compo.stockAvailable},{compo.stockOrdered},{compo.stockReserved});");
-        using var command = new MySqlCommand($"INSERT INTO Components (Reference, Code, LengthC, HeightC, DepthC , Color, IdSupplier, PriceSupplier, DelaySupplier, StockAvailable,StockOrdered,StockReserved) VALUES('{compo.reference}','{compo.code}',{compo.length},{compo.height},{compo.depth}, {compo.getColorCode()},{supp.idSupplier.ToString()},{supp.priceSupplier.ToString().Replace(',','.')},{supp.delaySupplier},{compo.stockAvailable},{compo.stockOrdered},{compo.stockReserved});",this.connection);
+        Console.WriteLine($"INSERT INTO Components (Reference, Code, LengthC, HeightC, DepthC , Color, IdSupplier, PriceSupplier, DelaySupplier, StockAvailable,StockOrdered,StockReserved) VALUES('{compo.reference}','{compo.code}',{compo.length},{compo.height},{compo.depth}, {Component.getColorCode(compo.color)},{supp.idSupplier.ToString()},{supp.priceSupplier.ToString().Replace(',','.')},{supp.delaySupplier},{compo.stockAvailable},{compo.stockOrdered},{compo.stockReserved});");
+        using var command = new MySqlCommand($"INSERT INTO Components (Reference, Code, LengthC, HeightC, DepthC , Color, IdSupplier, PriceSupplier, DelaySupplier, StockAvailable,StockOrdered,StockReserved) VALUES('{compo.reference}','{compo.code}',{compo.length},{compo.height},{compo.depth}, {Component.getColorCode(compo.color)},{supp.idSupplier.ToString()},{supp.priceSupplier.ToString().Replace(',','.')},{supp.delaySupplier},{compo.stockAvailable},{compo.stockOrdered},{compo.stockReserved});",this.connection);
         command.ExecuteNonQuery();
     }
     public void deleteComponent(string Code){
