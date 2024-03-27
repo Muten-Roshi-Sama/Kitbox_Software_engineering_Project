@@ -26,10 +26,27 @@
                                 <Label Text="{Binding Path=Id}" HorizontalOptions="FillAndExpand" WidthRequest="100"/>
                                 <Label Text="{Binding Path=Reference}" HorizontalOptions="FillAndExpand" WidthRequest="100"/>
                                 <Label Text="{Binding Path=DateC}" HorizontalOptions="FillAndExpand" WidthRequest="100"/>
-                                <Label Text="{Binding Path=Description}" HorizontalOptions="FillAndExpand" WidthRequest="100"/>
-                               <Label Text="{Binding Path=NameFile}" HorizontalOptions="FillAndExpand" WidthRequest="100"/>
+                                <Label Text="{Binding Path=NameFile}" HorizontalOptions="FillAndExpand" WidthRequest="100"/>
                                 <ImageButton Source="sort_down.png" ClassId="Button3" IsVisible="{Binding Path=infoSupOff}" WidthRequest="20" HeightRequest="20" />
-                            </HorizontalStackLayout >
+                                
+                                <Border Stroke="#000000"
+                                        StrokeThickness="1"
+                                        Background="#ffffff"
+                                        Padding="1,1"
+                                        HorizontalOptions="Center">
+                                    <Border.StrokeShape>
+                                        <RoundRectangle CornerRadius="20,20,20,20" />
+                                    </Border.StrokeShape>
+                                    <Label Text="Description" HorizontalOptions="FillAndExpand" VerticalOptions="Center">
+                                        <Label.GestureRecognizers>
+                                            <TapGestureRecognizer Tapped="ShowDescription"/>
+                                        </Label.GestureRecognizers>
+                                    </Label>
+                                </Border>
+                            </HorizontalStackLayout>
+                            <StackLayout IsVisible="{Binding Path=showDescr}">
+                                <Label Text="{Binding Path=Description}" HorizontalOptions="FillAndExpand"/>
+                            </StackLayout>
                         </StackLayout>
                     </ViewCell>
                 </DataTemplate>

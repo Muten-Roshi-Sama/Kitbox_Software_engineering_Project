@@ -38,4 +38,14 @@ public partial class Seller : ContentPage
         //Navigation.PushModalAsync(new Admin());
         
     }
+    public void ShowDescription(object sender, EventArgs e){
+        var label= (Label)sender;
+        var command = (Command)label.Parent.BindingContext;
+        if(command.showDescr){
+            command.showDescr = false;
+        }else{
+            command.showDescr = true;
+        }
+        
+    }
 }

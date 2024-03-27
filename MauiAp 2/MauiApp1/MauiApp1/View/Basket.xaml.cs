@@ -107,11 +107,12 @@ public partial class Basket : ContentPage
     
     public async void ConfirmCommand(object sender, EventArgs e)
     {
+        string description = getDescription();
         this.connexion = new DBConnection("interface","1234","projet","pat.infolab.ecam.be",63416);
         List<Command> c =connexion.getAllCommand();
         DateTime currentdate= DateTime.Now;
         String reference =currentdate.Day+currentdate.Month+currentdate.Year+ "_"+ (c.Count + 1 ).ToString();
-        connexion.addComand(new Command(1, reference, " ", "commandTest", "NameFileTest"));
+        connexion.addComand(new Command(1, reference, " ", description, "NameFileTest"));
         await DisplayAlert("Commande validé", "Votre commande a été validé avec succes ! ", "OK");
         LaunchAppShell();
         //this.connexion.disconnection();
@@ -172,5 +173,34 @@ public partial class Basket : ContentPage
         }
         MyListView.ItemsSource = null;
         MyListView.ItemsSource = elements;
+    }
+    public String getDescription()
+    {
+        String desc="Nombre de casier = " + getNbArmoir()+ "\n";
+        for (int i = 0; i < int.Parse(getNbArmoir()); i++)
+        {
+            desc += "Locker " + (i + 1) + ": " + getNbBox(i.ToString()) + " Boxes\n";
+        }
+
+        return desc; 
+    }
+public String getNbArmoir()
+    {
+        int nbArmoir= int.Parse(elements[elements.Count-1].Casier) +1;
+
+        return nbArmoir.ToString();
+    }
+
+    public String getNbBox(String nbArmoir)
+    {
+        for (int i = 0; i < elements.Count; i++)
+        {
+            if (elements[i].Casier == nbArmoir)
+            {
+                return elements[i].nbBoxe;
+            }
+        }
+
+        return "";
     }
 }
