@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+            xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+            x:Class="MauiApp1..View.Admin"
+            Shell.NavBarIsVisible="False"
+            Title="LoginPage">
+
+    <ContentPage.Content>
+        <VerticalStackLayout x:Name="MyVLayout" 
+            Spacing="25" 
+            Padding="30,0" 
+            VerticalOptions="Center">
+        <VerticalStackLayout Spacing="5">
+            <Label Text="Admin Connexion" FontSize="28" TextColor="Gray" HorizontalTextAlignment="Center" />
+            <Label Text="Login to your account" FontSize="18" TextColor="Gray" HorizontalTextAlignment="Center" />
+        </VerticalStackLayout>
+
+        <StackLayout Orientation="Horizontal">
+            <Frame ZIndex="1" HasShadow="True" BorderColor="White" HeightRequest="56" WidthRequest="56" CornerRadius="28">
+                <Image Source="user.png" HeightRequest="20" WidthRequest="20" />
+            </Frame>
+            <Frame HeightRequest="45" Margin="-5,0,0,0" Padding="0" HasShadow="True" BorderColor="White"  HorizontalOptions="FillAndExpand">
+                <Entry x:Name="myEntry2" Placeholder="Entrez votre identifiant ici "/>
+            </Frame>
+        </StackLayout>
+        <StackLayout>
+            <Label x:Name="idkPasswd" TextColor="#df2324" Text="Unkown User Account" IsVisible="false" />
+
+        </StackLayout>
+
+        <StackLayout Orientation="Horizontal">
+            <Frame ZIndex="1" HasShadow="True" BorderColor="White" HeightRequest="56" WidthRequest="56" CornerRadius="28">
+                <Image Source="lock.png" HeightRequest="20" WidthRequest="20" />
+            </Frame>
+            <Frame HeightRequest="45" Margin="-5,0,0,0" Padding="0" HasShadow="True" BorderColor="White"  HorizontalOptions="FillAndExpand">
+                <Entry x:Name="myEntry" Placeholder="Entrez votre mot de passe ici"/>
+            </Frame>
+        </StackLayout>
+        <StackLayout>
+            <Label x:Name="wPasswd" TextColor="#df2324" Text="Wrong password" IsVisible="false" />
+
+        </StackLayout>
+
+        <Button x:Name="MyButton" Text="Sign In" WidthRequest="100" CornerRadius="20" HorizontalOptions="Center" Command="{Binding LoginCommand}" Clicked="connexion"/>
+    </VerticalStackLayout>
+    </ContentPage.Content>
+</ContentPage>
