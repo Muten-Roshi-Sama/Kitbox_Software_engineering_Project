@@ -67,10 +67,6 @@ public partial class ModifyBasket : ContentPage
         this.index = index; 
         InitializeComponent();
         
-        /*LHeight.Text= "Height: "+ elem.heigth;
-        LType.Text= "Type of the doors: "+ elem.typeDoors;
-        LColor.Text= "Color of the doors: "+ elem.colorDoors;
-        LDoors.Text = "Doors: " + elem.doors; */
         
         colors.Add("Black");
         colors.Add("White");
@@ -92,9 +88,16 @@ public partial class ModifyBasket : ContentPage
         AddPartPicker2.ItemsSource = height;
         AddPartPicker.ItemsSource = doorsP;
         ColorsPicker.ItemsSource = colors;
+
+
+        AddPartPicker2.SelectedItem= elem.heigth;
+        AddPartPicker1.SelectedItem= elem.typeDoors;
+        ColorsPicker.SelectedItem=  elem.colorDoors;
+        AddPartPicker.SelectedItem = elem.doors; 
         
         
-        Label choiceColor = new Label(); 
+        
+        /*Label choiceColor = new Label(); 
         //Ca affiche bien yes et no 
         choiceColor.Text = AddPartPicker.Items[0] + " "+ AddPartPicker.Items[1];
 
@@ -102,7 +105,7 @@ public partial class ModifyBasket : ContentPage
         MyGrid2.SetColumn(choiceColor, 0 );
         MyGrid2.SetRow(choiceColor, 6);
 
-        MyGrid2.Children.Add(choiceColor);
+        MyGrid2.Children.Add(choiceColor);*/
 
     }
 

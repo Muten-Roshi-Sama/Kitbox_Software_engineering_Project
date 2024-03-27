@@ -1,6 +1,7 @@
 using System.Runtime.InteropServices.JavaScript;
+using System.ComponentModel;
 
-public class Command
+public class Command: INotifyPropertyChanged
 {
    public int Id { get; set; }
    
@@ -9,6 +10,19 @@ public class Command
    public String Description { get; set; }
    
    public String NameFile { get; set; }
+
+   private bool _showDescr;
+   public bool showDescr{
+        get { return _showDescr; }
+        set
+        {
+            if (_showDescr != value)
+            {
+                _showDescr = value;
+                OnPropertyChanged("showDescr");
+            }
+        }
+    }
 
 
 
@@ -20,8 +34,16 @@ public class Command
       this.DateC = DateC;
       this.Description = description;
       this.NameFile = NameFile; 
+      this.showDescr = false;
 
    }
+
+   public event PropertyChangedEventHandler PropertyChanged;
+
+    protected virtual void OnPropertyChanged(string propertyName)
+    {
+        PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+    }
    
    
 

@@ -26,14 +26,23 @@
                     <TapGestureRecognizer Tapped="OnAddLineButtonClicked" />
                 </Image.GestureRecognizers>
             </Image>
-            <Label x:Name="label" Text="Filtre">
-                <FlyoutBase.ContextFlyout>
-                    <MenuFlyout>
-                        <MenuFlyoutItem x:Name="MissingStock" Text="Missing Stock" Clicked="FiltreLabelClicked"/>
-                        <MenuFlyoutItem x:Name="All" Text="All" Clicked="FiltreLabelClicked"/>
-                    </MenuFlyout>
-                </FlyoutBase.ContextFlyout>
-            </Label>
+            <Border Stroke="#000000"
+                    StrokeThickness="1"
+                    Background="#ffffff"
+                    Padding="1,1"
+                    HorizontalOptions="Center">
+                <Border.StrokeShape>
+                    <RoundRectangle CornerRadius="40,40,40,40" />
+                </Border.StrokeShape>
+                <Label x:Name="label" Text="Filtre">
+                    <FlyoutBase.ContextFlyout>
+                        <MenuFlyout>
+                            <MenuFlyoutItem x:Name="MissingStock" Text="Missing Stock" Clicked="FiltreLabelClicked"/>
+                            <MenuFlyoutItem x:Name="All" Text="All" Clicked="FiltreLabelClicked"/>
+                        </MenuFlyout>
+                    </FlyoutBase.ContextFlyout>
+                </Label>
+            </Border>
         </StackLayout>
         <Line Stroke="black" X2="1000" />
         <ListView x:Name="MyListView">
