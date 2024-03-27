@@ -113,3 +113,9 @@ build_metadata.AdditionalFiles.GenKind = Xaml
 build_metadata.AdditionalFiles.ManifestResourceName = MauiApp1.StockKeeper.xaml
 build_metadata.AdditionalFiles.TargetPath = StockKeeper.xaml
 build_metadata.AdditionalFiles.RelativePath = StockKeeper.xaml
+
+[C:/Users/Morar/Desktop/ECAM/Projet logiciel/Kitbox_Software_engineering_Project/MauiAp 2/MauiApp1/MauiApp1/SupplierOrderView.xaml]
+build_metadata.AdditionalFiles.GenKind = Xaml
+build_metadata.AdditionalFiles.ManifestResourceName = MauiApp1.SupplierOrderView.xaml
+build_metadata.AdditionalFiles.TargetPath = SupplierOrderView.xaml
+build_metadata.AdditionalFiles.RelativePath = SupplierOrderView.xaml

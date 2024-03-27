@@ -57,7 +57,6 @@ public partial class ModifyBasket : ContentPage
         MyGrid2.SetRow(choiceColor, 6);
 
         MyGrid2.Children.Add(choiceColor);
-       
     }
 
     public ModifyBasket(Compose compose, Element elem, int index)

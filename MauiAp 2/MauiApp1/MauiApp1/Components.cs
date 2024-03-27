@@ -54,12 +54,27 @@ public class CompoSupplier: INotifyPropertyChanged{
             }
         }
     }
+private bool _showOrderBtn;
+public bool showOrderBtn
+    {
+        get { return _showOrderBtn; }
+        set
+        {
+            if (_showOrderBtn != value)
+            {
+                _showOrderBtn = value;
+                OnPropertyChanged("showOrderBtn");
+            }
+        }
+    }
+
     public CompoSupplier(int id, float price, int delay){
         this.idSupplier = id;
         this.priceSupplier = price;
         this.delaySupplier = delay;
         this.isSuppEditingL = true;
         this.isSuppEditingE = false;
+        this.showOrderBtn = false;
     }
 
     public event PropertyChangedEventHandler PropertyChanged;
@@ -170,10 +185,11 @@ public class Component: INotifyPropertyChanged{
             }
         }
     }
+
     
     
-    public Component( string reference, string code, int length, int height, int depth, int color,  int stockAvailable, int stockOrdered, int stockReserved, 
-     bool editL, bool editE){
+    public Component( string reference, string code, int length, int height, int depth, int color,  int stockAvailable, 
+        int stockOrdered, int stockReserved, bool editL, bool editE){
 
         this.reference = reference;
         this.code = code;

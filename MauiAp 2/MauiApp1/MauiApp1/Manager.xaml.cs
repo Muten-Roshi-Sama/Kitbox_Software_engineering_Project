@@ -17,6 +17,7 @@ public partial class Manager : ContentPage
     List<Component> components;
     DBConnection connection;
     static int valueLimiteStock = 20;
+    Dictionary<string,SupplierCompoOrder> supplierOrder;
 
     public Manager()
     {
@@ -87,9 +88,15 @@ public partial class Manager : ContentPage
         {
             case "Missing Stock":
                 List<Component> compoFiltre = new List<Component>();
+                supplierOrder = new Dictionary<string, SupplierCompoOrder>();
+                
                 foreach (var item in components)
                 {
                     if(item.stockAvailable < valueLimiteStock){
+                        foreach (var supp in item.listSuppliers)
+                        {
+                            supp.showOrderBtn = true;
+                        }
                         compoFiltre.Add(item);
                     }
                 }
@@ -97,6 +104,15 @@ public partial class Manager : ContentPage
                 MyListView.ItemsSource  = compoFiltre;
                 break;
             case "All":
+                foreach (var item in components)
+                {
+                    if(item.stockAvailable < valueLimiteStock){
+                        foreach (var supp in item.listSuppliers)
+                        {
+                            supp.showOrderBtn = false;
+                        }
+                    }
+                }
                 MyListView.ItemsSource = null;
                 MyListView.ItemsSource = components;
                 break;
@@ -169,6 +185,23 @@ public partial class Manager : ContentPage
     public void getComponents(){
         this.components = this.connection.getAllComponents();
         MyListView.ItemsSource = components;
+    }
+
+    public void OrderCompoSuppl(object sender, EventArgs e){
+        var button = (Button)sender;
+        var supplier = (CompoSupplier)button.BindingContext;
+        var component = (Component) button.Parent.Parent.Parent.Parent.BindingContext;
+        Console.WriteLine(component.reference);
+        supplierOrder.Remove(component.code);
+        foreach (var supp in component.listSuppliers)
+        {
+            if(supp.idSupplier==supplier.idSupplier){
+                supp.showOrderBtn = false;
+            }else{
+                supp.showOrderBtn = true;
+            }
+        }
+        supplierOrder.Add(component.code,new SupplierCompoOrder(component.code,component.reference,supplier.idSupplier,supplier.priceSupplier,supplier.delaySupplier,30));
     }
 }
 
