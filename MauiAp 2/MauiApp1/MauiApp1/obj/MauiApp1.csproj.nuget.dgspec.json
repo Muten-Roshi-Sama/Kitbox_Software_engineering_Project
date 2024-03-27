@@ -1,21 +1,21 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Morar\\Desktop\\ECAM\\Projet logiciel\\Kitbox_Software_engineering_Project\\MauiAp 2\\MauiApp1\\MauiApp1\\MauiApp1.csproj": {}
+    "C:\\Users\\vassi\\POO\\MAUI_Genie_Logiciel\\Kitbox_Software_engineering_Project\\MauiAp 2\\MauiApp1\\MauiApp1\\MauiApp1.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Morar\\Desktop\\ECAM\\Projet logiciel\\Kitbox_Software_engineering_Project\\MauiAp 2\\MauiApp1\\MauiApp1\\MauiApp1.csproj": {
+    "C:\\Users\\vassi\\POO\\MAUI_Genie_Logiciel\\Kitbox_Software_engineering_Project\\MauiAp 2\\MauiApp1\\MauiApp1\\MauiApp1.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Morar\\Desktop\\ECAM\\Projet logiciel\\Kitbox_Software_engineering_Project\\MauiAp 2\\MauiApp1\\MauiApp1\\MauiApp1.csproj",
+        "projectUniqueName": "C:\\Users\\vassi\\POO\\MAUI_Genie_Logiciel\\Kitbox_Software_engineering_Project\\MauiAp 2\\MauiApp1\\MauiApp1\\MauiApp1.csproj",
         "projectName": "MauiApp1",
-        "projectPath": "C:\\Users\\Morar\\Desktop\\ECAM\\Projet logiciel\\Kitbox_Software_engineering_Project\\MauiAp 2\\MauiApp1\\MauiApp1\\MauiApp1.csproj",
-        "packagesPath": "C:\\Users\\Morar\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Morar\\Desktop\\ECAM\\Projet logiciel\\Kitbox_Software_engineering_Project\\MauiAp 2\\MauiApp1\\MauiApp1\\obj\\",
+        "projectPath": "C:\\Users\\vassi\\POO\\MAUI_Genie_Logiciel\\Kitbox_Software_engineering_Project\\MauiAp 2\\MauiApp1\\MauiApp1\\MauiApp1.csproj",
+        "packagesPath": "C:\\Users\\vassi\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\vassi\\POO\\MAUI_Genie_Logiciel\\Kitbox_Software_engineering_Project\\MauiAp 2\\MauiApp1\\MauiApp1\\obj\\",
         "projectStyle": "PackageReference",
         "crossTargeting": true,
         "configFilePaths": [
-          "C:\\Users\\Morar\\AppData\\Roaming\\NuGet\\NuGet.Config"
+          "C:\\Users\\vassi\\AppData\\Roaming\\NuGet\\NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "net8.0-windows10.0.19041.0"
@@ -34,11 +34,6 @@
           "warnAsError": [
             "NU1605"
           ]
-        },
-        "restoreAuditProperties": {
-          "enableAudit": "true",
-          "auditLevel": "low",
-          "auditMode": "direct"
         }
       },
       "frameworks": {
@@ -55,11 +50,11 @@
             },
             "Microsoft.Maui.Controls": {
               "target": "Package",
-              "version": "[8.0.6, )"
+              "version": "[8.0.3, )"
             },
             "Microsoft.Maui.Controls.Compatibility": {
               "target": "Package",
-              "version": "[8.0.6, )"
+              "version": "[8.0.3, )"
             },
             "MySql.Data": {
               "target": "Package",
@@ -95,7 +90,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.201\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.100\\RuntimeIdentifierGraph.json"
         }
       },
       "runtimes": {
