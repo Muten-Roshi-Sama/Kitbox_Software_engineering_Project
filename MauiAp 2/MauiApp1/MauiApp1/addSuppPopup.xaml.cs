@@ -5,8 +5,9 @@ public partial class AddSuppPopup : Popup
 {
     public AddSuppPopup()
     {
-        //this.Size = new Size(800,600);
+        
         InitializeComponent();
+        this.Size = new Size(400,130);
     }
     async void OnAddSuppConfirmed(object sender, EventArgs e){
         var cts = new CancellationTokenSource(TimeSpan.FromSeconds(5));
