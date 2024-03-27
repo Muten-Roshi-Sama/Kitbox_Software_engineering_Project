@@ -94,6 +94,7 @@ public partial class ModifyBasket : ContentPage
         AddPartPicker1.SelectedItem= elem.typeDoors;
         ColorsPicker.SelectedItem=  elem.colorDoors;
         AddPartPicker.SelectedItem = elem.doors; 
+        //test
         
         
         
