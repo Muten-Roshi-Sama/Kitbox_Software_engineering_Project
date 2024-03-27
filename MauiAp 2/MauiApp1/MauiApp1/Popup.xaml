@@ -46,8 +46,8 @@
                     <Entry Placeholder="Color" x:Name="ColorEntry"/>
                 </HorizontalStackLayout>
             </VerticalStackLayout>
-            <VerticalStackLayout HorizontalOptions="FillAndExpand">
-            <ListView x:Name="SuppListView" HorizontalOptions="FillAndExpand">
+            <VerticalStackLayout HorizontalOptions="FillAndExpand" >
+            <ListView x:Name="SuppListView" HorizontalOptions="FillAndExpand" MaximumHeightRequest="250">
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <ViewCell>
@@ -65,10 +65,10 @@
                     </DataTemplate>
                 </ListView.ItemTemplate>
             </ListView>
-            <Button Text="Add" Clicked="OnButtonClicked" />
+            <Button Text="Add Supplier" Clicked="OnButtonClicked" />
             </VerticalStackLayout>
         </HorizontalStackLayout>
         
-        <Button Text="Confirmer" Clicked="OnAddLineConfirmed"/>
+        <Button Text="Add Component" Clicked="OnAddLineConfirmed"/>
     </StackLayout>
 </toolkit:Popup>

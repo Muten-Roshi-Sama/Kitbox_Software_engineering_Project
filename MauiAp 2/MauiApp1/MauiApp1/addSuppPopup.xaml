@@ -19,6 +19,6 @@
                 <Entry Placeholder="Price" x:Name="DelayEntry"/>
             </HorizontalStackLayout>   
         </HorizontalStackLayout>
-        <Button Text="Confirmer" Clicked="OnAddSuppConfirmed"/>
+        <Button Text="Add supplier" Clicked="OnAddSuppConfirmed"/>
     </StackLayout>
 </toolkit:Popup>
