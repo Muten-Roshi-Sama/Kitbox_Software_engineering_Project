@@ -11,103 +11,60 @@
         </ResourceDictionary>
     </ContentPage.Resources>
     <StackLayout>
-        <Label Text="ORDER" FontSize="20" HorizontalOptions="Center"\>
-        <StackLayout Orientation="Horizontal" Padding="10" Spacing="10" HorizontalOptions"Center">
+        <Label Text="ORDER" FontSize="20" HorizontalOptions="Center"/>
+        <StackLayout Orientation="Horizontal" Padding="10" Spacing="10" HorizontalOptions="Center">
             <Label Text="Reference" WidthRequest="150"/>
             <Label Text="Code" WidthRequest="90"/>
-            <Label Text="Id Supplier" WidthRequest="50"/>
+            <Label Text="Id Supplier" WidthRequest="100"/>
             <Label Text="Price" WidthRequest="50"/>
             <Label Text="Delay" WidthRequest="50"/>
             <Label Text="Quantity" WidthRequest="70"/>
-
+            <Border Stroke="#000000"
+                    StrokeThickness="1"
+                    Background="#ffffff"
+                    Padding="1,1"
+                    HorizontalOptions="Center">
+                <Border.StrokeShape>
+                    <RoundRectangle CornerRadius="10,10,10,10" />
+                </Border.StrokeShape>
+                <Label x:Name="label" Text="Order">
+                    <Label.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="ConfirmOrder" />
+                    </Label.GestureRecognizers>
+                </Label>
+            </Border>
         </StackLayout>
         <Line Stroke="black" X2="1000" />
-        <ListView x:Name="OrderListView">
+        <ListView x:Name="OrderListView" HorizontalOptions="Center">
             <ListView.ItemTemplate>
                 <DataTemplate>
                     <ViewCell>
                         <StackLayout>
-                            <HorizontalStackLayout Padding="10" Spacing="10" HorizontalOptions="FillAndExpand">
+                            <HorizontalStackLayout Margin="80,0,0,0" Padding="10" Spacing="10" HorizontalOptions="Center">
                                 <Label Text="{Binding Path=reference}" HorizontalOptions="FillAndExpand" WidthRequest="150" VerticalOptions="Center"/>
                                 <Label Text="{Binding Path=code}" HorizontalOptions="FillAndExpand" WidthRequest="90" VerticalOptions="Center"/>
-                                <Label Text="{Binding Path=id}" HorizontalOptions="FillAndExpand" WidthRequest="50" VerticalOptions="Center"/>
-                                <Label Text="{Binding Path=price}" HorizontalOptions="FillAndExpand" WidthRequest="70" VerticalOptions="Center"/>
-                                <Label Text="{Binding Path=delay}" HorizontalOptions="FillAndExpand" WidthRequest="70" VerticalOptions="Center"/>
-                                <Label Text="{Binding Path=quantity}" IsVisible="{Binding Path=showLabelQtt}" HorizontalOptions="FillAndExpand" WidthRequest="100" VerticalOptions="Center"/>
-                                <Entry Text="{Binding Path=quantity}" IsVisible="{Binding Path=showEntryQtt}" HorizontalOptions="FillAndExpand" WidthRequest="100" VerticalOptions="Center"/>
+                                <Label Text="{Binding Path=id}" HorizontalOptions="FillAndExpand" WidthRequest="100" VerticalOptions="Center"/>
+                                <Label Text="{Binding Path=price}" HorizontalOptions="FillAndExpand" WidthRequest="50" VerticalOptions="Center"/>
+                                <Label Text="{Binding Path=delay}" HorizontalOptions="FillAndExpand" WidthRequest="50" VerticalOptions="Center"/>
+                                <Label Text="{Binding Path=quantity}" IsVisible="{Binding Path=showLabelQtt}" HorizontalOptions="FillAndExpand" WidthRequest="70" VerticalOptions="Center"/>
+                                <Entry Text="{Binding Path=quantity}" IsVisible="{Binding Path=showEntryQtt}" HorizontalOptions="FillAndExpand" WidthRequest="70" VerticalOptions="Center"/>
                                 
-                                <Image Source="sort_down.png" ClassId="Button3" IsVisible="{Binding Path=infoSupOff}">
+                                <Image Source="edit16.png" ClassId="editBtn" IsVisible="{Binding Path=showLabelQtt}">
                                     <Image.GestureRecognizers>
                                         <TapGestureRecognizer Tapped="OnImageButtonClicked" />
                                     </Image.GestureRecognizers>
                                 </Image>
-                                <Image Source="sort_up.png" ClassId="Button4" IsVisible="{Binding Path=infoSupOn}">
+                                <Image Source="check16.png" ClassId="checkBtn" IsVisible="{Binding Path=showEntryQtt}">
                                     <Image.GestureRecognizers>
                                         <TapGestureRecognizer Tapped="OnImageButtonClicked" />
                                     </Image.GestureRecognizers>
                                 </Image>
-                                <Image Source="edit16.png" ClassId="Button1" IsVisible="{Binding Path=isEditingL}">
-                                    <Image.GestureRecognizers>
-                                        <TapGestureRecognizer Tapped="OnImageButtonClicked" />
-                                    </Image.GestureRecognizers>
-                                </Image>
-                                <Image Source="check16.png" ClassId="Button2" IsVisible="{Binding Path=isEditingE}">
-                                    <Image.GestureRecognizers>
-                                        <TapGestureRecognizer Tapped="OnImageButtonClicked" />
-                                    </Image.GestureRecognizers>
-                                </Image>
-                                <Image Source="delete16.png" ClassId="delLineBtn">
+                                <Image Source="delete16.png" ClassId="deleteBtn">
                                     <Image.GestureRecognizers>
                                         <TapGestureRecognizer Tapped="OnImageButtonClicked" />
                                     </Image.GestureRecognizers>
                                 </Image>
                             </HorizontalStackLayout >
-                            <VerticalStackLayout Margin="10,0,10,0" BackgroundColor="{StaticResource LightGrayColor}" IsVisible="{Binding Path=infoSupOn}">
-                                <StackLayout Orientation="Horizontal" Padding="10" Spacing="10">
-                                    <Label Text="Id Supplier" WidthRequest="100"/>
-                                    <Label Text="Price Supplier" WidthRequest="100"/>
-                                    <Label Text="Delay Supplier" WidthRequest="100"/>
-                                    <Image Source="plus16.png" ClassId="OnAddSuppButtonClicked">
-                                        <Image.GestureRecognizers>
-                                            <TapGestureRecognizer Tapped="OnAddSuppButtonClicked" />
-                                        </Image.GestureRecognizers>
-                                    </Image>
-                                </StackLayout>
-                                <Line Stroke="black" X2="1000" />
-                                <ListView x:Name="SuppListView" ItemsSource="{Binding Path=listSuppliers}">
-                                <ListView.ItemTemplate>
-                                    <DataTemplate>
-                                        <ViewCell>
-                                            <StackLayout>
-                                                <HorizontalStackLayout Padding="10" Spacing="10" HorizontalOptions="FillAndExpand">
-                                                    <Label Text="{Binding Path=idSupplier}" HorizontalOptions="FillAndExpand" WidthRequest="100"/>
-                                                    <Label Text="{Binding Path=priceSupplier}" IsVisible="{Binding Path=isSuppEditingL}" HorizontalOptions="FillAndExpand" WidthRequest="100"/>
-                                                    <Entry Text="{Binding Path=priceSupplier}" IsVisible="{Binding Path=isSuppEditingE}" HorizontalOptions="FillAndExpand" WidthRequest="100"/>
-                                                    <Label Text="{Binding Path=delaySupplier}" IsVisible="{Binding Path=isSuppEditingL}" HorizontalOptions="FillAndExpand" WidthRequest="100"/>
-                                                    <Entry Text="{Binding Path=delaySupplier}" IsVisible="{Binding Path=isSuppEditingE}" HorizontalOptions="FillAndExpand" WidthRequest="100"/>
-                                                    <Image Source="edit16.png" ClassId="editBtn" IsVisible="{Binding Path=isSuppEditingL}">
-                                                        <Image.GestureRecognizers>
-                                                            <TapGestureRecognizer Tapped="OnSuppButtonClicked" />
-                                                        </Image.GestureRecognizers>
-                                                    </Image>
-                                                    <Image Source="check16.png" ClassId="confirmBtn" IsVisible="{Binding Path=isSuppEditingE}">
-                                                        <Image.GestureRecognizers>
-                                                            <TapGestureRecognizer Tapped="OnSuppButtonClicked" />
-                                                        </Image.GestureRecognizers>
-                                                    </Image>
-                                                    <Image Source="delete16.png" ClassId="deleteBtn">
-                                                        <Image.GestureRecognizers>
-                                                            <TapGestureRecognizer Tapped="OnSuppButtonClicked" />
-                                                        </Image.GestureRecognizers>
-                                                    </Image>
-                                                    <Button x:Name="OrderCompoSupplBtn" Text="Order" Clicked="OrderCompoSuppl" IsVisible="{Binding Path=showOrderBtn}" />
-                                                </HorizontalStackLayout >
-                                            </StackLayout>
-                                        </ViewCell>
-                                    </DataTemplate>
-                                </ListView.ItemTemplate>
-                            </ListView>
-                            </VerticalStackLayout>
                         </StackLayout>
                     </ViewCell>
                 </DataTemplate>

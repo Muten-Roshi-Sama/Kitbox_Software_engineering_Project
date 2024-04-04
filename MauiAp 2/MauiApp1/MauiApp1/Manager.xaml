@@ -43,6 +43,11 @@
                     </FlyoutBase.ContextFlyout>
                 </Label>
             </Border>
+            <Label Text="Order" WidthRequest="100">
+                <Label.GestureRecognizers>
+                    <TapGestureRecognizer Tapped="OrderLabelTapped" />
+                </Label.GestureRecognizers>
+            </Label>
         </StackLayout>
         <Line Stroke="black" X2="1000" />
         <ListView x:Name="MyListView">

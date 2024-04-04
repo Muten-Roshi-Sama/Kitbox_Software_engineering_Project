@@ -26,6 +26,12 @@ public partial class Manager : ContentPage
         this.connection = new DBConnection("StockManager","1234","projet","pat.infolab.ecam.be",63416);
         getComponents();
     }
+    public Manager(DBConnection connection){
+        this.components = new List<Component>();
+        InitializeComponent();
+        this.connection = connection;
+        getComponents();
+    }
     public static void LaunchAppShell()
     {
         App.Current.MainPage = new AppShell();
@@ -202,6 +208,10 @@ public partial class Manager : ContentPage
             }
         }
         supplierOrder.Add(component.code,new SupplierCompoOrder(component.code,component.reference,supplier.idSupplier,supplier.priceSupplier,supplier.delaySupplier,30));
+    }
+
+    void OrderLabelTapped(object sender, EventArgs e){
+        App.Current.MainPage = new SupplierOrderView(supplierOrder,connection);
     }
 }
 
