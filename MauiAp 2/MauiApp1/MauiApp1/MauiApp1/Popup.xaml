@@ -1,0 +1,74 @@
+<toolkit:Popup xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+               xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+               xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
+               xmlns:local="clr-namespace:aaa"
+               x:Class="aaa.SimplePopup">
+
+    <StackLayout HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+        <HorizontalStackLayout Padding="10" Spacing="5" HorizontalOptions="FillAndExpand">
+            <VerticalStackLayout Padding="10" Spacing="5" HorizontalOptions="FillAndExpand">
+                <HorizontalStackLayout Padding="10" Spacing="5" HorizontalOptions="FillAndExpand">
+                    <Label Text="Reference" VerticalOptions="Center"/>
+                    <Entry Placeholder="Reference" x:Name="ReferenceEntry"/>
+                </HorizontalStackLayout>
+                <HorizontalStackLayout Padding="10" Spacing="5" HorizontalOptions="FillAndExpand">
+                    <Label Text="Code" VerticalOptions="Center"/>
+                    <Entry Placeholder="Code" x:Name="CodeEntry"/>
+                </HorizontalStackLayout>
+                <HorizontalStackLayout Padding="10" Spacing="5" HorizontalOptions="FillAndExpand">
+                    <Label Text="Length" VerticalOptions="Center"/>
+                    <Entry Placeholder="Length" x:Name="LengthEntry"/>
+                </HorizontalStackLayout>
+                <HorizontalStackLayout Padding="10" Spacing="5" HorizontalOptions="FillAndExpand">
+                    <Label Text="Height" VerticalOptions="Center"/>
+                    <Entry Placeholder="Height" x:Name="HeightEntry"/>
+                </HorizontalStackLayout>
+                <HorizontalStackLayout Padding="10" Spacing="5" HorizontalOptions="FillAndExpand">
+                    <Label Text="Depth" VerticalOptions="Center"/>
+                    <Entry Placeholder="Depth" x:Name="DepthEntry"/>
+                    </HorizontalStackLayout>
+            </VerticalStackLayout>
+            <VerticalStackLayout Padding="10" Spacing="5" HorizontalOptions="FillAndExpand">
+                <HorizontalStackLayout Padding="10" Spacing="5" HorizontalOptions="FillAndExpand">
+                    <Label Text="Stock Available" VerticalOptions="Center"/>
+                    <Entry Placeholder="Stock Available" x:Name="AvailableEntry"/>
+                </HorizontalStackLayout>
+                <HorizontalStackLayout Padding="10" Spacing="5" HorizontalOptions="FillAndExpand">
+                    <Label Text="Stock Ordered" VerticalOptions="Center"/>
+                    <Entry Placeholder="Stock Ordered" x:Name="OrderedEntry"/>
+                </HorizontalStackLayout>
+                <HorizontalStackLayout Padding="10" Spacing="5" HorizontalOptions="FillAndExpand">
+                    <Label Text="Stock Reserved" VerticalOptions="Center"/>
+                    <Entry Placeholder="Stock Reserved" x:Name="ReservedEntry"/>
+                </HorizontalStackLayout>
+                <HorizontalStackLayout Padding="10" Spacing="5" HorizontalOptions="FillAndExpand">
+                    <Label Text="Color" VerticalOptions="Center"/>
+                    <Entry Placeholder="Color" x:Name="ColorEntry"/>
+                </HorizontalStackLayout>
+            </VerticalStackLayout>
+            <VerticalStackLayout HorizontalOptions="FillAndExpand">
+            <ListView x:Name="SuppListView" HorizontalOptions="FillAndExpand">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <StackLayout>
+                                <HorizontalStackLayout Padding="10" Spacing="5" HorizontalOptions="FillAndExpand">
+                                    <Label Text="Id" VerticalOptions="Center"/>
+                                    <Entry Placeholder="Id" x:Name="IdSuppEntry" Text="{Binding Path=idSupplier}"/>
+                                    <Label Text="Price" VerticalOptions="Center"/>
+                                    <Entry Placeholder="Prce" x:Name="PriceSuppEntry" Text="{Binding Path=priceSupplier}"/>
+                                    <Label Text="delay" VerticalOptions="Center"/>
+                                    <Entry Placeholder="dlay" x:Name="DelaySuppEntry" Text="{Binding Path=delaySupplier}"/>
+                                </HorizontalStackLayout>
+                            </StackLayout>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+            <Button Text="Add" Clicked="OnButtonClicked" />
+            </VerticalStackLayout>
+        </HorizontalStackLayout>
+        
+        <Button Text="Confirmer" Clicked="OnAddLineConfirmed"/>
+    </StackLayout>
+</toolkit:Popup>

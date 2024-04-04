@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="MauiApp1.Help">
+    <ContentPage.Content>
+        <ScrollView>
+        <StackLayout>
+            <Label Text="Help: Building Your Cabinet" FontSize="18" Margin="10,10,0,0"/>
+            <Label Text=" " />
+            <Label Text=" " />
+            <Label Text="Welcome to the Cabinet Builder Guide! Follow these steps to design your perfect cabinet" FontSize="18" Margin="10,0,0,0"/> 
+            <Label Text=" " />
+            <Label Text=" " />
+            <Label Text="Requirements:" FontSize="18" Margin="10,0,0,0"/>
+            <Label Text="Design Limitations: Maximum of 7 lockers per cabinet."  FontSize="18" Margin="50,0,0,0"/>
+            <Label Text="Dimensions: all lockers need to have the same depth and length. You can choose their height." FontSize="18" Margin="50,0,0,0"/>
+            <Label Text="Materials: Cabinets are composed of vertical battens, crossbars, panels, and optional doors." FontSize="18" Margin="50,0,0,0"/> 
+            <Label Text="Colors : side panels and panels same color. Door can be another color." FontSize="18" Margin="50,0,0,0" /> 
+            <Label Text=" " />
+            <Label Text=" " />
+            <Label Text=" " />
+            <Label Text=" " />
+            <Label Text="Step-by-Step Guide:" FontSize="18" Margin="10,0,0,0" /> 
+            <Label Text="Start Your Design:" FontSize="18" Margin="50,0,0,0" /> 
+            <Label Text="Open the cabinet design tool in the app." FontSize="18" Margin="70,0,0,0" />
+            <Label Text="Select the number of lockers (up to 7)." FontSize="18" Margin="70,0,0,0" /> 
+            <Label Text="Choose Dimensions:" FontSize="18" Margin="50,0,0,0" /> 
+            <Label Text="For each locker, select height, width, and depth from the options provided in the catalogue." FontSize="18" Margin="70,0,0,0" />
+            <Label Text="Customize Your Cabinet:" FontSize="18" Margin="50,0,0,0" />
+            <Label Text="Choose the color for each locker." FontSize="18" Margin="70,0,0,0" />
+            <Label Text="Decide on the presence of doors and select their color, if different." FontSize="18" Margin="70,0,0,0" />
+            <Label Text="Review Components:" FontSize="18" Margin="50,0,0,0" />
+            <Label Text="The app will calculate the required length of angle irons based on your locker heights." FontSize="18" Margin="70,0,0,0" />
+            <Label Text="Confirm the list of parts, including battens, crossbars, panels, and doors." FontSize="18" Margin="70,0,0,0" />
+            <Label Text="Place Your Order:" FontSize="18" Margin="50,0,0,0" />
+            <Label Text="Review your design and submit the order." FontSize="18" Margin="70,0,0,0" />
+            <Label Text="If any parts are out of stock, you will be notified to pay a deposit and informed about collection details." FontSize="18" Margin="70,0,0,0" />
+            <Label Text=" " />
+            <Label Text=" " />
+            <Label Text="Additional Tips:" FontSize="18" Margin="10,0,0,0" />
+            <Label Text="Double Check Compatibility: Ensure all selected lockers are compatible in terms of dimensions and colors." FontSize="18" Margin="50,0,0,0" />
+            <Label Text="Stock Management: The app helps optimize stock based on sales history and supplier information. Check availability before finalizing your design." FontSize="18" Margin="50,0,0,0" />
+            <Label Text="Future Updates:" FontSize="18" Margin="10,0,0,0" /> 
+            <Label Text="Look out for updates as we plan to add more components like shelves and drawers. Your app is designed to incorporate these new elements seamlessly." FontSize="18" Margin="50,0,0,0" />
+            <Label Text=" " />
+            <Label Text=" " />
+            <Label Text="For more detailed instructions and troubleshooting, or if you need further assistance, please contact our support team." FontSize="18" Margin="10,0,0,0" />
+            <Label Text="Happy Building!" FontSize="18" Margin="10,0,0,0" />
+        </StackLayout>
+        </ScrollView>
+    </ContentPage.Content>
+</ContentPage>
