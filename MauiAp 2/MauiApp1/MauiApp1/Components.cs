@@ -67,33 +67,6 @@ public bool showOrderBtn
             }
         }
     }
-
-    public CompoSupplier(int id, float price, int delay){
-        this.idSupplier = id;
-        this.priceSupplier = price;
-        this.delaySupplier = delay;
-        this.isSuppEditingL = true;
-        this.isSuppEditingE = false;
-        this.showOrderBtn = false;
-    }
-
-    public event PropertyChangedEventHandler PropertyChanged;
-
-    protected virtual void OnPropertyChanged(string propertyName)
-    {
-        PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
-    }
-}
-
-public class Component: INotifyPropertyChanged{
-    public string reference{get;set;}
-    public string code{get;set;}
-    public int length{get;set;}
-    public int height{get;set;}
-    public int depth{get;set;}
-    public string color{get;set;}
-    public List<CompoSupplier> listSuppliers{get;set;}
-    
     private int _stockAvailable;
     public int stockAvailable
     {
@@ -130,6 +103,75 @@ public class Component: INotifyPropertyChanged{
             {
                 _stockReserved = value;
                 OnPropertyChanged("stockReserved");
+            }
+        }
+    }
+
+    public CompoSupplier(int id, float price, int delay, int stockAvailable, int stockOrdered, int stockReserved){
+        this.idSupplier = id;
+        this.priceSupplier = price;
+        this.delaySupplier = delay;
+        this.stockAvailable = stockAvailable;
+        this.stockOrdered = stockOrdered;
+        this.stockReserved = stockReserved;
+        this.isSuppEditingL = true;
+        this.isSuppEditingE = false;
+        this.showOrderBtn = false;
+    }
+
+    public event PropertyChangedEventHandler PropertyChanged;
+
+    protected virtual void OnPropertyChanged(string propertyName)
+    {
+        PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+    }
+}
+
+public class Component: INotifyPropertyChanged{
+    public string reference{get;set;}
+    public string code{get;set;}
+    public int length{get;set;}
+    public int height{get;set;}
+    public int depth{get;set;}
+    public string color{get;set;}
+    public List<CompoSupplier> listSuppliers{get;set;}
+    
+    private int _GlobalStockAvailable;
+    public int GlobalStockAvailable
+    {
+        get { return _GlobalStockAvailable; }
+        set
+        {
+            if (_GlobalStockAvailable != value)
+            {
+                _GlobalStockAvailable = value;
+                OnPropertyChanged("GlobalStockAvailable");
+            }
+        }
+    }
+    private int _GlobalStockOrdered;
+    public int GlobalStockOrdered
+    {
+        get { return _GlobalStockOrdered; }
+        set
+        {
+            if (_GlobalStockOrdered != value)
+            {
+                _GlobalStockOrdered = value;
+                OnPropertyChanged("GlobalStockOrdered");
+            }
+        }
+    }
+    private int _GlobalStockReserved;
+    public int GlobalStockReserved
+    {
+        get { return _GlobalStockReserved; }
+        set
+        {
+            if (_GlobalStockReserved != value)
+            {
+                _GlobalStockReserved = value;
+                OnPropertyChanged("GlobalStockReserved");
             }
         }
     }
@@ -188,8 +230,8 @@ public class Component: INotifyPropertyChanged{
 
     
     
-    public Component( string reference, string code, int length, int height, int depth, int color,  int stockAvailable, 
-        int stockOrdered, int stockReserved, bool editL, bool editE){
+    public Component( string reference, string code, int length, int height, int depth, int color,
+        bool editL, bool editE){
 
         this.reference = reference;
         this.code = code;
@@ -205,9 +247,9 @@ public class Component: INotifyPropertyChanged{
             default: this.color = "No color";break;
         }
 
-        this.stockAvailable = stockAvailable;
-        this.stockOrdered = stockOrdered;
-        this.stockReserved = stockReserved;
+        this.GlobalStockAvailable = 0;
+        this.GlobalStockOrdered = 0;
+        this.GlobalStockReserved = 0;
 
         this.isEditingE = editE;
         this.isEditingL = editL;
@@ -255,6 +297,19 @@ public class Component: INotifyPropertyChanged{
         }
         OnPropertyChanged("listSuppliers");
     }
+
+    public void setGeneralStock(){
+        this.GlobalStockAvailable = 0;
+        this.GlobalStockOrdered = 0;
+        this.GlobalStockReserved = 0;
+        foreach (var supplier in listSuppliers)
+        {
+            this.GlobalStockAvailable += supplier.stockAvailable;
+            this.GlobalStockOrdered += supplier.stockOrdered;
+            this.GlobalStockReserved += supplier.stockReserved;
+        }
+    }
+
     public event PropertyChangedEventHandler PropertyChanged;
 
     protected virtual void OnPropertyChanged(string propertyName)

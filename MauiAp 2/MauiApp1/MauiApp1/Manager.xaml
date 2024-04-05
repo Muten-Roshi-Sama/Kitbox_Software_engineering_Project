@@ -62,28 +62,15 @@
                                 <Label Text="{Binding Path=height}" HorizontalOptions="FillAndExpand" WidthRequest="50" VerticalOptions="Center"/>
                                 <Label Text="{Binding Path=depth}" HorizontalOptions="FillAndExpand" WidthRequest="50" VerticalOptions="Center"/>
                                 <Label Text="{Binding Path=color}" HorizontalOptions="FillAndExpand" WidthRequest="70" VerticalOptions="Center"/>
-                                <Label Text="{Binding Path=stockAvailable}" IsVisible="{Binding Path=isEditingL}" HorizontalOptions="FillAndExpand" WidthRequest="100" VerticalOptions="Center"/>
-                                <Entry Text="{Binding Path=stockAvailable}" IsVisible="{Binding Path=isEditingE}" HorizontalOptions="FillAndExpand" WidthRequest="100" VerticalOptions="Center"/>
-                                <Label Text="{Binding Path=stockOrdered}" IsVisible="{Binding Path=isEditingL}" HorizontalOptions="FillAndExpand" WidthRequest="100" VerticalOptions="Center"/>
-                                <Entry Text="{Binding Path=stockOrdered}" IsVisible="{Binding Path=isEditingE}" HorizontalOptions="FillAndExpand" WidthRequest="100" VerticalOptions="Center"/>
-                                <Label Text="{Binding Path=stockReserved}" IsVisible="{Binding Path=isEditingL}" HorizontalOptions="FillAndExpand" WidthRequest="100" VerticalOptions="Center"/>
-                                <Entry Text="{Binding Path=stockReserved}" IsVisible="{Binding Path=isEditingE}" HorizontalOptions="FillAndExpand" WidthRequest="100" VerticalOptions="Center"/>
+                                <Label Text="{Binding Path=GlobalStockAvailable}" HorizontalOptions="FillAndExpand" WidthRequest="100" VerticalOptions="Center"/>
+                                <Label Text="{Binding Path=GlobalStockOrdered}" HorizontalOptions="FillAndExpand" WidthRequest="100" VerticalOptions="Center"/>
+                                <Label Text="{Binding Path=GlobalStockReserved}" HorizontalOptions="FillAndExpand" WidthRequest="100" VerticalOptions="Center"/>
                                 <Image Source="sort_down.png" ClassId="Button3" IsVisible="{Binding Path=infoSupOff}">
                                     <Image.GestureRecognizers>
                                         <TapGestureRecognizer Tapped="OnImageButtonClicked" />
                                     </Image.GestureRecognizers>
                                 </Image>
                                 <Image Source="sort_up.png" ClassId="Button4" IsVisible="{Binding Path=infoSupOn}">
-                                    <Image.GestureRecognizers>
-                                        <TapGestureRecognizer Tapped="OnImageButtonClicked" />
-                                    </Image.GestureRecognizers>
-                                </Image>
-                                <Image Source="edit16.png" ClassId="Button1" IsVisible="{Binding Path=isEditingL}">
-                                    <Image.GestureRecognizers>
-                                        <TapGestureRecognizer Tapped="OnImageButtonClicked" />
-                                    </Image.GestureRecognizers>
-                                </Image>
-                                <Image Source="check16.png" ClassId="Button2" IsVisible="{Binding Path=isEditingE}">
                                     <Image.GestureRecognizers>
                                         <TapGestureRecognizer Tapped="OnImageButtonClicked" />
                                     </Image.GestureRecognizers>
@@ -99,6 +86,9 @@
                                     <Label Text="Id Supplier" WidthRequest="100"/>
                                     <Label Text="Price Supplier" WidthRequest="100"/>
                                     <Label Text="Delay Supplier" WidthRequest="100"/>
+                                    <Label Text="Stock available" WidthRequest="100"/>
+                                    <Label Text="Stock ordered" WidthRequest="100"/>
+                                    <Label Text="Stock reserved" WidthRequest="100"/>
                                     <Image Source="plus16.png" ClassId="OnAddSuppButtonClicked">
                                         <Image.GestureRecognizers>
                                             <TapGestureRecognizer Tapped="OnAddSuppButtonClicked" />
@@ -117,6 +107,11 @@
                                                     <Entry Text="{Binding Path=priceSupplier}" IsVisible="{Binding Path=isSuppEditingE}" HorizontalOptions="FillAndExpand" WidthRequest="100"/>
                                                     <Label Text="{Binding Path=delaySupplier}" IsVisible="{Binding Path=isSuppEditingL}" HorizontalOptions="FillAndExpand" WidthRequest="100"/>
                                                     <Entry Text="{Binding Path=delaySupplier}" IsVisible="{Binding Path=isSuppEditingE}" HorizontalOptions="FillAndExpand" WidthRequest="100"/>
+                                                    <Label Text="{Binding Path=stockAvailable}" IsVisible="{Binding Path=isSuppEditingL}" HorizontalOptions="FillAndExpand" WidthRequest="100"/>
+                                                    <Entry Text="{Binding Path=stockAvailable}" IsVisible="{Binding Path=isSuppEditingE}" HorizontalOptions="FillAndExpand" WidthRequest="100"/>
+                                                    <Label Text="{Binding Path=stockOrdered}" HorizontalOptions="FillAndExpand" WidthRequest="100"/>
+                                                    <Label Text="{Binding Path=stockReserved}" IsVisible="{Binding Path=isSuppEditingL}" HorizontalOptions="FillAndExpand" WidthRequest="100"/>
+                                                    <Entry Text="{Binding Path=stockReserved}" IsVisible="{Binding Path=isSuppEditingE}" HorizontalOptions="FillAndExpand" WidthRequest="100"/>
                                                     <Image Source="edit16.png" ClassId="editBtn" IsVisible="{Binding Path=isSuppEditingL}">
                                                         <Image.GestureRecognizers>
                                                             <TapGestureRecognizer Tapped="OnSuppButtonClicked" />

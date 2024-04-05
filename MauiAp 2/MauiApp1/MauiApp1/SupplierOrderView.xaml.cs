@@ -1,5 +1,4 @@
 using CommunityToolkit.Maui.Views;
-
 namespace MauiApp1;
 
 public partial class SupplierOrderView : ContentPage
@@ -62,6 +61,7 @@ public partial class SupplierOrderView : ContentPage
 
     async void ConfirmOrder(object sender, EventArgs e){
         //ici mettre la requete pour ajouter la commande fournisseur
+        connection.orderComponentSupplier(this.componentsList);
         await DisplayAlert("Commande validé", "Votre commande a été validé avec succes ! ", "OK");
         App.Current.MainPage = new Manager(this.connection);
     }

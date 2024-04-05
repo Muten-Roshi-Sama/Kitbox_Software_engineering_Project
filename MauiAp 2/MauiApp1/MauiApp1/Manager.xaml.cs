@@ -42,19 +42,10 @@ public partial class Manager : ContentPage
         var component = (Component)button.BindingContext;
         switch (button.ClassId)
         {
-            case "Button1":
-                component.isEditingL = false;
-                component.isEditingE = true;
-                break;
-            case "Button2":
-                component.isEditingL = true;
-                component.isEditingE = false;
-                this.connection.updateStockComponents(component);
-                break;
             case "Button3":
                 component.infoSupOn = true;
                 component.infoSupOff = false;
-            break;
+                break;
             case "Button4":
                 component.infoSupOn = false;
                 component.infoSupOff = true;
@@ -98,7 +89,7 @@ public partial class Manager : ContentPage
                 
                 foreach (var item in components)
                 {
-                    if(item.stockAvailable < valueLimiteStock){
+                    if(item.GlobalStockAvailable < valueLimiteStock){
                         foreach (var supp in item.listSuppliers)
                         {
                             supp.showOrderBtn = true;
@@ -112,7 +103,7 @@ public partial class Manager : ContentPage
             case "All":
                 foreach (var item in components)
                 {
-                    if(item.stockAvailable < valueLimiteStock){
+                    if(item.GlobalStockAvailable < valueLimiteStock){
                         foreach (var supp in item.listSuppliers)
                         {
                             supp.showOrderBtn = false;
@@ -167,15 +158,16 @@ public partial class Manager : ContentPage
                 supp.isSuppEditingE = true;
                 break;
             case "confirmBtn":
+                component.setGeneralStock();
                 supp.isSuppEditingL = true;
                 supp.isSuppEditingE = false;
-                Console.WriteLine(component.code);
-                Console.WriteLine(supp.idSupplier);
                 connection.updatePriceDelayComponents(component.code, supp);
+                connection.updateStockComponents(supp,component.code);
                 break;
             case "deleteBtn":
                 component.deleteSupplier(supp.idSupplier);
                 connection.deleteSuppOfComponent(supp.idSupplier, component.code);
+                component.setGeneralStock();
                 var SuppListView = viewCell2.FindByName<ListView>("SuppListView");
                 SuppListView.ItemsSource  = null;
                 SuppListView.ItemsSource  = component.listSuppliers;
