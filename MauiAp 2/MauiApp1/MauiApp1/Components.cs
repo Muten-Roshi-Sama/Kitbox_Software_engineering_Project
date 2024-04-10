@@ -107,12 +107,17 @@ public bool showOrderBtn
         }
     }
 
-    public CompoSupplier(int id, float price, int delay, int stockAvailable, int stockOrdered, int stockReserved){
+    public CompoSupplier(int id, float price, int delay, int stockAvailable, int? stockOrdered, int stockReserved){
         this.idSupplier = id;
         this.priceSupplier = price;
         this.delaySupplier = delay;
         this.stockAvailable = stockAvailable;
-        this.stockOrdered = stockOrdered;
+        if(stockOrdered is null){
+            this.stockOrdered = 0;
+        }else{
+            this.stockOrdered = (int)stockOrdered;
+        }
+        
         this.stockReserved = stockReserved;
         this.isSuppEditingL = true;
         this.isSuppEditingE = false;

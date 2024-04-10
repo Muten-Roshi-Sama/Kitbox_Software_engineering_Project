@@ -42,6 +42,12 @@ build_metadata.AdditionalFiles.ManifestResourceName = MauiApp1.Basket.xaml
 build_metadata.AdditionalFiles.TargetPath = Basket.xaml
 build_metadata.AdditionalFiles.RelativePath = Basket.xaml
 
+[C:/Users/Morar/Desktop/ECAM/Projet logiciel/Kitbox_Software_engineering_Project/MauiAp 2/MauiApp1/MauiApp1/CommandsSupplierView.xaml]
+build_metadata.AdditionalFiles.GenKind = Xaml
+build_metadata.AdditionalFiles.ManifestResourceName = MauiApp1.CommandsSupplierView.xaml
+build_metadata.AdditionalFiles.TargetPath = CommandsSupplierView.xaml
+build_metadata.AdditionalFiles.RelativePath = CommandsSupplierView.xaml
+
 [C:/Users/Morar/Desktop/ECAM/Projet logiciel/Kitbox_Software_engineering_Project/MauiAp 2/MauiApp1/MauiApp1/Compose.xaml]
 build_metadata.AdditionalFiles.GenKind = Xaml
 build_metadata.AdditionalFiles.ManifestResourceName = MauiApp1.Compose.xaml

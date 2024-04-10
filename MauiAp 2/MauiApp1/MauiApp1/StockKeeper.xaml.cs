@@ -14,6 +14,8 @@ public partial class StockKeeper : ContentPage
     List<Component> components;
     DBConnection connection;
     static int valueLimiteStock = 20;
+    Dictionary<string,SupplierCompoOrder> supplierOrder;
+
 
     public StockKeeper()
     {
@@ -45,19 +47,55 @@ public partial class StockKeeper : ContentPage
         var component = (Component)button.BindingContext;
         switch (button.ClassId)
         {
-            case "Button1":
+            case "Button3":
                 component.isEditingL = false;
                 component.isEditingE = true;
                 break;
-            case "Button2":
+            case "Button4":
                 component.isEditingL = true;
                 component.isEditingE = false;
-                this.connection.updateStockComponents(component);
                 break;
             default:break;
         }
         //MyListView.ItemsSource = null;
         //MyListView.ItemsSource = components;
+    }
+
+    void OnSuppButtonClicked(object sender, EventArgs e){
+        var button = (Image)sender;
+        var stack1 = (HorizontalStackLayout)button.Parent;
+        var stack2 = (StackLayout)stack1.Parent;
+        var viewCell = (ViewCell)stack2.Parent;
+        var supp = (CompoSupplier)viewCell.BindingContext;
+        var stack3 = (ListView)viewCell.Parent;
+        var stack4 = (VerticalStackLayout)stack3.Parent;
+        var stack5 = (StackLayout)stack4.Parent;
+        var viewCell2 = (ViewCell)stack5.Parent;
+        var component = (Component)viewCell2.BindingContext;
+        switch (button.ClassId)
+        {
+            case "editBtn":
+                supp.isSuppEditingL = false;
+                supp.isSuppEditingE = true;
+                break;
+            case "confirmBtn":
+                component.setGeneralStock();
+                supp.isSuppEditingL = true;
+                supp.isSuppEditingE = false;
+                connection.updatePriceDelayComponents(component.code, supp);
+                connection.updateStockComponents(supp,component.code);
+                break;
+        }
+    }
+    void MoreMenuBtn(object sender, EventArgs  e){
+        var menu = (MenuFlyoutItem)sender;
+        switch (menu.Text)
+        {
+            case "Orders": 
+                App.Current.MainPage = new CommandsSupplierView(connection);
+                break;
+            default:break;
+        }
     }
 
     void FiltreLabelClicked(object sender, EventArgs e){
@@ -66,9 +104,15 @@ public partial class StockKeeper : ContentPage
         {
             case "Missing Stock":
                 List<Component> compoFiltre = new List<Component>();
+                supplierOrder = new Dictionary<string, SupplierCompoOrder>();
+                
                 foreach (var item in components)
                 {
-                    if(item.stockAvailable < valueLimiteStock){
+                    if(item.GlobalStockAvailable < valueLimiteStock){
+                        foreach (var supp in item.listSuppliers)
+                        {
+                            supp.showOrderBtn = true;
+                        }
                         compoFiltre.Add(item);
                     }
                 }
@@ -76,12 +120,38 @@ public partial class StockKeeper : ContentPage
                 MyListView.ItemsSource  = compoFiltre;
                 break;
             case "All":
+                foreach (var item in components)
+                {
+                    if(item.GlobalStockAvailable < valueLimiteStock){
+                        foreach (var supp in item.listSuppliers)
+                        {
+                            supp.showOrderBtn = false;
+                        }
+                    }
+                }
                 MyListView.ItemsSource = null;
                 MyListView.ItemsSource = components;
                 break;
 
             default:break;
         }
+    }
+
+    public void OrderCompoSuppl(object sender, EventArgs e){
+        var button = (Button)sender;
+        var supplier = (CompoSupplier)button.BindingContext;
+        var component = (Component) button.Parent.Parent.Parent.Parent.BindingContext;
+        Console.WriteLine(component.reference);
+        supplierOrder.Remove(component.code);
+        foreach (var supp in component.listSuppliers)
+        {
+            if(supp.idSupplier==supplier.idSupplier){
+                supp.showOrderBtn = false;
+            }else{
+                supp.showOrderBtn = true;
+            }
+        }
+        supplierOrder.Add(component.code,new SupplierCompoOrder(component.code,component.reference,supplier.idSupplier,supplier.priceSupplier,supplier.delaySupplier,30));
     }
     
 }

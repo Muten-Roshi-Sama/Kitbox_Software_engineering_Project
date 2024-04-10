@@ -1303,3 +1303,7 @@ C:\Users\Morar\Desktop\ECAM\Projet logiciel\Kitbox_Software_engineering_Project\
 C:\Users\Morar\Desktop\ECAM\Projet logiciel\Kitbox_Software_engineering_Project\MauiAp 2\MauiApp1\MauiApp1\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\qualifiers.txt
 C:\Users\Morar\Desktop\ECAM\Projet logiciel\Kitbox_Software_engineering_Project\MauiAp 2\MauiApp1\MauiApp1\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\qualifiers.txt.intermediate
 C:\Users\Morar\Desktop\ECAM\Projet logiciel\Kitbox_Software_engineering_Project\MauiAp 2\MauiApp1\MauiApp1\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\MultipleQualifiersPerDimensionFound.txt
+C:\Users\Morar\Desktop\ECAM\Projet logiciel\Kitbox_Software_engineering_Project\MauiAp 2\MauiApp1\MauiApp1\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\more16.scale-100.png
+C:\Users\Morar\Desktop\ECAM\Projet logiciel\Kitbox_Software_engineering_Project\MauiAp 2\MauiApp1\MauiApp1\bin\Debug\net8.0-windows10.0.19041.0\win10-x64\more16.scale-100.png
+C:\Users\Morar\Desktop\ECAM\Projet logiciel\Kitbox_Software_engineering_Project\MauiAp 2\MauiApp1\MauiApp1\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\attention16.scale-100.png
+C:\Users\Morar\Desktop\ECAM\Projet logiciel\Kitbox_Software_engineering_Project\MauiAp 2\MauiApp1\MauiApp1\bin\Debug\net8.0-windows10.0.19041.0\win10-x64\attention16.scale-100.png

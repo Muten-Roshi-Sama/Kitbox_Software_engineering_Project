@@ -10,6 +10,7 @@
             <Color x:Key="LightGrayColor">#F0F0F0</Color>
         </ResourceDictionary>
     </ContentPage.Resources>
+
     <StackLayout>
         <StackLayout Orientation="Horizontal" Padding="10" Spacing="10">
             <Label Text="Reference" WidthRequest="150"/>
@@ -26,15 +27,15 @@
                     <TapGestureRecognizer Tapped="OnAddLineButtonClicked" />
                 </Image.GestureRecognizers>
             </Image>
-            <Border Stroke="#000000"
+            <Border Stroke="#5c00e6"
                     StrokeThickness="1"
-                    Background="#ffffff"
-                    Padding="1,1"
+                    Background="#5c00e6"
+                    Padding="5,1,5,1"
                     HorizontalOptions="Center">
                 <Border.StrokeShape>
-                    <RoundRectangle CornerRadius="40,40,40,40" />
+                    <RoundRectangle CornerRadius="10,10,10,10" />
                 </Border.StrokeShape>
-                <Label x:Name="label" Text="Filtre">
+                <Label x:Name="label" Text="Filtre" TextColor="#ffffff">
                     <FlyoutBase.ContextFlyout>
                         <MenuFlyout>
                             <MenuFlyoutItem x:Name="MissingStock" Text="Missing Stock" Clicked="FiltreLabelClicked"/>
@@ -43,11 +44,19 @@
                     </FlyoutBase.ContextFlyout>
                 </Label>
             </Border>
-            <Label Text="Order" WidthRequest="100">
+            <Label Text="Order" WidthRequest="40">
                 <Label.GestureRecognizers>
                     <TapGestureRecognizer Tapped="OrderLabelTapped" />
                 </Label.GestureRecognizers>
             </Label>
+            <Image Source="more16.png" ClassId="moreBtn">
+                <FlyoutBase.ContextFlyout>
+                    <MenuFlyout>
+                        <MenuFlyoutItem x:Name="Stock" Text="Stock"/>
+                        <MenuFlyoutItem x:Name="Orders" Text="Orders" Clicked="MoreMenuBtn"/>
+                    </MenuFlyout>
+                </FlyoutBase.ContextFlyout>
+            </Image>
         </StackLayout>
         <Line Stroke="black" X2="1000" />
         <ListView x:Name="MyListView">

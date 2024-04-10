@@ -5,9 +5,13 @@
              xmlns:local="clr-namespace:MauiApp1"
              x:Class="MauiApp1.StockKeeper">
              <!--<ListView x:Name="MyListView" ItemSelected="OnItemSelected">-->
-             <StackLayout>
-    
-        <!-- Libellés en haut -->
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <Color x:Key="LightGrayColor">#F0F0F0</Color>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+
+    <StackLayout>
         <StackLayout Orientation="Horizontal" Padding="10" Spacing="10">
             <Label Text="Reference" WidthRequest="150"/>
             <Label Text="Code" WidthRequest="90"/>
@@ -18,49 +22,108 @@
             <Label Text="Stock Available" WidthRequest="100"/>
             <Label Text="Stock Ordered" WidthRequest="100"/>
             <Label Text="Stock Reserved" WidthRequest="100"/>
-            <Label x:Name="label" Text="Filtre">
+            <Border Stroke="#5c00e6"
+                    StrokeThickness="1"
+                    Background="#5c00e6"
+                    Padding="5,1,5,1"
+                    HorizontalOptions="Center">
+                <Border.StrokeShape>
+                    <RoundRectangle CornerRadius="10,10,10,10" />
+                </Border.StrokeShape>
+                <Label x:Name="label" Text="Filtre" TextColor="#ffffff">
+                    <FlyoutBase.ContextFlyout>
+                        <MenuFlyout>
+                            <MenuFlyoutItem x:Name="MissingStock" Text="Missing Stock" Clicked="FiltreLabelClicked"/>
+                            <MenuFlyoutItem x:Name="All" Text="All" Clicked="FiltreLabelClicked"/>
+                        </MenuFlyout>
+                    </FlyoutBase.ContextFlyout>
+                </Label>
+            </Border>
+            <Image Source="more16.png" ClassId="moreBtn">
                 <FlyoutBase.ContextFlyout>
                     <MenuFlyout>
-                        <MenuFlyoutItem x:Name="MissingStock" Text="Missing Stock" Clicked="FiltreLabelClicked"/>
-                        <MenuFlyoutItem x:Name="All" Text="All" Clicked="FiltreLabelClicked"/>
+                        <MenuFlyoutItem x:Name="Stock" Text="Stock"/>
+                        <MenuFlyoutItem x:Name="Orders" Text="Orders" Clicked="MoreMenuBtn"/>
                     </MenuFlyout>
                 </FlyoutBase.ContextFlyout>
-            </Label>
+            </Image>
         </StackLayout>
         <Line Stroke="black" X2="1000" />
-             <ListView x:Name="MyListView">
+        <ListView x:Name="MyListView">
             <ListView.ItemTemplate>
                 <DataTemplate>
                     <ViewCell>
-                        <HorizontalStackLayout Padding="10" Spacing="10" HorizontalOptions="FillAndExpand">
-                            <Label Text="{Binding Path=reference}" HorizontalOptions="FillAndExpand" WidthRequest="150" VerticalOptions="Center"/>
-                            <Label Text="{Binding Path=code}" HorizontalOptions="FillAndExpand" WidthRequest="90" VerticalOptions="Center"/>
-                            <Label Text="{Binding Path=length}" HorizontalOptions="FillAndExpand" WidthRequest="50" VerticalOptions="Center"/>
-                            <Label Text="{Binding Path=height}" HorizontalOptions="FillAndExpand" WidthRequest="50" VerticalOptions="Center"/>
-                            <Label Text="{Binding Path=depth}" HorizontalOptions="FillAndExpand" WidthRequest="50" VerticalOptions="Center"/>
-                            <Label Text="{Binding Path=color}" HorizontalOptions="FillAndExpand" WidthRequest="70" VerticalOptions="Center"/>
-                            <Label Text="{Binding Path=stockAvailable}" IsVisible="{Binding Path=isEditingL}" HorizontalOptions="FillAndExpand" WidthRequest="100" VerticalOptions="Center"/>
-                            <Entry Text="{Binding Path=stockAvailable}" IsVisible="{Binding Path=isEditingE}" HorizontalOptions="FillAndExpand" WidthRequest="100"/>
-                            <Label Text="{Binding Path=stockOrdered}" IsVisible="{Binding Path=isEditingL}" HorizontalOptions="FillAndExpand" WidthRequest="100" VerticalOptions="Center"/>
-                            <Entry Text="{Binding Path=stockOrdered}" IsVisible="{Binding Path=isEditingE}" HorizontalOptions="FillAndExpand" WidthRequest="100"/>
-                            <Label Text="{Binding Path=stockReserved}" IsVisible="{Binding Path=isEditingL}" HorizontalOptions="FillAndExpand" WidthRequest="100" VerticalOptions="Center"/>
-                            <Entry Text="{Binding Path=stockReserved}" IsVisible="{Binding Path=isEditingE}" HorizontalOptions="FillAndExpand" WidthRequest="100"/>
-                            <Image Source="edit16.png" ClassId="Button1" IsVisible="{Binding Path=isEditingL}">
+                        <StackLayout>
+                            <HorizontalStackLayout Padding="10" Spacing="10" HorizontalOptions="FillAndExpand">
+                                <Label Text="{Binding Path=reference}" HorizontalOptions="FillAndExpand" WidthRequest="150" VerticalOptions="Center"/>
+                                <Label Text="{Binding Path=code}" HorizontalOptions="FillAndExpand" WidthRequest="90" VerticalOptions="Center"/>
+                                <Label Text="{Binding Path=length}" HorizontalOptions="FillAndExpand" WidthRequest="50" VerticalOptions="Center"/>
+                                <Label Text="{Binding Path=height}" HorizontalOptions="FillAndExpand" WidthRequest="50" VerticalOptions="Center"/>
+                                <Label Text="{Binding Path=depth}" HorizontalOptions="FillAndExpand" WidthRequest="50" VerticalOptions="Center"/>
+                                <Label Text="{Binding Path=color}" HorizontalOptions="FillAndExpand" WidthRequest="70" VerticalOptions="Center"/>
+                                <Label Text="{Binding Path=GlobalStockAvailable}" HorizontalOptions="FillAndExpand" WidthRequest="100" VerticalOptions="Center"/>
+                                <Label Text="{Binding Path=GlobalStockOrdered}" HorizontalOptions="FillAndExpand" WidthRequest="100" VerticalOptions="Center"/>
+                                <Label Text="{Binding Path=GlobalStockReserved}" HorizontalOptions="FillAndExpand" WidthRequest="100" VerticalOptions="Center"/>
+                                <Image Source="sort_down.png" ClassId="Button3" IsVisible="{Binding Path=infoSupOff}">
                                     <Image.GestureRecognizers>
                                         <TapGestureRecognizer Tapped="OnImageButtonClicked" />
                                     </Image.GestureRecognizers>
                                 </Image>
-                                <Image Source="check16.png" ClassId="Button2" IsVisible="{Binding Path=isEditingE}">
+                                <Image Source="sort_up.png" ClassId="Button4" IsVisible="{Binding Path=infoSupOn}">
                                     <Image.GestureRecognizers>
                                         <TapGestureRecognizer Tapped="OnImageButtonClicked" />
                                     </Image.GestureRecognizers>
                                 </Image>
-                        </HorizontalStackLayout >
+                            </HorizontalStackLayout >
+                            <VerticalStackLayout Margin="10,0,10,0" BackgroundColor="{StaticResource LightGrayColor}" IsVisible="{Binding Path=infoSupOn}">
+                                <StackLayout Orientation="Horizontal" Padding="10" Spacing="10">
+                                    <Label Text="Id Supplier" WidthRequest="100"/>
+                                    <Label Text="Price Supplier" WidthRequest="100"/>
+                                    <Label Text="Delay Supplier" WidthRequest="100"/>
+                                    <Label Text="Stock available" WidthRequest="100"/>
+                                    <Label Text="Stock ordered" WidthRequest="100"/>
+                                    <Label Text="Stock reserved" WidthRequest="100"/>
+                                </StackLayout>
+                                <Line Stroke="black" X2="1000" />
+                                <ListView x:Name="SuppListView" ItemsSource="{Binding Path=listSuppliers}">
+                                <ListView.ItemTemplate>
+                                    <DataTemplate>
+                                        <ViewCell>
+                                            <StackLayout>
+                                                <HorizontalStackLayout Padding="10" Spacing="10" HorizontalOptions="FillAndExpand">
+                                                    <Label Text="{Binding Path=idSupplier}" HorizontalOptions="FillAndExpand" WidthRequest="100"/>
+                                                    <Label Text="{Binding Path=priceSupplier}" IsVisible="{Binding Path=isSuppEditingL}" HorizontalOptions="FillAndExpand" WidthRequest="100"/>
+                                                    <Entry Text="{Binding Path=priceSupplier}" IsVisible="{Binding Path=isSuppEditingE}" HorizontalOptions="FillAndExpand" WidthRequest="100"/>
+                                                    <Label Text="{Binding Path=delaySupplier}" IsVisible="{Binding Path=isSuppEditingL}" HorizontalOptions="FillAndExpand" WidthRequest="100"/>
+                                                    <Entry Text="{Binding Path=delaySupplier}" IsVisible="{Binding Path=isSuppEditingE}" HorizontalOptions="FillAndExpand" WidthRequest="100"/>
+                                                    <Label Text="{Binding Path=stockAvailable}" IsVisible="{Binding Path=isSuppEditingL}" HorizontalOptions="FillAndExpand" WidthRequest="100"/>
+                                                    <Entry Text="{Binding Path=stockAvailable}" IsVisible="{Binding Path=isSuppEditingE}" HorizontalOptions="FillAndExpand" WidthRequest="100"/>
+                                                    <Label Text="{Binding Path=stockOrdered}" HorizontalOptions="FillAndExpand" WidthRequest="100"/>
+                                                    <Label Text="{Binding Path=stockReserved}" IsVisible="{Binding Path=isSuppEditingL}" HorizontalOptions="FillAndExpand" WidthRequest="100"/>
+                                                    <Entry Text="{Binding Path=stockReserved}" IsVisible="{Binding Path=isSuppEditingE}" HorizontalOptions="FillAndExpand" WidthRequest="100"/>
+                                                    <Image Source="edit16.png" ClassId="editBtn" IsVisible="{Binding Path=isSuppEditingL}">
+                                                        <Image.GestureRecognizers>
+                                                            <TapGestureRecognizer Tapped="OnSuppButtonClicked" />
+                                                        </Image.GestureRecognizers>
+                                                    </Image>
+                                                    <Image Source="check16.png" ClassId="confirmBtn" IsVisible="{Binding Path=isSuppEditingE}">
+                                                        <Image.GestureRecognizers>
+                                                            <TapGestureRecognizer Tapped="OnSuppButtonClicked" />
+                                                        </Image.GestureRecognizers>
+                                                    </Image>
+                                                    <Button x:Name="OrderCompoSupplBtn" Text="Order" Clicked="OrderCompoSuppl" IsVisible="{Binding Path=showOrderBtn}" />
+                                                </HorizontalStackLayout >
+                                            </StackLayout>
+                                        </ViewCell>
+                                    </DataTemplate>
+                                </ListView.ItemTemplate>
+                            </ListView>
+                            </VerticalStackLayout>
+                        </StackLayout>
                     </ViewCell>
                 </DataTemplate>
             </ListView.ItemTemplate>
         </ListView>
         <Button x:Name="Disconnect" Margin="10,0,0,0" HeightRequest= "10" WidthRequest=" 200" Text="Disconnect" Clicked="disconnect"></Button>
-        </StackLayout>
-
+    </StackLayout>
 </ContentPage>

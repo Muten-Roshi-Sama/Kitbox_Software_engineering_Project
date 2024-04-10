@@ -7,12 +7,13 @@ using System.Threading.Tasks;
 using System.Windows.Markup;
 using aaa;
 using CommunityToolkit.Maui.Views;
+using System.ComponentModel;
 
 namespace MauiApp1;
 
 
 
-public partial class Manager : ContentPage
+public partial class Manager : ContentPage,INotifyPropertyChanged 
 {
     List<Component> components;
     DBConnection connection;
@@ -204,6 +205,17 @@ public partial class Manager : ContentPage
 
     void OrderLabelTapped(object sender, EventArgs e){
         App.Current.MainPage = new SupplierOrderView(supplierOrder,connection);
+    }
+
+    void MoreMenuBtn(object sender, EventArgs  e){
+        var menu = (MenuFlyoutItem)sender;
+        switch (menu.Text)
+        {
+            case "Orders": 
+                App.Current.MainPage = new CommandsSupplierView(connection);
+                break;
+            default:break;
+        }
     }
 }
 

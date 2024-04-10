@@ -83,6 +83,10 @@
         <MauiImage Include="Icon\delete16.png" />
         <None Remove="Icon\edit16.png" />
         <MauiImage Include="Icon\edit16.png" />
+        <None Remove="Icon\more16.png" />
+        <MauiImage Include="Icon\more16.png" />
+        <None Remove="Icon\attention16.png" />
+        <MauiImage Include="Icon\attention16.png" />
     </ItemGroup>
 
     <ItemGroup>

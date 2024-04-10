@@ -4,7 +4,7 @@
                xmlns:local="clr-namespace:aaa"
                x:Class="aaa.AddSuppPopup">
 
-    <StackLayout HorizontalOptions="FillAndExpand">
+    <StackLayout Orientation="Vertical" HorizontalOptions="FillAndExpand">
         <HorizontalStackLayout Padding="10" Spacing="5" HorizontalOptions="FillAndExpand">
             <HorizontalStackLayout Padding="10" Spacing="5" HorizontalOptions="FillAndExpand">
                 <Label Text="Id Supplier"/>
@@ -18,6 +18,16 @@
                 <Label Text="Delay"/>
                 <Entry Placeholder="Price" x:Name="DelayEntry"/>
             </HorizontalStackLayout>   
+        </HorizontalStackLayout>
+        <HorizontalStackLayout Padding="10" Spacing="5" HorizontalOptions="FillAndExpand">
+            <HorizontalStackLayout Padding="10" Spacing="5" HorizontalOptions="FillAndExpand">
+                <Label Text="Stock available"/>
+                <Entry Placeholder="StockA" x:Name="StockAEntry"/>
+            </HorizontalStackLayout>
+            <HorizontalStackLayout Padding="10" Spacing="5" HorizontalOptions="FillAndExpand">
+                <Label Text="Stock reserved"/>
+                <Entry Placeholder="StockR" x:Name="StockREntry"/>
+            </HorizontalStackLayout>
         </HorizontalStackLayout>
         <Button Text="Add supplier" Clicked="OnAddSuppConfirmed"/>
     </StackLayout>
