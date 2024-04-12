@@ -5,12 +5,12 @@ public partial class SupplierOrderView : ContentPage
 {
     List<SupplierCompoOrder> componentsList;
     DBConnection connection;
-    public SupplierOrderView(Dictionary<string,SupplierCompoOrder> supp, DBConnection connection){
+    public SupplierOrderView(List<SupplierCompoOrder> supp, DBConnection connection){
         InitializeComponent();
         componentsList = new List<SupplierCompoOrder>();
         foreach (var item in supp)
         {
-            componentsList.Add(item.Value);
+            componentsList.Add(item);
         }
         OrderListView.ItemsSource = componentsList;
         this.connection = connection;

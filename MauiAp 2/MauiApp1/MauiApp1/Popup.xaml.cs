@@ -9,7 +9,7 @@ public partial class SimplePopup : Popup
     {
         this.Size = new Size(800,425);
         this.supplierList = new List<CompoSupplier>();
-        this.supplierList.Add(new CompoSupplier(0,0,0,0,0,0));
+        this.supplierList.Add(new CompoSupplier(0,0,0,0,0,0,0));
         InitializeComponent();
         SuppListView.ItemsSource = this.supplierList;
     }
@@ -28,7 +28,7 @@ public partial class SimplePopup : Popup
     }
 
     void OnButtonClicked(object sender, EventArgs e){
-        this.supplierList.Add(new CompoSupplier(0,0,0,0,0,0));
+        this.supplierList.Add(new CompoSupplier(0,0,0,0,0,0,0));
         SuppListView.ItemsSource = null;
         SuppListView.ItemsSource = this.supplierList;
     }

@@ -4,13 +4,13 @@ using CommunityToolkit.Maui.Views;
 using System.ComponentModel;
 public partial class CommandsSupplierView:ContentPage{
     DBConnection connection;
+    String type;
 
-    public CommandsSupplierView(DBConnection connection) {
+    public CommandsSupplierView(DBConnection connection, String type) {
         InitializeComponent();
         this.connection = connection;
-        Console.WriteLine("test");
         OrderListView.ItemsSource = getCommands();
-        Console.WriteLine("test");
+        this.type = type;
     }
     public static void LaunchAppShell()
     {
@@ -49,7 +49,16 @@ public partial class CommandsSupplierView:ContentPage{
         switch (menu.Text)
         {
             case "Stock": 
-                App.Current.MainPage = new Manager(connection);
+                switch (type)
+                {
+                    case "Manager":
+                        App.Current.MainPage = new Manager(connection);
+                        break;
+                    case "StockKeeper":
+                        App.Current.MainPage = new StockKeeper(connection);
+                        break;
+                    default:break;
+                }
                 break;
             default:break;
         }

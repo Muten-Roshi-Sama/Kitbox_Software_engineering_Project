@@ -49,6 +49,8 @@
                                     <Entry Placeholder="dlay" x:Name="DelaySuppEntry" Text="{Binding Path=delaySupplier}"/>
                                     <Label Text="Stock available" VerticalOptions="Center"/>
                                     <Entry Placeholder="StockA" x:Name="StockASuppEntry" Text="{Binding Path=stockAvailable}"/>
+                                    <Label Text="Minimum stock" VerticalOptions="Center"/>
+                                    <Entry Placeholder="minStock" x:Name="minStock" Text="{Binding Path=minimumStock}"/>
                                 </HorizontalStackLayout>
                             </StackLayout>
                         </ViewCell>

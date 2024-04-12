@@ -23,8 +23,14 @@ public partial class StockKeeper : ContentPage
         InitializeComponent();
         this.connection = new DBConnection("StockKeeper","1234","projet","pat.infolab.ecam.be",63416);  
         getComponents();
-        
+    }
 
+    public StockKeeper(DBConnection connection)
+    {
+        this.components = new List<Component>();
+        InitializeComponent();
+        this.connection = connection; 
+        getComponents();
     }
     public static void LaunchAppShell()
     {
@@ -42,18 +48,18 @@ public partial class StockKeeper : ContentPage
         MyListView.ItemsSource = components;
     }
 
-    void OnImageButtonClicked(object sender, EventArgs e){
+    void ShowInfoClicked(object sender, EventArgs e){
         var button = (Image)sender;
         var component = (Component)button.BindingContext;
         switch (button.ClassId)
         {
             case "Button3":
-                component.isEditingL = false;
-                component.isEditingE = true;
+                component.infoSupOff = false;
+                component.infoSupOn = true;
                 break;
             case "Button4":
-                component.isEditingL = true;
-                component.isEditingE = false;
+                component.infoSupOff = true;
+                component.infoSupOn = false;
                 break;
             default:break;
         }
@@ -92,7 +98,7 @@ public partial class StockKeeper : ContentPage
         switch (menu.Text)
         {
             case "Orders": 
-                App.Current.MainPage = new CommandsSupplierView(connection);
+                App.Current.MainPage = new CommandsSupplierView(connection, "StockKeeper");
                 break;
             default:break;
         }

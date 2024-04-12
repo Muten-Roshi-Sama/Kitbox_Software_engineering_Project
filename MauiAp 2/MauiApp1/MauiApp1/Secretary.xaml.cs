@@ -89,11 +89,15 @@ public partial class Secretary : ContentPage
                 connection.updatePriceDelayComponents(component.code, supp);
                 break;
             case "deleteBtn":
+            try{
                 component.deleteSupplier(supp.idSupplier);
                 connection.deleteSuppOfComponent(supp.idSupplier, component.code);
+                component.setGeneralStock();
                 var SuppListView = viewCell2.FindByName<ListView>("SuppListView");
                 SuppListView.ItemsSource  = null;
-                SuppListView.ItemsSource  = component.listSuppliers;
+                SuppListView.ItemsSource  = component.listSuppliers;}catch(Exception ex){
+                    Console.WriteLine(ex.Message);
+                }
                 break;
         }
     }
@@ -107,8 +111,8 @@ public partial class Secretary : ContentPage
             var component = (Component)viewCell2.BindingContext;
             AddSuppPopup popup = new AddSuppPopup();
             CompoSupplier result = (CompoSupplier) await this.ShowPopupAsync(popup, CancellationToken.None);
-            component.listSuppliers.Add(result);
             connection.addSupplier(component,result);
+            component.addSupplier(result);
             var SuppListView = viewCell2.FindByName<ListView>("SuppListView");
             SuppListView.ItemsSource  = null;
             SuppListView.ItemsSource  = component.listSuppliers;

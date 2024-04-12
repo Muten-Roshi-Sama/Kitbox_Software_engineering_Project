@@ -28,6 +28,10 @@
                 <Label Text="Stock reserved"/>
                 <Entry Placeholder="StockR" x:Name="StockREntry"/>
             </HorizontalStackLayout>
+            <HorizontalStackLayout Padding="10" Spacing="5" HorizontalOptions="FillAndExpand">
+                <Label Text="Minimum stock"/>
+                <Entry Placeholder="MinStock" x:Name="MinStockEntry"/>
+            </HorizontalStackLayout>
         </HorizontalStackLayout>
         <Button Text="Add supplier" Clicked="OnAddSuppConfirmed"/>
     </StackLayout>

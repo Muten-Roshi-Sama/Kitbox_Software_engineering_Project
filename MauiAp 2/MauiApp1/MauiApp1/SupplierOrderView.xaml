@@ -27,7 +27,7 @@
                 <Border.StrokeShape>
                     <RoundRectangle CornerRadius="10,10,10,10" />
                 </Border.StrokeShape>
-                <Label x:Name="label" Text="Order" TextColor="#ffffff">
+                <Label x:Name="label" Text="Confirm order" TextColor="#ffffff">
                     <Label.GestureRecognizers>
                         <TapGestureRecognizer Tapped="ConfirmOrder" />
                     </Label.GestureRecognizers>

@@ -32,7 +32,7 @@
                     <ViewCell>
                         <StackLayout HorizontalOptions="Center">
                             <HorizontalStackLayout Margin="0,0,0,0" Padding="10" Spacing="10" HorizontalOptions="FillAndExpand" BackgroundColor="LightGrey">
-                                <Label Text="{Binding referenceGlobal, StringFormat='Order n°{0}'}" HorizontalOptions="CenterAndExpand" VerticalOptions="Center"/>
+                                <Label Text="{Binding referenceGlobal, StringFormat='Order n°{0}'}" HorizontalOptions="CenterAndExpand" WidthRequest="400" VerticalOptions="Center"/>
                                 <Border Stroke="Red"
                                         StrokeThickness="1"
                                         Background="Red"

@@ -29,33 +29,76 @@ public class DBConnection{
         this.connection.Close();
     }
 
+    //ici il faut voir quand y a 2 stockordered, ils faut les coupler ->la il faudra qu'on imprime pour code manuellement
     public List<Component> getAllComponents(){
         List<Component> components = new List<Component>();
-        using (var command = new MySqlCommand("SELECT c.Reference, c.Code, c.HeightC, c.LengthC, c.DepthC, c.Color, c.IdSupplier, c.PriceSupplier, c.DelaySupplier, c.StockAvailable, s.Quantity AS StockOrdered, c.StockReserved FROM Components c LEFT JOIN CommandsSupplier s ON (c.Code=s.Code AND c.IdSupplier=s.IdSupplier);",connection)){
+        using (var command = new MySqlCommand("SELECT c.Reference, c.Code, c.HeightC, c.LengthC, c.DepthC, c.Color, c.IdSupplier, c.PriceSupplier, c.DelaySupplier, c.StockAvailable, s.Quantity AS StockOrdered, c.StockReserved, c.MinStock FROM Components c LEFT JOIN CommandsSupplier s ON (c.Code=s.Code AND c.IdSupplier=s.IdSupplier);",connection)){
             using (var reader = command.ExecuteReader()){
-                Console.WriteLine("SELECT c.Reference, c.Code, c.HeightC, c.LengthC, c.DepthC, c.Color, c.IdSupplier, c.PriceSupplier, c.DelaySupplier, c.StockAvailable, s.Quantity AS StockOrdered, c.StockReserved FROM Components c LEFT JOIN CommandsSupplier s ON (c.Code=s.Code AND c.IdSupplier=s.IdSupplier) WHERE s.Received = FALSE OR s.Received IS NULL;");
+                Console.WriteLine("SELECT c.Reference, c.Code, c.HeightC, c.LengthC, c.DepthC, c.Color, c.IdSupplier, c.PriceSupplier, c.DelaySupplier, c.StockAvailable, s.Quantity AS StockOrdered, c.StockReserved, c.MinStock FROM Components c LEFT JOIN CommandsSupplier s ON (c.Code=s.Code AND c.IdSupplier=s.IdSupplier) WHERE s.Received = FALSE OR s.Received IS NULL;");
                 Component compo = null;
                 string Code = null;
+                int idCurrentSupp = -1;
+
+                CompoSupplier suppCurrent = null;
+                int stockO = 0;
+                int idProv = -1;
+
                 while (reader.Read()){
                     if(Code != reader.GetString("Code")){
                         
                         if(compo is not null){
+                            if(suppCurrent is not null){
+                                suppCurrent.stockOrdered = stockO;
+                                
+                                compo.listSuppliers.Add(suppCurrent);
+                            }
                             compo.setGeneralStock();
+                            
                             components.Add(compo);
                         }
+                        stockO = 0;
+                        idProv = -1;
                         Code = reader.GetString("Code");
                         Console.WriteLine(Code);
                         compo = new Component(reader.GetString("Reference"),
                             reader.GetString("Code"),reader.GetInt16("LengthC"),reader.GetInt16("HeightC"),
                             reader.GetInt16("DepthC"), reader.GetInt16("Color"), true, false);
+                        idCurrentSupp = -1;
+                        suppCurrent = null;
                     }
-                    int stockO = 0;
-                    try{
-                        stockO = reader.GetInt32("StockOrdered");
-                    }catch{}
-                    compo.addSupplier(new CompoSupplier(reader.GetInt16("IdSupplier"), reader.GetFloat("PriceSupplier"), 
-                    reader.GetInt16("DelaySupplier"), reader.GetInt16("StockAvailable"), stockO, 
-                    reader.GetInt16("StockReserved")));
+                    
+                    
+                    
+                        if(idProv == -1){
+                            try{
+                                stockO += reader.GetInt16("StockOrdered");
+                            }catch{}
+                            
+                            suppCurrent = new CompoSupplier(reader.GetInt16("IdSupplier"), reader.GetFloat("PriceSupplier"),
+                                reader.GetInt16("DelaySupplier"),reader.GetInt16("StockAvailable"), null, 
+                                reader.GetInt16("StockReserved"),reader.GetInt16("MinStock"));
+                            idProv = reader.GetInt16("IdSupplier");
+                        }
+                        else if( idProv != reader.GetInt16("IdSupplier")){
+                            suppCurrent.stockOrdered = stockO;
+                            stockO = 0;
+                            compo.listSuppliers.Add(suppCurrent);
+                            idProv = reader.GetInt16("IdSupplier");
+                            suppCurrent = new CompoSupplier(reader.GetInt16("IdSupplier"), reader.GetFloat("PriceSupplier"),
+                                reader.GetInt16("DelaySupplier"),reader.GetInt16("StockAvailable"), null, 
+                                reader.GetInt16("StockReserved"),reader.GetInt16("MinStock"));
+
+                        }
+                        else{
+                            try{
+                                stockO += reader.GetInt16("StockOrdered");
+                            }catch{}
+                        }
+                    
+                }
+                if(suppCurrent is not null){
+                    suppCurrent.stockOrdered = stockO;
+                    compo.listSuppliers.Add(suppCurrent);
                 }
                 compo.setGeneralStock();
                 components.Add(compo);
@@ -65,7 +108,7 @@ public class DBConnection{
     }
 
     public void updateStockComponents(CompoSupplier supplier, string code){
-        using var command = new MySqlCommand($"UPDATE Components SET StockAvailable={supplier.stockAvailable}, StockReserved={supplier.stockReserved} WHERE Code='{code} AND IdSupplier={supplier.idSupplier}';", connection);
+        using var command = new MySqlCommand($"UPDATE Components SET StockAvailable={supplier.stockAvailable}, StockReserved={supplier.stockReserved}, MinStock={supplier.minimumStock} WHERE Code='{code}' AND IdSupplier={supplier.idSupplier};", connection);
         command.ExecuteNonQuery();
         Console.WriteLine("UPDATE");
     }
@@ -80,8 +123,8 @@ public class DBConnection{
         int i = 0;
         foreach (var supp in compo.listSuppliers)
         {
-            Console.WriteLine($"INSERT INTO Components (Reference, Code, LengthC, HeightC, DepthC , Color, IdSupplier, PriceSupplier, DelaySupplier, StockAvailable,StockReserved) VALUES('{compo.reference}','{compo.code}',{compo.length},{compo.height},{compo.depth}, {Component.getColorCode(compo.color)},{supp.idSupplier.ToString()},{supp.priceSupplier.ToString().Replace(',','.')},{supp.delaySupplier},{supp.stockAvailable},{supp.stockReserved});");
-            using var command = new MySqlCommand($"INSERT INTO Components (Reference, Code, LengthC, HeightC, DepthC , Color, IdSupplier, PriceSupplier, DelaySupplier, StockAvailable,StockReserved) VALUES('{compo.reference}','{compo.code}',{compo.length},{compo.height},{compo.depth}, {Component.getColorCode(compo.color)},{supp.idSupplier.ToString()},{supp.priceSupplier.ToString().Replace(',','.')},{supp.delaySupplier},{supp.stockAvailable},{supp.stockReserved});",this.connection);
+            Console.WriteLine($"INSERT INTO Components (Reference, Code, LengthC, HeightC, DepthC , Color, IdSupplier, PriceSupplier, DelaySupplier, StockAvailable,StockReserved, MinStock) VALUES('{compo.reference}','{compo.code}',{compo.length},{compo.height},{compo.depth}, {Component.getColorCode(compo.color)},{supp.idSupplier.ToString()},{supp.priceSupplier.ToString().Replace(',','.')},{supp.delaySupplier},{supp.stockAvailable},{supp.stockReserved},{supp.minimumStock});");
+            using var command = new MySqlCommand($"INSERT INTO Components (Reference, Code, LengthC, HeightC, DepthC , Color, IdSupplier, PriceSupplier, DelaySupplier, StockAvailable,StockReserved, MinStock) VALUES('{compo.reference}','{compo.code}',{compo.length},{compo.height},{compo.depth}, {Component.getColorCode(compo.color)},{supp.idSupplier.ToString()},{supp.priceSupplier.ToString().Replace(',','.')},{supp.delaySupplier},{supp.stockAvailable},{supp.stockReserved},{supp.minimumStock});",this.connection);
             command.ExecuteNonQuery();
             i++;
         }
@@ -90,8 +133,8 @@ public class DBConnection{
     }
 
     public void addSupplier(Component compo, CompoSupplier supp){
-        Console.WriteLine($"INSERT INTO Components (Reference, Code, LengthC, HeightC, DepthC , Color, IdSupplier, PriceSupplier, DelaySupplier, StockAvailable,StockOrdered,StockReserved) VALUES('{compo.reference}','{compo.code}',{compo.length},{compo.height},{compo.depth}, {Component.getColorCode(compo.color)},{supp.idSupplier.ToString()},{supp.priceSupplier.ToString().Replace(',','.')},{supp.delaySupplier},{supp.stockAvailable},{supp.stockReserved});");
-        using var command = new MySqlCommand($"INSERT INTO Components (Reference, Code, LengthC, HeightC, DepthC , Color, IdSupplier, PriceSupplier, DelaySupplier, StockAvailable,StockReserved) VALUES('{compo.reference}','{compo.code}',{compo.length},{compo.height},{compo.depth}, {Component.getColorCode(compo.color)},{supp.idSupplier.ToString()},{supp.priceSupplier.ToString().Replace(',','.')},{supp.delaySupplier},{supp.stockAvailable},{supp.stockReserved});",this.connection);
+        Console.WriteLine($"INSERT INTO Components (Reference, Code, LengthC, HeightC, DepthC , Color, IdSupplier, PriceSupplier, DelaySupplier, StockAvailable,StockOrdered,StockReserved, MinStock) VALUES('{compo.reference}','{compo.code}',{compo.length},{compo.height},{compo.depth}, {Component.getColorCode(compo.color)},{supp.idSupplier.ToString()},{supp.priceSupplier.ToString().Replace(',','.')},{supp.delaySupplier},{supp.stockAvailable},{supp.stockReserved},{supp.minimumStock});");
+        using var command = new MySqlCommand($"INSERT INTO Components (Reference, Code, LengthC, HeightC, DepthC , Color, IdSupplier, PriceSupplier, DelaySupplier, StockAvailable,StockReserved, MinStock) VALUES('{compo.reference}','{compo.code}',{compo.length},{compo.height},{compo.depth}, {Component.getColorCode(compo.color)},{supp.idSupplier.ToString()},{supp.priceSupplier.ToString().Replace(',','.')},{supp.delaySupplier},{supp.stockAvailable},{supp.stockReserved},{supp.minimumStock});",this.connection);
         command.ExecuteNonQuery();
     }
     public void deleteComponent(string Code){
@@ -142,14 +185,20 @@ public class DBConnection{
     }
 
     public void orderComponentSupplier(List<SupplierCompoOrder> componentsList){
+        try{
         DateTime now = DateTime.Now;
         // Calculate seconds since Unix epoch (January 1, 1970)
         TimeSpan timeSpan = now.ToUniversalTime() - new DateTime(1970, 1, 1, 0, 0, 0, DateTimeKind.Utc);
         long secondsSinceEpoch = (long)timeSpan.TotalSeconds;
         foreach (var supp in componentsList)
         {
-            using var command = new MySqlCommand($"INSERT INTO CommandsSupplier (Reference, Code, IdSupplier, Price, Delay, Quantity) VALUES('{secondsSinceEpoch}','{supp.code}',{supp.id}, {supp.price}, {supp.delay}, {supp.quantity});",this.connection);
+            using var command = new MySqlCommand($"INSERT INTO CommandsSupplier (Reference, Code, IdSupplier, Price, Delay, Quantity) VALUES('{secondsSinceEpoch}','{supp.code}',{supp.id}, {supp.price.ToString().Replace(',','.')}, {supp.delay}, {supp.quantity});",this.connection);
+            Console.WriteLine($"INSERT INTO CommandsSupplier (Reference, Code, IdSupplier, Price, Delay, Quantity) VALUES('{secondsSinceEpoch}','{supp.code}',{supp.id}, {supp.price.ToString().Replace(',','.')}, {supp.delay}, {supp.quantity});");
             command.ExecuteNonQuery();
+        }
+        }catch(Exception ex)
+        {
+            Console.WriteLine(ex.Message);
         }
         
     }

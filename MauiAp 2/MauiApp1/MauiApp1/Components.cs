@@ -54,8 +54,8 @@ public class CompoSupplier: INotifyPropertyChanged{
             }
         }
     }
-private bool _showOrderBtn;
-public bool showOrderBtn
+    private bool _showOrderBtn;
+    public bool showOrderBtn
     {
         get { return _showOrderBtn; }
         set
@@ -67,6 +67,21 @@ public bool showOrderBtn
             }
         }
     }
+
+    private bool _showRemoveOrderBtn;
+    public bool showRemoveOrderBtn
+    {
+        get { return _showRemoveOrderBtn; }
+        set
+        {
+            if (_showRemoveOrderBtn != value)
+            {
+                _showRemoveOrderBtn = value;
+                OnPropertyChanged("showRemoveOrderBtn");
+            }
+        }
+    }
+
     private int _stockAvailable;
     public int stockAvailable
     {
@@ -107,7 +122,21 @@ public bool showOrderBtn
         }
     }
 
-    public CompoSupplier(int id, float price, int delay, int stockAvailable, int? stockOrdered, int stockReserved){
+    private int _minimumStock;
+    public int minimumStock
+    {
+        get { return _minimumStock; }
+        set
+        {
+            if (_minimumStock != value)
+            {
+                _minimumStock = value;
+                OnPropertyChanged("minimumStock");
+            }
+        }
+    }
+
+    public CompoSupplier(int id, float price, int delay, int stockAvailable, int? stockOrdered, int stockReserved, int minimumStock){
         this.idSupplier = id;
         this.priceSupplier = price;
         this.delaySupplier = delay;
@@ -122,6 +151,8 @@ public bool showOrderBtn
         this.isSuppEditingL = true;
         this.isSuppEditingE = false;
         this.showOrderBtn = false;
+        this.showRemoveOrderBtn = false;
+        this.minimumStock = minimumStock;
     }
 
     public event PropertyChangedEventHandler PropertyChanged;

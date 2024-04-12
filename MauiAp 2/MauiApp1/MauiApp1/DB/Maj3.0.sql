@@ -23,7 +23,7 @@ CREATE TABLE IF NOT EXISTS CommandsSupplier (
     Delay INT(3),
     Quantity INT(6) DEFAULT 0,
     Received BOOLEAN DEFAULT 0,
-    CONSTRAINT PK_CompoSupp PRIMARY KEY(Code,IdSupplier),
+    CONSTRAINT PK_CompoSupp PRIMARY KEY(Reference,Code,IdSupplier),
     CONSTRAINT FK_ComSupp FOREIGN KEY(Code,IdSupplier) REFERENCES Components(Code,IdSupplier)
 );
 
