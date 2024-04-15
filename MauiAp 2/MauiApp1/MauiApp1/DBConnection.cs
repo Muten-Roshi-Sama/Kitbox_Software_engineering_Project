@@ -15,8 +15,8 @@ public class DBConnection{
         this.database = database;
         this.server = server;
         this.port = port;
-        //connection = new MySqlConnection($"Server={this.server};Port={this.port};User ID={this.user};Password={passwd};Database={this.database}");
-        connection = new MySqlConnection($"Server=localhost;Port=3306;User ID={this.user};Password={passwd};Database={this.database}");
+        connection = new MySqlConnection($"Server={this.server};Port={this.port};User ID={this.user};Password={passwd};Database={this.database}");
+        //connection = new MySqlConnection($"Server=localhost;Port=3306;User ID={this.user};Password={passwd};Database={this.database}");
         this.connection.Open();
         Console.WriteLine("connected");
     }
@@ -59,16 +59,13 @@ public class DBConnection{
                         stockO = 0;
                         idProv = -1;
                         Code = reader.GetString("Code");
-                        Console.WriteLine(Code);
+                        //Console.WriteLine(Code);
                         compo = new Component(reader.GetString("Reference"),
                             reader.GetString("Code"),reader.GetInt16("LengthC"),reader.GetInt16("HeightC"),
                             reader.GetInt16("DepthC"), reader.GetInt16("Color"), true, false);
                         idCurrentSupp = -1;
                         suppCurrent = null;
                     }
-                    
-                    
-                    
                         if(idProv == -1){
                             try{
                                 stockO += reader.GetInt16("StockOrdered");
@@ -83,6 +80,9 @@ public class DBConnection{
                             suppCurrent.stockOrdered = stockO;
                             stockO = 0;
                             compo.listSuppliers.Add(suppCurrent);
+                            try{
+                                stockO += reader.GetInt16("StockOrdered");
+                            }catch{}
                             idProv = reader.GetInt16("IdSupplier");
                             suppCurrent = new CompoSupplier(reader.GetInt16("IdSupplier"), reader.GetFloat("PriceSupplier"),
                                 reader.GetInt16("DelaySupplier"),reader.GetInt16("StockAvailable"), null, 
