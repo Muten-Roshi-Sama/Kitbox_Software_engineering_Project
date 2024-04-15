@@ -33,6 +33,6 @@
                 <Entry Placeholder="MinStock" x:Name="MinStockEntry"/>
             </HorizontalStackLayout>
         </HorizontalStackLayout>
-        <Button Text="Add supplier" Clicked="OnAddSuppConfirmed"/>
+        <Button Text="Add supplier" Clicked="OnAddSuppConfirmed" HorizontalOptions="Center"/>
     </StackLayout>
 </toolkit:Popup>

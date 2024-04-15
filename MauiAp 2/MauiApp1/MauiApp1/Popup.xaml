@@ -4,12 +4,12 @@
                xmlns:local="clr-namespace:aaa"
                x:Class="aaa.SimplePopup">
 
-    <StackLayout HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+    <StackLayout VerticalOptions="FillAndExpand">
         <HorizontalStackLayout Padding="10" Spacing="5" HorizontalOptions="FillAndExpand">
             <VerticalStackLayout Padding="10" Spacing="5" HorizontalOptions="FillAndExpand">
                 <HorizontalStackLayout Padding="10" Spacing="5" HorizontalOptions="FillAndExpand">
                     <Label Text="Reference" VerticalOptions="Center"/>
-                    <Entry Placeholder="Reference" x:Name="ReferenceEntry"/>
+                    <Entry Placeholder="Ref" x:Name="ReferenceEntry"/>
                 </HorizontalStackLayout>
                 <HorizontalStackLayout Padding="10" Spacing="5" HorizontalOptions="FillAndExpand">
                     <Label Text="Code" VerticalOptions="Center"/>
@@ -35,7 +35,7 @@
                 </HorizontalStackLayout>
             </VerticalStackLayout>
             <VerticalStackLayout HorizontalOptions="FillAndExpand" >
-            <ListView x:Name="SuppListView" HorizontalOptions="FillAndExpand" HeightRequest="250"  MaximumHeightRequest="250">
+            <ListView x:Name="SuppListView"  HeightRequest="250"  MaximumHeightRequest="250">
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <ViewCell>
@@ -57,10 +57,10 @@
                     </DataTemplate>
                 </ListView.ItemTemplate>
             </ListView>
-            <Button Text="Add Supplier" Clicked="OnButtonClicked" />
+            <Button Text="Add Supplier" Clicked="OnButtonClicked" HorizontalOptions="Center" />
             </VerticalStackLayout>
         </HorizontalStackLayout>
         
-        <Button Text="Add Component" Clicked="OnAddLineConfirmed"/>
+        <Button Text="Add Component" HorizontalOptions="Center" Clicked="OnAddLineConfirmed"/>
     </StackLayout>
 </toolkit:Popup>
