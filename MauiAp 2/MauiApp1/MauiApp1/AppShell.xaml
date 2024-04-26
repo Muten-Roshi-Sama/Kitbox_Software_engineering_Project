@@ -16,16 +16,17 @@
             Title="Compose"
             ContentTemplate="{DataTemplate views:Compose}"
             Icon="{OnPlatform 'icon_notes.png', iOS='icon_notes_ios.png', MacCatalyst='icon_notes_ios.png'}" />
-        <ShellContent
-            Title="Help"
-            ContentTemplate="{DataTemplate views:Help}"
-            Icon="{OnPlatform 'icon_notes.png', iOS='icon_notes_ios.png', MacCatalyst='icon_notes_ios.png'}" />
         
         <ShellContent
             Title="Admin"
             ContentTemplate="{DataTemplate views:Admin}"
             Icon="{OnPlatform 'icon_notes.png', iOS='icon_notes_ios.png', MacCatalyst='icon_notes_ios.png'}" />
-  
+        <ShellContent
+            Title="Help"
+            ContentTemplate="{DataTemplate views:Help}"
+            Icon="{OnPlatform 'icon_notes.png', iOS='icon_notes_ios.png', MacCatalyst='icon_notes_ios.png'}" />
+        
+
     </TabBar>
     
 </Shell>

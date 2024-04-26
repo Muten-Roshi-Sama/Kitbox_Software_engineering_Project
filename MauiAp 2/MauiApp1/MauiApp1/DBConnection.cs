@@ -19,6 +19,7 @@ public class DBConnection{
         //connection = new MySqlConnection($"Server=localhost;Port=3306;User ID={this.user};Password={passwd};Database={this.database}");
         this.connection.Open();
         Console.WriteLine("connected");
+        // alert('test');
     }
 
     public void connect(){

@@ -264,8 +264,6 @@ public class Component: INotifyPropertyChanged{
         }
     }
 
-    
-    
     public Component( string reference, string code, int length, int height, int depth, int color,
         bool editL, bool editE){
 

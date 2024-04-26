@@ -15,8 +15,9 @@ public partial class SimplePopup : Popup
     }
     async void OnAddLineConfirmed(object sender, EventArgs e){
         var cts = new CancellationTokenSource(TimeSpan.FromSeconds(5));
-        Component compo = new Component(ReferenceEntry.Text,CodeEntry.Text,Int32.Parse(LengthEntry.Text),
-        Int32.Parse(HeightEntry.Text),Int32.Parse(DepthEntry.Text),Component.getColorCode(ColorEntry.Text),
+        try{
+            Component compo = new Component(ReferenceEntry.Text,CodeEntry.Text,Int32.Parse(LengthEntry.Text),
+            Int32.Parse(HeightEntry.Text),Int32.Parse(DepthEntry.Text),Component.getColorCode(ColorEntry.Text),
         true,false);
         foreach (var item in supplierList)
         {
@@ -25,6 +26,12 @@ public partial class SimplePopup : Popup
         compo.listSuppliers = this.supplierList;
         compo.setGeneralStock();
         await CloseAsync(compo, cts.Token);
+        }
+        catch(Exception Error){
+
+        }
+        
+        
     }
 
     void OnButtonClicked(object sender, EventArgs e){

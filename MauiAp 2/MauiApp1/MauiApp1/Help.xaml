@@ -2,52 +2,179 @@
 
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="MauiApp1.Help">
+             x:Class="MauiApp1.Help"
+             xmlns:controls="using:Microsoft.Maui.Controls">
+
+
+
     <ContentPage.Content>
-        <ScrollView>
-        <StackLayout>
-            <Label Text="Help: Building Your Cabinet" FontSize="18" Margin="10,10,0,0"/>
-            <Label Text=" " />
-            <Label Text=" " />
-            <Label Text="Welcome to the Cabinet Builder Guide! Follow these steps to design your perfect cabinet" FontSize="18" Margin="10,0,0,0"/> 
-            <Label Text=" " />
-            <Label Text=" " />
-            <Label Text="Requirements:" FontSize="18" Margin="10,0,0,0"/>
-            <Label Text="Design Limitations: Maximum of 7 lockers per cabinet."  FontSize="18" Margin="50,0,0,0"/>
-            <Label Text="Dimensions: all lockers need to have the same depth and length. You can choose their height." FontSize="18" Margin="50,0,0,0"/>
-            <Label Text="Materials: Cabinets are composed of vertical battens, crossbars, panels, and optional doors." FontSize="18" Margin="50,0,0,0"/> 
-            <Label Text="Colors : side panels and panels same color. Door can be another color." FontSize="18" Margin="50,0,0,0" /> 
-            <Label Text=" " />
-            <Label Text=" " />
-            <Label Text=" " />
-            <Label Text=" " />
-            <Label Text="Step-by-Step Guide:" FontSize="18" Margin="10,0,0,0" /> 
-            <Label Text="Start Your Design:" FontSize="18" Margin="50,0,0,0" /> 
-            <Label Text="Open the cabinet design tool in the app." FontSize="18" Margin="70,0,0,0" />
-            <Label Text="Select the number of lockers (up to 7)." FontSize="18" Margin="70,0,0,0" /> 
-            <Label Text="Choose Dimensions:" FontSize="18" Margin="50,0,0,0" /> 
-            <Label Text="For each locker, select height, width, and depth from the options provided in the catalogue." FontSize="18" Margin="70,0,0,0" />
-            <Label Text="Customize Your Cabinet:" FontSize="18" Margin="50,0,0,0" />
-            <Label Text="Choose the color for each locker." FontSize="18" Margin="70,0,0,0" />
-            <Label Text="Decide on the presence of doors and select their color, if different." FontSize="18" Margin="70,0,0,0" />
-            <Label Text="Review Components:" FontSize="18" Margin="50,0,0,0" />
-            <Label Text="The app will calculate the required length of angle irons based on your locker heights." FontSize="18" Margin="70,0,0,0" />
-            <Label Text="Confirm the list of parts, including battens, crossbars, panels, and doors." FontSize="18" Margin="70,0,0,0" />
-            <Label Text="Place Your Order:" FontSize="18" Margin="50,0,0,0" />
-            <Label Text="Review your design and submit the order." FontSize="18" Margin="70,0,0,0" />
-            <Label Text="If any parts are out of stock, you will be notified to pay a deposit and informed about collection details." FontSize="18" Margin="70,0,0,0" />
-            <Label Text=" " />
-            <Label Text=" " />
-            <Label Text="Additional Tips:" FontSize="18" Margin="10,0,0,0" />
-            <Label Text="Double Check Compatibility: Ensure all selected lockers are compatible in terms of dimensions and colors." FontSize="18" Margin="50,0,0,0" />
-            <Label Text="Stock Management: The app helps optimize stock based on sales history and supplier information. Check availability before finalizing your design." FontSize="18" Margin="50,0,0,0" />
-            <Label Text="Future Updates:" FontSize="18" Margin="10,0,0,0" /> 
-            <Label Text="Look out for updates as we plan to add more components like shelves and drawers. Your app is designed to incorporate these new elements seamlessly." FontSize="18" Margin="50,0,0,0" />
-            <Label Text=" " />
-            <Label Text=" " />
-            <Label Text="For more detailed instructions and troubleshooting, or if you need further assistance, please contact our support team." FontSize="18" Margin="10,0,0,0" />
-            <Label Text="Happy Building!" FontSize="18" Margin="10,0,0,0" />
-        </StackLayout>
-        </ScrollView>
+        
+            <WebView>
+                <WebView.Source>
+                    <HtmlWebViewSource>
+                        <HtmlWebViewSource.Html>
+                            <![CDATA[
+                            <!DOCTYPE html>
+                            <html lang="en">
+                            <head>
+                            <title>W3.CSS Template</title>
+                            <meta charset="UTF-8">
+                            <meta name="viewport" content="width=device-width, initial-scale=1">
+                            <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+                            <link rel="stylesheet" href="https://www.w3schools.com/lib/w3-theme-black.css">
+                            <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto">
+                            <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+                            <style>
+                            html,body,h1,h2,h3,h4,h5,h6 {font-family: "Roboto", sans-serif;}
+                            .w3-sidebar {
+                            z-index: 3;
+                            width: 250px;
+                            top: 43px;
+                            bottom: 0;
+                            height: inherit;
+                            }
+                            </style>
+                            </head>
+                            <body>
+
+                            <!-- Navbar -->
+                            <div class="w3-top">
+                            <div class="w3-bar w3-theme w3-top w3-left-align w3-large">
+                                <a class="w3-bar-item w3-button w3-right w3-hide-large w3-hover-white w3-large w3-theme-l1" href="javascript:void(0)" onclick="w3_open()"><i class="fa fa-bars"></i></a>
+                                <a href="#" class="w3-bar-item w3-button w3-theme-l1">Help</a>
+                                
+                            </div>
+                            </div>
+
+                            <!-- Sidebar -->
+                            <nav class="w3-sidebar w3-bar-block w3-collapse w3-large w3-theme-l5 w3-animate-left" id="mySidebar">
+                            <a href="javascript:void(0)" onclick="w3_close()" class="w3-right w3-xlarge w3-padding-large w3-hover-black w3-hide-large" title="Close Menu">
+                                <i class="fa fa-remove"></i>
+                            </a>
+                            <h4 class="w3-bar-item"><b>Menu</b></h4>
+                            <a class="w3-bar-item w3-button w3-hover-black" href="#"></a>
+                            </nav>
+
+                            <!-- Overlay effect when opening sidebar on small screens -->
+                            <div class="w3-overlay w3-hide-large" onclick="w3_close()" style="cursor:pointer" title="close side menu" id="myOverlay"></div>
+
+                            <!-- Main content: shift it to the right by 250 pixels when the sidebar is visible -->
+                            <div class="w3-main" style="margin-left:250px">
+
+                            <div class="w3-row w3-padding-64">
+                                <div class="w3-twothird w3-container">
+                                <h1 class="w3-text-teal">Help: Building Your Cabinet</h1>
+                                <p>Welcome to the Cabinet Builder Guide! Follow these steps to design your perfect cabinet</p>
+                                </div>
+                                
+
+                            <div class="w3-row">
+                                <div class="w3-twothird w3-container">
+                                <h2 id="requirements-">Requirements:</h2>
+                                                                <ul>
+                                                                <li><strong>Design Limitations:</strong> Maximum of 7 lockers per cabinet.</li>
+                                                                <li><strong>Dimensions:</strong> All lockers need to have the same depth and length. You can choose their height.</li>
+                                                                <li><strong>Materials:</strong> Cabinets are composed of vertical battens, crossbars, panels, and optional doors.</li>
+                                                                <li><strong>Colors:</strong> Side panels and panels must be the same color. Doors can be another color.</li>
+                                                                </ul>
+                                </div>
+                                
+                            </div>
+
+                            <div class="w3-row w3-padding-64">
+                                <div class="w3-twothird w3-container">
+                                <h1 class="w3-text-teal">Step-by-Step Guide:</h1>
+                                    <h3 id="start-your-design-">Start Your Design:</h3>
+                                        <ol>
+                                            <li>Open the cabinet design tool in the app.</li>
+                                            <li>Select the number of lockers (up to 7).</li>
+                                        </ol>
+                                    <h3 id="choose-dimensions-">Choose Dimensions:</h3>
+                                        <ol>
+                                        <li>For each locker, select height, width, and depth from the options provided in the catalogue.</li>
+                                        </ol>
+                                    <h3 id="customize-your-cabinet-">Customize Your Cabinet:</h3>
+                                <ol>
+                                    <li>Choose the color for each locker.</li>
+                                    <li>Decide on the presence of doors and select their color if different.</li>
+                                </ol>
+                                    <h3 id="review-components-">Review Components:</h3>
+                                                <ul>
+                                                <li>The app will calculate the required length of angle irons based on your locker heights.</li>
+                                                <li>Confirm the list of parts, including battens, crossbars, panels, and doors.</li>
+                                                </ul>
+                                                <h3 id="place-your-order-">Place Your Order:</h3>
+                                                <ol>
+                                                <li>Review your design and submit the order.</li>
+                                                <li>If any parts are out of stock, you will be notified to pay a deposit and informed about collection details.</li>
+                                                </ol>
+                                </div>
+                                
+                            </div>
+
+
+                                <h1 class="w3-text-teal">Additional Tips:</h1>
+                                    <ul>
+                                        <li><strong>Double Check Compatibility:</strong> Ensure all selected lockers are compatible in terms of dimensions and colors.</li>
+                                        <li><strong>Stock Management:</strong> The app helps optimize stock based on sales history and supplier information. Check availability before finalizing your design.</li>
+                                    </ul>
+
+
+                                <h1 class="w3-text-teal">Future Updates:</h1>
+                                    <ul>
+                                        <li>Look out for updates as we plan to add more components like shelves and drawers. Your app is designed to incorporate these new elements seamlessly.</li>
+                                    </ul>
+                                    <p>For more detailed instructions and troubleshooting, or if you need further assistance, please contact our support team. Happy Building!</p>
+
+                            <!-- Pagination -->
+                            
+
+                            <footer id="myFooter">
+                                <div class="w3-container w3-theme-l2 w3-padding-32">
+                                <h4></h4>
+                                </div>
+
+                                <div class="w3-container w3-theme-l1">
+                                <p>Powered by <a href="https://www.w3schools.com/w3css/default.asp" target="_blank">Kitbox Inc.</a></p>
+                                </div>
+                            </footer>
+
+                            <!-- END MAIN -->
+                            </div>
+
+                            <script>
+                            // Get the Sidebar
+                            var mySidebar = document.getElementById("mySidebar");
+
+                            // Get the DIV with overlay effect
+                            var overlayBg = document.getElementById("myOverlay");
+
+                            // Toggle between showing and hiding the sidebar, and add overlay effect
+                            function w3_open() {
+                            if (mySidebar.style.display === 'block') {
+                                mySidebar.style.display = 'none';
+                                overlayBg.style.display = "none";
+                            } else {
+                                mySidebar.style.display = 'block';
+                                overlayBg.style.display = "block";
+                            }
+                            }
+
+                            // Close the sidebar with the close button
+                            function w3_close() {
+                            mySidebar.style.display = "none";
+                            overlayBg.style.display = "none";
+                            }
+                            </script>
+
+                            </body>
+                            </html>
+
+                            ]]>
+                        </HtmlWebViewSource.Html>
+                    </HtmlWebViewSource>
+                </WebView.Source>
+            </WebView>
+
     </ContentPage.Content>
 </ContentPage>

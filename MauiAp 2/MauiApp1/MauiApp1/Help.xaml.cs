@@ -12,4 +12,5 @@ public partial class Help : ContentPage
     {
         InitializeComponent();
     }
+    
 }
