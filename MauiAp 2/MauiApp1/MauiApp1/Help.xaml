@@ -41,7 +41,7 @@
                             <div class="w3-top">
                             <div class="w3-bar w3-theme w3-top w3-left-align w3-large">
                                 <a class="w3-bar-item w3-button w3-right w3-hide-large w3-hover-white w3-large w3-theme-l1" href="javascript:void(0)" onclick="w3_open()"><i class="fa fa-bars"></i></a>
-                                <a href="#" class="w3-bar-item w3-button w3-theme-l1">Help</a>
+                                <a href="javascript:void(0)" class="w3-bar-item w3-button w3-theme-l1">Help</a>
                                 
                             </div>
                             </div>
@@ -52,7 +52,7 @@
                                 <i class="fa fa-remove"></i>
                             </a>
                             <h4 class="w3-bar-item"><b>Menu</b></h4>
-                            <a class="w3-bar-item w3-button w3-hover-black" href="#"></a>
+                            <a class="w3-bar-item w3-button w3-hover-black" href="javascript:void(0)"></a>
                             </nav>
 
                             <!-- Overlay effect when opening sidebar on small screens -->
@@ -71,12 +71,12 @@
                             <div class="w3-row">
                                 <div class="w3-twothird w3-container">
                                 <h2 id="requirements-">Requirements:</h2>
-                                                                <ul>
-                                                                <li><strong>Design Limitations:</strong> Maximum of 7 lockers per cabinet.</li>
-                                                                <li><strong>Dimensions:</strong> All lockers need to have the same depth and length. You can choose their height.</li>
-                                                                <li><strong>Materials:</strong> Cabinets are composed of vertical battens, crossbars, panels, and optional doors.</li>
-                                                                <li><strong>Colors:</strong> Side panels and panels must be the same color. Doors can be another color.</li>
-                                                                </ul>
+                                    <ul>
+                                        <li><strong>Design Limitations:</strong> Maximum of 7 lockers per cabinet.</li>
+                                        <li><strong>Dimensions:</strong> All lockers need to have the same depth and length. You can choose their height.</li>
+                                        <li><strong>Materials:</strong> Cabinets are composed of vertical battens, crossbars, panels, and optional doors.</li>
+                                        <li><strong>Colors:</strong> Side panels and panels must be the same color. Doors can be another color.</li>
+                                    </ul>
                                 </div>
                                 
                             </div>
