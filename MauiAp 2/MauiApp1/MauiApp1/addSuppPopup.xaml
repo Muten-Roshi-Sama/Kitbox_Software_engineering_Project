@@ -2,11 +2,12 @@
                xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
                xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
                xmlns:local="clr-namespace:aaa"
-               x:Class="aaa.AddSuppPopup">
+               x:Class="aaa.AddSuppPopup"
+               >
 
-    <StackLayout Orientation="Vertical" HorizontalOptions="FillAndExpand">
-        <HorizontalStackLayout Padding="10" Spacing="5" HorizontalOptions="FillAndExpand">
-            <HorizontalStackLayout Padding="10" Spacing="5" HorizontalOptions="FillAndExpand">
+    <StackLayout Orientation="Vertical" HorizontalOptions="FillAndExpand" BackgroundColor="#C5FCEF">
+        <HorizontalStackLayout Padding="10" Spacing="5" HorizontalOptions="FillAndExpand" BackgroundColor="#C5FCEF">
+            <HorizontalStackLayout Padding="10" Spacing="5" HorizontalOptions="FillAndExpand" BackgroundColor="#C5FCEF">
                 <Label Text="Id Supplier"/>
                 <Entry Placeholder="IdSupp" x:Name="IdEntry"/>
             </HorizontalStackLayout>

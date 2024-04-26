@@ -4,7 +4,8 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="MauiApp1.Admin"
              Shell.NavBarIsVisible="False"
-             Title="LoginPage">
+             Title="LoginPage"
+             BackgroundColor="#D2E9F2">
              
     <ContentPage.Content>
         <VerticalStackLayout x:Name="MyVLayout" 
@@ -12,15 +13,15 @@
             Padding="30,0" 
             VerticalOptions="Center">
         <VerticalStackLayout Spacing="5">
-            <Label Text="Admin Connexion" FontSize="28" TextColor="Gray" HorizontalTextAlignment="Center" />
-            <Label Text="Login to your account" FontSize="18" TextColor="Gray" HorizontalTextAlignment="Center" />
+            <Label Text="Admin Connexion" FontSize="28" TextColor="#1C849E" HorizontalTextAlignment="Center" />
+            <Label Text="Login to your account" FontSize="18" TextColor="#1C849E" HorizontalTextAlignment="Center" />
         </VerticalStackLayout>
 
         <StackLayout Orientation="Horizontal">
-            <Frame ZIndex="1" HasShadow="True" BorderColor="White" HeightRequest="56" WidthRequest="56" CornerRadius="28">
+            <Frame ZIndex="1" HasShadow="True" BorderColor="#4D8075" BackgroundColor="#C5FCEF" HeightRequest="56" WidthRequest="56" CornerRadius="28">
                 <Image Source="user.png" HeightRequest="20" WidthRequest="20" />
             </Frame>
-            <Frame HeightRequest="45" Margin="-5,0,0,0" Padding="0" HasShadow="True" BorderColor="White"  HorizontalOptions="FillAndExpand">
+            <Frame HeightRequest="45" Margin="-5,0,0,0" Padding="0" HasShadow="True" BorderColor="#65BAA9" BackgroundColor="White" HorizontalOptions="FillAndExpand">
                 <Entry x:Name="myEntry2" Placeholder="Entrez votre identifiant ici "/>
             </Frame>
         </StackLayout>
@@ -30,10 +31,10 @@
         </StackLayout>
 
         <StackLayout Orientation="Horizontal">
-            <Frame ZIndex="1" HasShadow="True" BorderColor="White" HeightRequest="56" WidthRequest="56" CornerRadius="28">
+            <Frame ZIndex="1" HasShadow="True" BorderColor="#4D8075" BackgroundColor="#C5FCEF" HeightRequest="56" WidthRequest="56" CornerRadius="28">
                 <Image Source="lock.png" HeightRequest="20" WidthRequest="20" />
             </Frame>
-            <Frame HeightRequest="45" Margin="-5,0,0,0" Padding="0" HasShadow="True" BorderColor="White"  HorizontalOptions="FillAndExpand">
+            <Frame HeightRequest="45" Margin="-5,0,0,0" Padding="0" HasShadow="True" BorderColor="#65BAA9" BackgroundColor="White" HorizontalOptions="FillAndExpand">
                 <Entry x:Name="myEntry" Placeholder="Entrez votre mot de passe ici"/>
             </Frame>
         </StackLayout>
@@ -42,7 +43,7 @@
 
         </StackLayout>
 
-        <Button x:Name="MyButton" Text="Sign In" WidthRequest="100" CornerRadius="20" HorizontalOptions="Center" Command="{Binding LoginCommand}" Clicked="connexion"/>
+        <Button x:Name="MyButton" Text="Sign In" WidthRequest="100" BackgroundColor="#65BAA9" CornerRadius="20" HorizontalOptions="Center" Command="{Binding LoginCommand}" Clicked="connexion"/>
     </VerticalStackLayout>
     </ContentPage.Content>
 </ContentPage>

@@ -2,21 +2,22 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:local="clr-namespace:MauiApp1"
              x:Class="MauiApp1.CommandsSupplierView"
+             BackgroundColor="#C5FCEF"
              >
     <ContentPage.Resources>
         <ResourceDictionary>
             <Color x:Key="LightGrayColor">#F0F0F0</Color>
         </ResourceDictionary>
     </ContentPage.Resources>
-    <StackLayout>
-        <Label Text="Commands To Supplier" FontSize="20" HorizontalOptions="Center"/>
-        <StackLayout Orientation="Horizontal" Padding="10" Spacing="10" Margin="350,0,0,0">
-            <Label Text="Code" WidthRequest="90"/>
-            <Label Text="Id Supplier" WidthRequest="100"/>
-            <Label Text="Price" WidthRequest="50"/>
-            <Label Text="Delay" WidthRequest="50"/>
-            <Label Text="Quantity" WidthRequest="70"/>
-            <Image Source="more16.png" ClassId="moreBtn">
+    <StackLayout BackgroundColor="#C5FCEF">
+        <Label Text="Commands To Supplier" FontSize="30" HorizontalOptions="Center" FontAttributes="Bold" TextColor="#4D8075"/>
+        <StackLayout Orientation="Horizontal" Padding="10" Spacing="10" Margin="350,0,0,0" BackgroundColor="#C5FCEF">
+            <Label Text="Code" WidthRequest="90" FontAttributes="Bold" />
+            <Label Text="Id Supplier" WidthRequest="100" FontAttributes="Bold"/>
+            <Label Text="Price" WidthRequest="50" FontAttributes="Bold"/>
+            <Label Text="Delay" WidthRequest="50" FontAttributes="Bold"/>
+            <Label Text="Quantity" WidthRequest="70" FontAttributes="Bold"/>
+            <Image Source="more16.png" ClassId="moreBtn" WidthRequest="32" HeightRequest="32">
                 <FlyoutBase.ContextFlyout>
                     <MenuFlyout>
                         <MenuFlyoutItem x:Name="Stock" Text="Stock" Clicked="MoreMenuBtn"/>
@@ -98,7 +99,7 @@
                 </DataTemplate>
             </ListView.ItemTemplate>
         </ListView>
-        <Button x:Name="Disconnect" Margin="10,0,0,0" HeightRequest= "10" WidthRequest=" 200" Text="Disconnect" Clicked="disconnect"></Button>
+        <Button x:Name="Disconnect" Margin="10,0,0,0" BackgroundColor="#4D8075" HeightRequest= "3" WidthRequest=" 200" Text="Disconnect" TextColor="#C5FCEF" Clicked="disconnect"></Button>
     </StackLayout>
 </ContentPage>
 

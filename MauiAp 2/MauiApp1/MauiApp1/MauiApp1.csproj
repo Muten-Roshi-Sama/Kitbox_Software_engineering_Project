@@ -87,6 +87,13 @@
         <MauiImage Include="Icon\more16.png" />
         <None Remove="Icon\attention16.png" />
         <MauiImage Include="Icon\attention16.png" />
+
+        <None Remove="Icon\compose.png" />
+        <MauiImage Include="Icon\compose.png" />
+        <None Remove="Icon\admin.png" />
+        <MauiImage Include="Icon\admin.png" />
+        <None Remove="Icon\help.png" />
+        <MauiImage Include="Icon\help.png" />
     </ItemGroup>
 
     <ItemGroup>

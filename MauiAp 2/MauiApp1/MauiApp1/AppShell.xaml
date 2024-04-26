@@ -6,25 +6,24 @@
     xmlns:local="clr-namespace:MauiApp1"
     xmlns:views="clr-namespace:MauiApp1"
     Shell.FlyoutBehavior="Disabled"
+    Shell.TabBarBackgroundColor="#65BAA9"
+    Shell.TabBarTitleColor="#4D8075"
+    Shell.TabBarUnselectedColor="Black"
+    Shell.TabBarForegroundColor="White"
     Title="MauiApp1">
+    
+
     <TabBar>
         <ShellContent
-            Title="Catalog"
-            ContentTemplate="{DataTemplate views:MainPage}"
-            Icon="{OnPlatform 'icon_notes.png', iOS='icon_notes_ios.png', MacCatalyst='icon_notes_ios.png'}" />
-        <ShellContent
-            Title="Compose"
             ContentTemplate="{DataTemplate views:Compose}"
-            Icon="{OnPlatform 'icon_notes.png', iOS='icon_notes_ios.png', MacCatalyst='icon_notes_ios.png'}" />
+            Icon="{OnPlatform 'compose.png', iOS='compose.png', MacCatalyst='compose.png'}" />
         
         <ShellContent
-            Title="Admin"
             ContentTemplate="{DataTemplate views:Admin}"
-            Icon="{OnPlatform 'icon_notes.png', iOS='icon_notes_ios.png', MacCatalyst='icon_notes_ios.png'}" />
+            Icon="{OnPlatform 'admin.png', iOS='admin.png', MacCatalyst='admin.png'}" />
         <ShellContent
-            Title="Help"
             ContentTemplate="{DataTemplate views:Help}"
-            Icon="{OnPlatform 'icon_notes.png', iOS='icon_notes_ios.png', MacCatalyst='icon_notes_ios.png'}" />
+            Icon="{OnPlatform 'help.png', iOS='help.png', MacCatalyst='help.png'}" />
         
 
     </TabBar>
