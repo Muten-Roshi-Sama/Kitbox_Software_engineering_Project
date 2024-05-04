@@ -3,7 +3,8 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:local="clr-namespace:MauiApp1"
-             x:Class="MauiApp1.StockKeeper">
+             x:Class="MauiApp1.StockKeeper"
+             BackgroundColor="#C5FCEF">
              <!--<ListView x:Name="MyListView" ItemSelected="OnItemSelected">-->
     <ContentPage.Resources>
         <ResourceDictionary>
@@ -12,16 +13,16 @@
     </ContentPage.Resources>
 
     <StackLayout>
-        <StackLayout Orientation="Horizontal" Padding="10" Spacing="10">
-            <Label Text="Reference" WidthRequest="150"/>
-            <Label Text="Code" WidthRequest="90"/>
-            <Label Text="Length" WidthRequest="50"/>
-            <Label Text="Height" WidthRequest="50"/>
-            <Label Text="Depth" WidthRequest="50"/>
-            <Label Text="Color" WidthRequest="70"/>
-            <Label Text="Stock Available" WidthRequest="100"/>
-            <Label Text="Stock Ordered" WidthRequest="100"/>
-            <Label Text="Stock Reserved" WidthRequest="100"/>
+        <StackLayout Orientation="Horizontal" Padding="10" Spacing="10" BackgroundColor="#65BAA9">
+            <Label Text="Reference" WidthRequest="150" FontAttributes="Bold" TextColor="White"/>
+            <Label Text="Code" WidthRequest="90" FontAttributes="Bold" TextColor="White"/>
+            <Label Text="Length" WidthRequest="50" FontAttributes="Bold" TextColor="White"/>
+            <Label Text="Height" WidthRequest="50" FontAttributes="Bold" TextColor="White"/>
+            <Label Text="Depth" WidthRequest="50" FontAttributes="Bold" TextColor="White"/>
+            <Label Text="Color" WidthRequest="70" FontAttributes="Bold" TextColor="White"/>
+            <Label Text="Stock Available" WidthRequest="100" FontAttributes="Bold" TextColor="White"/>
+            <Label Text="Stock Ordered" WidthRequest="100" FontAttributes="Bold" TextColor="White"/>
+            <Label Text="Stock Reserved" WidthRequest="100" FontAttributes="Bold" TextColor="White"/>
             <Border Stroke="#5c00e6"
                     StrokeThickness="1"
                     Background="#5c00e6"
@@ -39,7 +40,7 @@
                     </FlyoutBase.ContextFlyout>
                 </Label>
             </Border>
-            <Image Source="more16.png" ClassId="moreBtn">
+            <Image Source="more16.png" ClassId="moreBtn" WidthRequest="32" HeightRequest="32">
                 <FlyoutBase.ContextFlyout>
                     <MenuFlyout>
                         <MenuFlyoutItem x:Name="Stock" Text="Stock"/>
@@ -125,6 +126,5 @@
                 </DataTemplate>
             </ListView.ItemTemplate>
         </ListView>
-        <Button x:Name="Disconnect" Margin="10,0,0,0" HeightRequest= "10" WidthRequest=" 200" Text="Disconnect" Clicked="disconnect"></Button>
-    </StackLayout>
+        <Button x:Name="Disconnect" Margin="10,0,0,0" BackgroundColor="#4D8075" HeightRequest= "7" WidthRequest=" 200" Text="Disconnect" TextColor="#C5FCEF" Clicked="disconnect"></Button>
 </ContentPage>

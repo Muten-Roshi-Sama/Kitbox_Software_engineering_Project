@@ -153,8 +153,8 @@
                                                             <TapGestureRecognizer Tapped="OnSuppButtonClicked" />
                                                         </Image.GestureRecognizers>
                                                     </Image>
-                                                    <Button x:Name="OrderCompoSupplBtn" Text="Order" BackgroundColor="Green" Clicked="OrderCompoSuppl" IsVisible="{Binding Path=showOrderBtn}" />
-                                                    <Button x:Name="RemoveCompoSupplBtn" Text="Remove" BackgroundColor="Red" Clicked="OrderCompoSuppl" IsVisible="{Binding Path=showRemoveOrderBtn}" />
+                                                    <Button x:Name="OrderCompoSupplBtn" Text="Order" BackgroundColor="#C5FCEF" TextColor="#65BAA9" Clicked="OrderCompoSuppl" IsVisible="{Binding Path=showOrderBtn}" />
+                                                    <Button x:Name="RemoveCompoSupplBtn" Text="Remove" BackgroundColor="#C5FCEF" TextColor="#65BAA9" Clicked="OrderCompoSuppl" IsVisible="{Binding Path=showRemoveOrderBtn}" />
                                                 </HorizontalStackLayout >
                                             </StackLayout>
                                         </ViewCell>
@@ -167,7 +167,7 @@
                 </DataTemplate>
             </ListView.ItemTemplate>
         </ListView>
-        <Button x:Name="Disconnect" Margin="10,0,0,0" BackgroundColor="#C5FCEF" HeightRequest= "7" WidthRequest=" 200" Text="Disconnect" TextColor="#65BAA9" Clicked="disconnect"></Button>
+        <Button x:Name="Disconnect" Margin="10,0,0,0" BackgroundColor="#C5FCEF" TextColor="#4D8075" HeightRequest= "7" WidthRequest=" 200" Text="Disconnect" Clicked="disconnect"></Button>
     </StackLayout>
 </ContentPage>
 

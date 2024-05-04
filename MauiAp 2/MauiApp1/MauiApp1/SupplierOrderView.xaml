@@ -11,14 +11,14 @@
         </ResourceDictionary>
     </ContentPage.Resources>
     <StackLayout>
-        <Label Text="ORDER" FontSize="20" HorizontalOptions="Center"/>
+        <Label Text="ORDER" FontSize="20" HorizontalOptions="Center" BackgroundColor="#65BAA9"/>
         <StackLayout Orientation="Horizontal" Padding="10" Spacing="10" HorizontalOptions="Center">
-            <Label Text="Reference" WidthRequest="150"/>
-            <Label Text="Code" WidthRequest="90"/>
-            <Label Text="Id Supplier" WidthRequest="100"/>
-            <Label Text="Price" WidthRequest="50"/>
-            <Label Text="Delay" WidthRequest="50"/>
-            <Label Text="Quantity" WidthRequest="70"/>
+            <Label Text="Reference" WidthRequest="150" FontAttributes="Bold" TextColor="White"/>
+            <Label Text="Code" WidthRequest="90" FontAttributes="Bold" TextColor="White"/>
+            <Label Text="Id Supplier" WidthRequest="100" FontAttributes="Bold" TextColor="White"/>
+            <Label Text="Price" WidthRequest="50" FontAttributes="Bold" TextColor="White"/>
+            <Label Text="Delay" WidthRequest="50" FontAttributes="Bold" TextColor="White"/>
+            <Label Text="Quantity" WidthRequest="70" FontAttributes="Bold" TextColor="White"/>
             <Border Stroke="#ffffff"
                     StrokeThickness="1"
                     Background="#5c00e6"
@@ -70,7 +70,7 @@
                 </DataTemplate>
             </ListView.ItemTemplate>
         </ListView>
-        <Button x:Name="Disconnect" Margin="10,0,0,0" HeightRequest= "10" WidthRequest=" 200" Text="Disconnect" Clicked="disconnect"></Button>
+        <Button x:Name="Disconnect" Margin="10,0,0,0" BackgroundColor="#C5FCEF" TextColor="#65BAA9" HeightRequest= "7" WidthRequest=" 200" Text="Disconnect" Clicked="disconnect"></Button>
     </StackLayout>
 </ContentPage>
 

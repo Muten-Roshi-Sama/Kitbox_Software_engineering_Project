@@ -2,9 +2,10 @@
                xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
                xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
                xmlns:local="clr-namespace:aaa"
-               x:Class="aaa.SimplePopup">
+               x:Class="aaa.SimplePopup"
+               >
 
-    <StackLayout VerticalOptions="FillAndExpand">
+    <StackLayout VerticalOptions="FillAndExpand" BackgroundColor="red">
         <HorizontalStackLayout Padding="10" Spacing="5" HorizontalOptions="FillAndExpand">
             <VerticalStackLayout Padding="10" Spacing="5" HorizontalOptions="FillAndExpand">
                 <HorizontalStackLayout Padding="10" Spacing="5" HorizontalOptions="FillAndExpand">
@@ -57,10 +58,10 @@
                     </DataTemplate>
                 </ListView.ItemTemplate>
             </ListView>
-            <Button Text="Add Supplier" Clicked="OnButtonClicked" HorizontalOptions="Center" />
+            <Button Text="Add Supplier" Clicked="OnButtonClicked" HorizontalOptions="Center" BackgroundColor="#65BAA9" TextColor="#C5FCEF"/>
             </VerticalStackLayout>
         </HorizontalStackLayout>
         
-        <Button Text="Add Component" HorizontalOptions="Center" Clicked="OnAddLineConfirmed"/>
+        <Button Text="Add Component" HorizontalOptions="Center" Clicked="OnAddLineConfirmed" BackgroundColor="#65BAA9" TextColor="#C5FCEF"/>
     </StackLayout>
 </toolkit:Popup>

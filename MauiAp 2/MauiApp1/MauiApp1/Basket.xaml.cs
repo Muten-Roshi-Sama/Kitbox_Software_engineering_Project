@@ -21,7 +21,7 @@ public partial class Basket : ContentPage
     
     public Basket()
     {
-       
+
         this.casier = new List<Casier>();
         InitializeComponent();
     }
@@ -45,13 +45,13 @@ public partial class Basket : ContentPage
                 Element elem; 
                 if (this.casier[i]._boxes[j].getTypeDoors().ToString() == "Yes")
                 {
-                     elem = new Element(i.ToString(), this.casier[i].depth, this.casier[i].length, this.casier[i]._boxes.Count.ToString(),
+                    elem = new Element(i.ToString(), this.casier[i].depth, this.casier[i].length, this.casier[i]._boxes.Count.ToString(),
                         this.casier[i].color, this.casier[i]._boxes[j].getHeight(), this.casier[i]._boxes[j].getDoors().ToString(), "Glas"
                         ,this.casier[i]._boxes[j].getColor(), j.ToString(), isEditL, isEditE); 
                 }
                 else
                 {
-                     elem = new Element(i.ToString(), this.casier[i].depth, this.casier[i].length, this.casier[i]._boxes.Count.ToString(),
+                    elem = new Element(i.ToString(), this.casier[i].depth, this.casier[i].length, this.casier[i]._boxes.Count.ToString(),
                         this.casier[i].color, this.casier[i]._boxes[j].getHeight(), this.casier[i]._boxes[j].getDoors().ToString(), "Normal"
                         ,this.casier[i]._boxes[j].getColor(),j.ToString(),isEditL, isEditE);  
                 }
@@ -160,7 +160,7 @@ public partial class Basket : ContentPage
                 
                 var itemToDelete = (Element)button2.CommandParameter;
 
-               
+
                 if (MyListView.ItemsSource is ObservableCollection<Element> items)
                 {
                     items.Remove(itemToDelete);
