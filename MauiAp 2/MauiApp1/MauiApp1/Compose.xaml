@@ -54,7 +54,8 @@
                         Margin="0,20,20,0"
                         HeightRequest="25"
                         WidthRequest="110"
-                        Clicked="giveBasket">
+                        Clicked="giveBasket"
+                        BackgroundColor="#65BAA9" TextColor="#C5FCEF">
                     </Button>
             <Label Grid.Row="1" Grid.Column="0" 
                    Text="Number of boxes : " 
@@ -62,7 +63,7 @@
                    HorizontalTextAlignment="Start" 
                    Margin="10,10,0,0" />
             <Picker Grid.Row="1" Grid.Column="0" x:Name="AddPartPicker2" SelectedItem="{Binding Selection}" WidthRequest="200"
-                    Margin="135,0,0,0">
+                    Margin="135,0,0,0" TextColor="Black" BackgroundColor="#EFEFEF">
             </Picker>
             
             <Label Grid.Row="2" Grid.Column="0" 
@@ -71,7 +72,7 @@
                    HorizontalTextAlignment="Start" 
                    Margin="10,0,0,0" />
             <Picker Grid.Row="2" Grid.Column="0" x:Name="AddPartPicker" SelectedItem="{Binding Selection}" WidthRequest="200"
-                    Margin="135,0,0,0">
+                    Margin="135,0,0,0" BackgroundColor="#EFEFEF">
             </Picker>
             
             <Label Grid.Row="3" Grid.Column="0" 
@@ -80,7 +81,7 @@
                    HorizontalTextAlignment="Start" 
                    Margin="10,0,0,0" />
             <Picker Grid.Row="3" Grid.Column="0" x:Name="AddPartPicker1" SelectedItem="{Binding Selection}" WidthRequest="200"
-                    Margin="135,0,0,0">
+                    Margin="135,0,0,0" BackgroundColor="#EFEFEF">
             </Picker>
             <Label Grid.Row="4" Grid.Column="0" 
                    Text="Color of boxes : " 
@@ -88,7 +89,7 @@
                    HorizontalTextAlignment="Start" 
                    Margin="10,0,0,0" />
             <Picker Grid.Row="4" Grid.Column="0" x:Name="ColorsPicker" SelectedItem="{Binding Selection}" WidthRequest="200"
-                    Margin="135,0,0,0">
+                    Margin="135,0,0,0" BackgroundColor="#EFEFEF">
             </Picker>
             
             <Label Grid.Row="5" Grid.Column="0" 
@@ -97,10 +98,10 @@
                    HorizontalTextAlignment="Start" 
                    Margin="10,0,0,0" />
             <Picker Grid.Row="5" Grid.Column="0" x:Name="Colors2Picker" SelectedItem="{Binding Selection}" WidthRequest="200"
-                    Margin="135,0,0,0">
+                    Margin="135,0,0,0" BackgroundColor="#EFEFEF">
             </Picker>
             
-            <Button Grid.Row="6" Grid.Column="0" x:Name="Next" Margin="10,0,0,0" Text="NEXT" Clicked="DisplayBoxes"></Button>
+            <Button Grid.Row="6" Grid.Column="0" x:Name="Next" Margin="10,0,0,0" Text="NEXT" Clicked="DisplayBoxes" BackgroundColor="#65BAA9" TextColor="#C5FCEF"></Button>
         </Grid>
         </ScrollView>
     </ContentPage.Content>

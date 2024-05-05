@@ -37,7 +37,7 @@
                    HorizontalTextAlignment="Start" 
                    Margin="10,10,0,0" />
             <Picker Grid.Row="1" Grid.Column="0" x:Name="AddPartPicker2" SelectedItem="{Binding SelectionHeight}" WidthRequest="200"
-                    Margin="150,0,0,0">
+                    Margin="150,0,0,0" BackgroundColor="#EFEFEF">
             </Picker>
             
             <Label Grid.Row="2" Grid.Column="0" 
@@ -46,7 +46,7 @@
                    HorizontalTextAlignment="Start" 
                    Margin="10,0,0,0" />
             <Picker Grid.Row="2" Grid.Column="0" x:Name="AddPartPicker" SelectedItem="{Binding SelectionDoors}" WidthRequest="200"
-                    Margin="150,0,0,0">
+                    Margin="150,0,0,0" BackgroundColor="#EFEFEF">
             </Picker>
             
             <Label Grid.Row="3" Grid.Column="0" 
@@ -55,7 +55,7 @@
                    HorizontalTextAlignment="Start" 
                    Margin="10,0,0,0" />
             <Picker Grid.Row="3" Grid.Column="0" x:Name="AddPartPicker1" SelectedItem="{Binding SelectionType}" WidthRequest="200"
-                    Margin="230,0,0,0">
+                    Margin="230,0,0,0" BackgroundColor="#EFEFEF">
             </Picker>
             <Label Grid.Row="4" Grid.Column="0" 
                    Text="Color of the door : " 
@@ -63,10 +63,10 @@
                    HorizontalTextAlignment="Start" 
                    Margin="10,0,0,0" />
             <Picker Grid.Row="4" Grid.Column="0" x:Name="ColorsPicker" SelectedItem="{Binding SelectionColor}" WidthRequest="200"
-                    Margin="150,0,0,0">
+                    Margin="150,0,0,0" BackgroundColor="#EFEFEF">
             </Picker>
             
-            <Button Grid.Row="5" Grid.Column="0" x:Name="Next" Margin="10,0,0,0" Text="Confirmer " Clicked="ConfirmModification" BackgroundColor="#65BAA9" TextColor="#C5FCEF"></Button>
+            <Button Grid.Row="5" Grid.Column="0" x:Name="Next" Margin="10,0,0,0" Text="Confirm" Clicked="ConfirmModification" BackgroundColor="#65BAA9" TextColor="#C5FCEF"></Button>
         </Grid>
     </ContentPage.Content>
 </ContentPage>

@@ -110,7 +110,6 @@ public partial class Compose : ContentPage
     }    
         private void DisplayBoxes(object sender, EventArgs e)
         {
-            
             int space = 0;
             int rowDecale = 0;
             if (AddPartPicker2.SelectedItem == null)
@@ -120,6 +119,7 @@ public partial class Compose : ContentPage
             else
             {
                 AddPartPicker2.BackgroundColor = new Microsoft.Maui.Graphics.Color(1.0f, 1.0f, 1.0f);
+                
                 for (int i = 1; i <= int.Parse(AddPartPicker2.SelectedItem.ToString()); i++)
                 {
                     if (i == 3 || i == 5 || i == 7)
@@ -131,22 +131,26 @@ public partial class Compose : ContentPage
                     Label boxe = new Label();
                     labels.Add(boxe);
                     boxe.Text = "Boxe " + (i).ToString();
+
                     Label porte = new Label();
                     labels.Add(porte);
                     porte.Text = "Do you want a door for this box ? ";
+
                     Label verre = new Label();
                     labels.Add(verre);
                     verre.Text = "Do you want a glass door ? ";
+
                     Picker choixPorte = new Picker();
-                    
                     choixPorte.Items.Add("Yes");
                     choixPorte.Items.Add("No");
                     DoorsBoxes.Add(choixPorte);
+
                     choixVerre = new Picker();
                     choixVerre.Items.Add("Yes");
                     choixVerre.Items.Add("No");
                     TypeDoors.Add(choixVerre);
                     choixPorte.SelectedIndexChanged += OnPicker1SelectedIndexChanged; 
+
                     Label color = new Label();
                     labels.Add(color);
                     color.Text = "Chose the color of the door: ";
@@ -165,7 +169,19 @@ public partial class Compose : ContentPage
                     choixHeight.Items.Add("42cm");
                     choixHeight.Items.Add("52cm");
                     HeightBoxes.Add(choixHeight);
+
+                    // Picker placeholder text
+                    // choixPorte.Title = "Select";
+                    // choixVerre.Title = "Y/N";
+                    // choiceColor.Title = "Select";
+                    // choixHeight.Title = "Select";
                     
+                    //Picker Colors
+                    choixPorte.BackgroundColor = new Microsoft.Maui.Graphics.Color(239, 239, 239);  // #C5FCEF Pale Blue (197, 252, 239)
+                    choixVerre.BackgroundColor = new Microsoft.Maui.Graphics.Color(239, 239, 239) ; // light grey (239, 239, 239)
+                    choiceColor.BackgroundColor = new Microsoft.Maui.Graphics.Color(239, 239, 239);
+                    choixHeight.BackgroundColor = new Microsoft.Maui.Graphics.Color(239, 239, 239);
+
                     boxe.FontSize = 23;
                     porte.FontSize = 16;
                     verre.FontSize = 16;
@@ -230,6 +246,8 @@ public partial class Compose : ContentPage
                 Button confirm = new Button();
                 this.confirm.Add(confirm);
                 confirm.Text = "Confirm";
+                confirm.BackgroundColor = Color.FromHex("#65BAA9");
+                confirm.TextColor = Color.FromHex("#C5FCEF");
                 confirm.Clicked += AddToBasket;
                 MyGrid.SetColumn(confirm, 1);
                 MyGrid.SetRow(confirm, 11 + rowDecale);
@@ -327,7 +345,7 @@ public partial class Compose : ContentPage
             Colors2Picker.ItemsSource = colors; 
 
 
-            await DisplayAlert("Basket","Cabinet added with succes ! Consult your basket.", "OK");
+            await DisplayAlert("Basket","Cabinet added. Consult your basket.", "OK");
 
 
 

@@ -2,29 +2,30 @@
 
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="MauiApp1.Basket">
+             x:Class="MauiApp1.Basket"
+             >
     <ContentPage.Content>
         
            <StackLayout>
     
         <!-- Libellés en haut -->
-        <StackLayout Orientation="Horizontal" Padding="10" Spacing="10">
-            <Label Text="Casier" WidthRequest="60"/>
-            <Label Text="Depth" WidthRequest="60"/>
-            <Label Text="length" WidthRequest="90"/>
-            <Label Text="nbCasier" WidthRequest="90"/>
-            <Label Text="Color" WidthRequest="70"/>
-            <Label Text="Height" WidthRequest="50"/>
-            <Label Text="Doors" WidthRequest="40"/>
-            <Label Text="TypeDoors" WidthRequest="40"/>
-            <Label Text="ColorDoors" WidthRequest="40"/>
+        <StackLayout Orientation="Horizontal" Padding="10" Spacing="10" BackgroundColor="#65BAA9">
+            <Label Text="Casier" WidthRequest="60" FontAttributes="Bold" TextColor="White"/>
+            <Label Text="Depth" WidthRequest="60" FontAttributes="Bold" TextColor="White"/>
+            <Label Text="length" WidthRequest="90" FontAttributes="Bold" TextColor="White"/>
+            <Label Text="nbCasier" WidthRequest="90" FontAttributes="Bold" TextColor="White"/>
+            <Label Text="Color" WidthRequest="70" FontAttributes="Bold" TextColor="White"/>
+            <Label Text="Height" WidthRequest="50" FontAttributes="Bold" TextColor="White"/>
+            <Label Text="Doors" WidthRequest="40" FontAttributes="Bold" TextColor="White"/>
+            <Label Text="TypeDoors" WidthRequest="40" FontAttributes="Bold" TextColor="White"/>
+            <Label Text="ColorDoors" WidthRequest="40" FontAttributes="Bold" TextColor="White"/>
         </StackLayout>
         <Line Stroke="black" X2="1000" />
              <ListView x:Name="MyListView">
             <ListView.ItemTemplate>
                 <DataTemplate>
                     <ViewCell>
-                        <HorizontalStackLayout Padding="10" Spacing="10" HorizontalOptions="FillAndExpand">
+                        <HorizontalStackLayout Padding="10" Spacing="10" HorizontalOptions="FillAndExpand" >
                             <Label Text="{Binding Path=Casier}" HorizontalOptions="FillAndExpand" WidthRequest="60"/>
                             <Label Text="{Binding Path=depth}" IsVisible="{Binding Path=isEditingL}" HorizontalOptions="FillAndExpand" WidthRequest="60"/>
                             <Picker SelectedItem="{Binding Depth}" IsVisible="{Binding Path=isEditingE}" ItemsSource="{Binding DepthsOptions}" />
@@ -52,10 +53,10 @@
         
         <Button Text="Confirm" 
                 VerticalOptions="End" 
-                Clicked="ConfirmCommand"/>
+                Clicked="ConfirmCommand" BackgroundColor="#65BAA9" TextColor="#C5FCEF"/>
             <Button Text="Close" 
                     VerticalOptions="End" 
-                    Clicked="OnCloseButtonClicked"/>
+                    Clicked="OnCloseButtonClicked" BackgroundColor="#65BAA9" TextColor="#C5FCEF"/>
            </StackLayout>
     </ContentPage.Content>
 </ContentPage>
