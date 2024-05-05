@@ -230,7 +230,7 @@ public partial class Compose : ContentPage
                 Button confirm = new Button();
                 this.confirm.Add(confirm);
                 confirm.Text = "Confirm";
-                confirm.Clicked += ConfirmCommand;
+                confirm.Clicked += AddToBasket;
                 MyGrid.SetColumn(confirm, 1);
                 MyGrid.SetRow(confirm, 11 + rowDecale);
                 MyGrid.Children.Add(confirm);
@@ -244,7 +244,7 @@ public partial class Compose : ContentPage
             App.Current.MainPage = new AppShell();
         }
 
-        private void ConfirmCommand(object sender, EventArgs e)
+        private async void AddToBasket(object sender, EventArgs e)
         {
             List<String> ReceiptContent = new List<string>();
             String Titre = "Command number 1234";
@@ -297,7 +297,7 @@ public partial class Compose : ContentPage
                 MyGrid.Children.Remove(DoorsBoxes[i]);
                 MyGrid.Children.Remove(ColorsDoors[i]);
                 
-               
+        
                 
             }
             HeightBoxes.Clear();
@@ -327,7 +327,7 @@ public partial class Compose : ContentPage
             Colors2Picker.ItemsSource = colors; 
 
 
-
+            await DisplayAlert("Basket","Cabinet added with succes ! Consult your basket.", "OK");
 
 
 

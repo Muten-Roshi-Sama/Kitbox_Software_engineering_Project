@@ -50,10 +50,10 @@
             </ListView.ItemTemplate>
         </ListView>
         
-        <Button Text="Confirmer" 
+        <Button Text="Confirm" 
                 VerticalOptions="End" 
                 Clicked="ConfirmCommand"/>
-            <Button Text="Fermer" 
+            <Button Text="Close" 
                     VerticalOptions="End" 
                     Clicked="OnCloseButtonClicked"/>
            </StackLayout>
