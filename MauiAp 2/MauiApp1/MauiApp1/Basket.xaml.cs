@@ -112,7 +112,7 @@ public partial class Basket : ContentPage
         DateTime currentdate= DateTime.Now;
         String reference =currentdate.Day+currentdate.Month+currentdate.Year+ "_"+ (c.Count + 1 ).ToString();
         connexion.addComand(new Command(1, reference, " ", description, details));
-        await DisplayAlert("Commande validé", "Votre commande a été validé avec succes ! ", "OK");
+        await DisplayAlert("Order confirmed", "Order confirmed with great succes ! ", "Proceed to payment");
         LaunchAppShell();
         //this.connexion.disconnection();
         
