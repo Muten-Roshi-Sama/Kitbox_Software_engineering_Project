@@ -54,7 +54,8 @@ public partial class Compose : ContentPage
         AddPartPicker.ItemsSource = largeur;
         AddPartPicker1.ItemsSource = profondeur;
         AddPartPicker2.ItemsSource = nombreBox;
-        ColorsPicker.ItemsSource = colors; 
+        ColorsPicker.ItemsSource = colors;
+        Colors2Picker.ItemsSource = colors; 
     }
     
     public Compose(List<Casier> Casiers)
@@ -88,6 +89,7 @@ public partial class Compose : ContentPage
         AddPartPicker1.ItemsSource = profondeur;
         AddPartPicker2.ItemsSource = nombreBox;
         ColorsPicker.ItemsSource = colors; 
+        Colors2Picker.ItemsSource = colors;
         this.Casiers = Casiers; 
     }
 
@@ -189,27 +191,27 @@ public partial class Compose : ContentPage
                     choixHeight.Margin = new Thickness(200, 0, 0, 0);
 
                     MyGrid.SetColumn(boxe, 0 + space);
-                    MyGrid.SetRow(boxe, 6 + rowDecale);
+                    MyGrid.SetRow(boxe, 7 + rowDecale);
 
                     MyGrid.SetColumn(porte, 0 + space);
-                    MyGrid.SetRow(porte, 6 + rowDecale);
+                    MyGrid.SetRow(porte, 7 + rowDecale);
                     MyGrid.SetColumn(choixPorte, 0 + space);
-                    MyGrid.SetRow(choixPorte, 6 + rowDecale);
+                    MyGrid.SetRow(choixPorte, 7 + rowDecale);
 
                     MyGrid.SetColumn(verre, 0 + space);
-                    MyGrid.SetRow(verre, 7 + rowDecale);
+                    MyGrid.SetRow(verre, 8 + rowDecale);
                     MyGrid.SetColumn(choixVerre, 0 + space);
-                    MyGrid.SetRow(choixVerre, 7 + rowDecale);
+                    MyGrid.SetRow(choixVerre, 8 + rowDecale);
 
                     MyGrid.SetColumn(color, 0 + space);
-                    MyGrid.SetRow(color, 8 + rowDecale);
+                    MyGrid.SetRow(color, 9 + rowDecale);
                     MyGrid.SetColumn(choiceColor, 0 + space);
-                    MyGrid.SetRow(choiceColor, 8 + rowDecale);
+                    MyGrid.SetRow(choiceColor, 9 + rowDecale);
 
                     MyGrid.SetColumn(height, 0 + space);
-                    MyGrid.SetRow(height, 9 + rowDecale);
+                    MyGrid.SetRow(height, 10 + rowDecale);
                     MyGrid.SetColumn(choixHeight, 0 + space);
-                    MyGrid.SetRow(choixHeight, 9 + rowDecale);
+                    MyGrid.SetRow(choixHeight, 10 + rowDecale);
 
                     // Ajouter le nouvel élément au layout principal
                     MyGrid.Children.Add(porte);
@@ -230,7 +232,7 @@ public partial class Compose : ContentPage
                 confirm.Text = "Confirm";
                 confirm.Clicked += ConfirmCommand;
                 MyGrid.SetColumn(confirm, 1);
-                MyGrid.SetRow(confirm, 10 + rowDecale);
+                MyGrid.SetRow(confirm, 11 + rowDecale);
                 MyGrid.Children.Add(confirm);
                 
 
@@ -282,7 +284,7 @@ public partial class Compose : ContentPage
             
 
             Casier cas = new Casier(AddPartPicker.SelectedItem.ToString(), AddPartPicker1.SelectedItem.ToString(), 
-                ColorsPicker.SelectedItem.ToString(), AddPartPicker2.SelectedItem.ToString(), _boxxes); 
+                ColorsPicker.SelectedItem.ToString(), AddPartPicker2.SelectedItem.ToString(), _boxxes,Colors2Picker.SelectedItem.ToString()); 
 
 
             Casiers.Add(cas);
@@ -315,18 +317,20 @@ public partial class Compose : ContentPage
             AddPartPicker.ItemsSource = null;
             AddPartPicker1.ItemsSource = null;
             AddPartPicker2.ItemsSource = null;
-            ColorsPicker.ItemsSource = null; 
+            ColorsPicker.ItemsSource = null;
+            Colors2Picker.ItemsSource = null; 
             
             AddPartPicker.ItemsSource = largeur;
             AddPartPicker1.ItemsSource = profondeur;
             AddPartPicker2.ItemsSource = nombreBox;
-            ColorsPicker.ItemsSource = colors; 
-            
-            
-            
-            
-            
-            
+            ColorsPicker.ItemsSource = colors;
+            Colors2Picker.ItemsSource = colors; 
+
+
+
+
+
+
         }
 
         public void giveBasket(object sender, EventArgs e)

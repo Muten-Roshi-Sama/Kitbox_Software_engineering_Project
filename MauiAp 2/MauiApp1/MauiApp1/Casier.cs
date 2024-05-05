@@ -1,22 +1,24 @@
-
 public class Casier
 {
     public String depth{get;set;}
     public String length{get;set;}
     public String color{get;set;}
-    
+
     public String nbBox{get;set;}
     public List<Box> _boxes{get;set;}
 
+    public String angleIronColor{get;set;}
 
-    
-    public Casier(String depth, String length, String color,String nbBox, List<Box> _boxes )
+
+
+    public Casier(String depth, String length, String color,String nbBox, List<Box> _boxes, String angleIronColor)
     {
         this.depth = depth;
         this.length = length;
         this.color = color;
         this.nbBox = nbBox; 
-        this._boxes = _boxes; 
+        this._boxes = _boxes;
+        this.angleIronColor = angleIronColor; 
     }
 
 
@@ -32,7 +34,7 @@ public class Casier
     {
         _boxes.Add(box);
     }
-    
-    
-    
+
+
+
 }

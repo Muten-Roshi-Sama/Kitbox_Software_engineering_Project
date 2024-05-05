@@ -2,12 +2,14 @@
 
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="MauiApp1.Compose"
-             BackgroundColor="#D2E9F2">
+             x:Class="MauiApp1.Compose">
     <ContentPage.Content>
         <ScrollView>
             <Grid x:Name="MyGrid" ColumnSpacing="20" RowSpacing="20">
             <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
                 <RowDefinition Height="Auto" />
                 <RowDefinition Height="Auto" />
                 <RowDefinition Height="Auto" />
@@ -52,8 +54,7 @@
                         Margin="0,20,20,0"
                         HeightRequest="25"
                         WidthRequest="110"
-                        Clicked="giveBasket"
-                        BackgroundColor="#65BAA9">
+                        Clicked="giveBasket">
                     </Button>
             <Label Grid.Row="1" Grid.Column="0" 
                    Text="Number of boxes : " 
@@ -90,7 +91,16 @@
                     Margin="135,0,0,0">
             </Picker>
             
-            <Button Grid.Row="5" Grid.Column="0" x:Name="Next" Margin="10,0,0,0" Text="NEXT" Clicked="DisplayBoxes" BackgroundColor="#65BAA9"></Button>
+            <Label Grid.Row="5" Grid.Column="0" 
+                   Text="Color of the iron : " 
+                   FontSize="14" TextColor="Black" 
+                   HorizontalTextAlignment="Start" 
+                   Margin="10,0,0,0" />
+            <Picker Grid.Row="5" Grid.Column="0" x:Name="Colors2Picker" SelectedItem="{Binding Selection}" WidthRequest="200"
+                    Margin="135,0,0,0">
+            </Picker>
+            
+            <Button Grid.Row="6" Grid.Column="0" x:Name="Next" Margin="10,0,0,0" Text="NEXT" Clicked="DisplayBoxes"></Button>
         </Grid>
         </ScrollView>
     </ContentPage.Content>

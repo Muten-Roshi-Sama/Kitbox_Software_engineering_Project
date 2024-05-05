@@ -208,50 +208,40 @@ public String getNbArmoir()
 
     public String getDetails()
     {
-        Console.WriteLine("Start");
-        String details = " ";
+        String details = "";
 
-        int c = 0;
-        List<Element> elem2 = new List<Element>();
-
-        int i = 0; 
-        Console.WriteLine("Test");
-        while( i < elements.Count())
+        for (int i = 0; i < casier.Count(); i++)
         {
-            Console.WriteLine("ST");
-            while (int.Parse(elements[i].Casier) == c && i<elements.Count)
-            {
-                Console.WriteLine("ST2");
-                elem2.Add(elements[i]);
-                i++;
+            details += "Locker " + i.ToString() +": \n";
+            for (int j = 0; j < casier[i]._boxes.Count(); j++)
+            { 
+
+                String color = casier[i].color;
+                String height = casier[i]._boxes[j].getHeight();
+                String depth = casier[i].depth;
+                String length = casier[i].length;
+
+
+                details += "Boxe " + j.ToString() + ": \n";
+                details +=" 4 Vertical Batten, " +color +", "+ height +"\n" ;
+                details +=" 2 Front crossbars, " +color +", "+ length +" \n" ;
+                details +=" 2 Back crossbars, "  +color +", "+ length +" \n" ;
+                details +=" 4 Side crossbars, "  +color +", "+ depth +"\n" ;
+                details +=" 2 Horizontal panels, " +color +", "+ depth + "x" + length +"\n";
+                details +=" 2 Side panels, " +color +", "+ depth + "X" + height +"\n" ;
+                details +=" 1 Back panels, " +color +", "+ length + "X" + height +" \n" ;
+
+                if (casier[i]._boxes[j].getDoors())
+                {
+                    details +=" 1 Doors, " +color +", "+ length + "X" + height +" \n" ;
+                }
+
+                details += "\n";
+
+
             }
-            
-            c++;
-
-
-
-            int casier = int.Parse(elem2[i].Casier) + 1;
-
-            details += "Locker " + casier + ": \n";
-
-            Console.WriteLine("Test1");
-            for (int j = 0; j < elem2.Count; j++)
-            {
-                details += "Boxe " + (i + 1) + " \n";
-                details += " 4 Vertical Batten, "+ elem2[i].heigth+" cm, "+ elem2[i].color+"\n" ;
-                details += " 2 Front crossbars, " + elem2[i].length+" cm, "+ elem2[i].color+"\n" ;
-                details += " 2 Back crossbars, "+ elem2[i].length+" cm, "+ elem2[i].color+"\n" ;
-                details += " 4 Side crossbars, "+ elem2[i].depth+" cm, "+ elem2[i].color+ "\n" ;
-                details += " 2 Horizontal panels,"+ "L: "+elem2[i].length+"cm, W: "+elem2[i].depth+ ", "+elem2[i].color+"\n" ;
-                details += " 2 Side panels,"+ "H: "+elem2[i].heigth+"cm, W: "+elem2[i].depth+ ", "+elem2[i].color+ " \n" ;
-                details += " 1 Back panels, " + "L: "+elem2[i].length+"cm, H: "+elem2[i].heigth+  ", " +elem2[i].color+"\n" ;
-
-            }
-            details+= "\n";
-
-
         }
 
-        return details; 
+        return details;
     }
 }
