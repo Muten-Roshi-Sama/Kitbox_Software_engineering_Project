@@ -215,6 +215,22 @@ public partial class Manager : ContentPage,INotifyPropertyChanged
     }
 
     void OrderLabelTapped(object sender, EventArgs e){
+        if(supplierOrder.Count==0){
+            List<Component> compoFiltre = (List<Component>) MyListView.ItemsSource;
+            foreach (var item in compoFiltre)
+            {
+                float price = -1;
+                CompoSupplier suppCurrent = null;
+                foreach (var supp in item.listSuppliers)
+                {
+                    if(price == -1 || price > supp.priceSupplier){
+                        price = supp.priceSupplier;
+                        suppCurrent = supp;
+                    }
+                }
+                supplierOrder.Add(new SupplierCompoOrder(item.code,item.reference,suppCurrent.idSupplier,suppCurrent.priceSupplier,suppCurrent.delaySupplier,suppCurrent.minimumStock));
+            }
+        }
         App.Current.MainPage = new SupplierOrderView(supplierOrder,connection);
     }
 
