@@ -4,14 +4,15 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:local="clr-namespace:MauiApp1"
              x:Class="MauiApp1.SupplierOrderView"
+             BackgroundColor="#C5FCEF"
              >
     <ContentPage.Resources>
         <ResourceDictionary>
             <Color x:Key="LightGrayColor">#F0F0F0</Color>
         </ResourceDictionary>
     </ContentPage.Resources>
-    <StackLayout>
-        <Label Text="ORDER" FontSize="20" HorizontalOptions="Center" BackgroundColor="#65BAA9"/>
+    <StackLayout BackgroundColor="#65BAA9">
+        <Label Text="Order Review" FontSize="20" HorizontalOptions="Center" TextColor="#4D8075" />
         <StackLayout Orientation="Horizontal" Padding="10" Spacing="10" HorizontalOptions="Center">
             <Label Text="Reference" WidthRequest="150" FontAttributes="Bold" TextColor="White"/>
             <Label Text="Code" WidthRequest="90" FontAttributes="Bold" TextColor="White"/>
@@ -27,7 +28,7 @@
                 <Border.StrokeShape>
                     <RoundRectangle CornerRadius="10,10,10,10" />
                 </Border.StrokeShape>
-                <Label x:Name="label" Text="Confirm order" TextColor="#ffffff">
+                <Label x:Name="label" Text="Confirm order" BackgroundColor="#4D8075" TextColor="#C5FCEF" Padding="0" Margin="0">
                     <Label.GestureRecognizers>
                         <TapGestureRecognizer Tapped="ConfirmOrder" />
                     </Label.GestureRecognizers>

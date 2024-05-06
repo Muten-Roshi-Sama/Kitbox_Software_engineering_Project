@@ -36,7 +36,7 @@
                 <Border.StrokeShape>
                     <RoundRectangle CornerRadius="10,10,10,10" />
                 </Border.StrokeShape>
-                <Label x:Name="label" Text="Filtre" TextColor="#ffffff">
+                <Label x:Name="label" Text="Filtre" BackgroundColor="#C5FCEF" TextColor="#4D8075">
                     <FlyoutBase.ContextFlyout>
                         <MenuFlyout>
                             <MenuFlyoutItem x:Name="MissingStock" Text="Missing Stock" Clicked="FiltreLabelClicked"/>

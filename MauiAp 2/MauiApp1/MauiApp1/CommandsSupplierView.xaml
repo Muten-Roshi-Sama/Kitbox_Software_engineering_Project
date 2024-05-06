@@ -12,11 +12,11 @@
     <StackLayout BackgroundColor="#C5FCEF">
         <Label Text="Commands To Supplier" FontSize="30" HorizontalOptions="Center" FontAttributes="Bold" TextColor="#4D8075"/>
         <StackLayout Orientation="Horizontal" Padding="10" Spacing="10" Margin="350,0,0,0" BackgroundColor="#C5FCEF">
-            <Label Text="Code" WidthRequest="90" FontAttributes="Bold" />
-            <Label Text="Id Supplier" WidthRequest="100" FontAttributes="Bold"/>
-            <Label Text="Price" WidthRequest="50" FontAttributes="Bold"/>
-            <Label Text="Delay" WidthRequest="50" FontAttributes="Bold"/>
-            <Label Text="Quantity" WidthRequest="70" FontAttributes="Bold"/>
+            <Label Text="Code" WidthRequest="90" FontAttributes="Bold" TextColor="White"/>
+            <Label Text="Id Supplier" WidthRequest="100" FontAttributes="Bold" TextColor="White"/>
+            <Label Text="Price" WidthRequest="50" FontAttributes="Bold" TextColor="White"/>
+            <Label Text="Delay" WidthRequest="50" FontAttributes="Bold" TextColor="White"/>
+            <Label Text="Quantity" WidthRequest="70" FontAttributes="Bold" TextColor="White"/>
             <Image Source="more16.png" ClassId="moreBtn" WidthRequest="32" HeightRequest="32">
                 <FlyoutBase.ContextFlyout>
                     <MenuFlyout>
@@ -70,7 +70,7 @@
                                     <Border.StrokeShape>
                                         <RoundRectangle CornerRadius="10,10,10,10" />
                                     </Border.StrokeShape>
-                                    <Label x:Name="Confirm" Text="Confirm" TextColor="#ffffff">
+                                    <Label x:Name="Confirm" Text="Confirm" BackgroundColor="#C5FCEF" TextColor="#4D8075">
                                         <Label.GestureRecognizers>
                                             <TapGestureRecognizer Tapped="ReceivedBtn" />
                                         </Label.GestureRecognizers>
