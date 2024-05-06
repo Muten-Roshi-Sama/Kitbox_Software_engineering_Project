@@ -1,29 +1,46 @@
-﻿namespace MauiApp1;
+﻿using Serilog;
+
+//dotnet add package Serilog
+//dotnet add package Serilog.Sinks.Console
+//dotnet add package Serilog.Sinks.File
+
+namespace MauiApp1;
 
 public partial class App : Application
 {
     public App()
     {
-        InitializeComponent();
+        // initializes a new configuration for Serilog
+        Log.Logger = new LoggerConfiguration()
+            .MinimumLevel.Debug() 
+            .WriteTo.Console()
+            .WriteTo.File("Logs/log.txt", rollingInterval: RollingInterval.Day)
+            .CreateLogger();
 
-        
+        Log.Information("Starting application");
+
+        InitializeComponent();
         MainPage = new AppShell();
         
-        
-        Application.Current.UserAppTheme = AppTheme.Light;
-
-        // gestionnaire d'exceptions global , quand une exception pas captée par un bloc try-catch
+        // Global exception
         AppDomain.CurrentDomain.UnhandledException += (sender, e) =>
         {
-            Console.WriteLine("Une exception non gérée a été détectée.");
-            // se contente d'ajouter un msg d'erreur mais modifier pour avoir des logs + informer
+            Log.Error(e.ExceptionObject as Exception, "Unhandled exception");
         };
 
-        // Pour tâches asynchrones qui n'ont pas été "observées" ou traitées
         TaskScheduler.UnobservedTaskException += (sender, e) =>
         {
-            Console.WriteLine("Exception dans une tâche non observée.");
-            e.SetObserved(); // Evite l'app de crash , il faut aussi faire des logs pour le suivi des errors 
+            Log.Error(e.Exception, "Unobserved task exception");
+            e.SetObserved(); // Prevents application crash
         };
     }
+
+    protected override void OnSleep()
+    {
+        // close and empty the log before the application is put to sleep
+        Log.CloseAndFlush();
+        base.OnSleep();
+    }
+
+    
 }
