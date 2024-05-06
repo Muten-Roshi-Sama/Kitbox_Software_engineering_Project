@@ -162,7 +162,7 @@
     </Style>
 
     <Style TargetType="Label">
-        <Setter Property="TextColor" Value="#C5FCEF" />
+        <Setter Property="TextColor" Value="Black" />
         
         
         <Setter Property="BackgroundColor" Value="Transparent" />
