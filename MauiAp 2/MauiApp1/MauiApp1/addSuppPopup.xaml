@@ -1,0 +1,39 @@
+<toolkit:Popup xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+               xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+               xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
+               xmlns:local="clr-namespace:aaa"
+               x:Class="aaa.AddSuppPopup"
+               >
+
+    <StackLayout Orientation="Vertical" HorizontalOptions="FillAndExpand" BackgroundColor="#C5FCEF">
+        <HorizontalStackLayout Padding="10" Spacing="5" HorizontalOptions="FillAndExpand" BackgroundColor="#C5FCEF">
+            <HorizontalStackLayout Padding="10" Spacing="5" HorizontalOptions="FillAndExpand" BackgroundColor="#C5FCEF">
+                <Label Text="Id Supplier"/>
+                <Entry Placeholder="IdSupp" x:Name="IdEntry"/>
+            </HorizontalStackLayout>
+            <HorizontalStackLayout Padding="10" Spacing="5" HorizontalOptions="FillAndExpand">
+                <Label Text="Price"/>
+                <Entry Placeholder="Price" x:Name="PriceEntry"/>
+            </HorizontalStackLayout>
+            <HorizontalStackLayout Padding="10" Spacing="5" HorizontalOptions="FillAndExpand">
+                <Label Text="Delay"/>
+                <Entry Placeholder="Price" x:Name="DelayEntry"/>
+            </HorizontalStackLayout>   
+        </HorizontalStackLayout>
+        <HorizontalStackLayout Padding="10" Spacing="5" HorizontalOptions="FillAndExpand">
+            <HorizontalStackLayout Padding="10" Spacing="5" HorizontalOptions="FillAndExpand">
+                <Label Text="Stock available"/>
+                <Entry Placeholder="StockA" x:Name="StockAEntry"/>
+            </HorizontalStackLayout>
+            <HorizontalStackLayout Padding="10" Spacing="5" HorizontalOptions="FillAndExpand">
+                <Label Text="Stock reserved"/>
+                <Entry Placeholder="StockR" x:Name="StockREntry"/>
+            </HorizontalStackLayout>
+            <HorizontalStackLayout Padding="10" Spacing="5" HorizontalOptions="FillAndExpand">
+                <Label Text="Minimum stock"/>
+                <Entry Placeholder="MinStock" x:Name="MinStockEntry"/>
+            </HorizontalStackLayout>
+        </HorizontalStackLayout>
+        <Button Text="Add supplier" Clicked="OnAddSuppConfirmed" HorizontalOptions="Center"/>
+    </StackLayout>
+</toolkit:Popup>

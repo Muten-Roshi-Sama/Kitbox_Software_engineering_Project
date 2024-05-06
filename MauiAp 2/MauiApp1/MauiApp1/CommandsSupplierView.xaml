@@ -1,0 +1,105 @@
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:MauiApp1"
+             x:Class="MauiApp1.CommandsSupplierView"
+             BackgroundColor="#C5FCEF"
+             >
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <Color x:Key="LightGrayColor">#F0F0F0</Color>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+    <StackLayout BackgroundColor="#C5FCEF">
+        <Label Text="Commands To Supplier" FontSize="30" HorizontalOptions="Center" FontAttributes="Bold" TextColor="#4D8075"/>
+        <StackLayout Orientation="Horizontal" Padding="10" Spacing="10" Margin="350,0,0,0" BackgroundColor="#C5FCEF">
+            <Label Text="Code" WidthRequest="90" FontAttributes="Bold" />
+            <Label Text="Id Supplier" WidthRequest="100" FontAttributes="Bold"/>
+            <Label Text="Price" WidthRequest="50" FontAttributes="Bold"/>
+            <Label Text="Delay" WidthRequest="50" FontAttributes="Bold"/>
+            <Label Text="Quantity" WidthRequest="70" FontAttributes="Bold"/>
+            <Image Source="more16.png" ClassId="moreBtn" WidthRequest="32" HeightRequest="32">
+                <FlyoutBase.ContextFlyout>
+                    <MenuFlyout>
+                        <MenuFlyoutItem x:Name="Stock" Text="Stock" Clicked="MoreMenuBtn"/>
+                        <MenuFlyoutItem x:Name="Orders" Text="Orders"/>
+                    </MenuFlyout>
+                </FlyoutBase.ContextFlyout>
+            </Image>
+        </StackLayout>
+        <Line Stroke="black" X2="1000" />
+        <ListView x:Name="OrderListView" Margin="300,0,300,0" HorizontalOptions="Center">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <ViewCell>
+                        <StackLayout HorizontalOptions="Center">
+                            <HorizontalStackLayout Margin="0,0,0,0" Padding="10" Spacing="10" HorizontalOptions="FillAndExpand" BackgroundColor="LightGrey">
+                                <Label Text="{Binding referenceGlobal, StringFormat='Order n°{0}'}" HorizontalOptions="CenterAndExpand" WidthRequest="400" VerticalOptions="Center"/>
+                                <Border Stroke="Red"
+                                        StrokeThickness="1"
+                                        Background="Red"
+                                        Padding="5,1,5,1"
+                                        HorizontalOptions="Center"
+                                        IsVisible="{Binding Path=notReceived}">
+                                    <Border.StrokeShape>
+                                        <RoundRectangle CornerRadius="10,10,10,10" />
+                                    </Border.StrokeShape>
+                                    <HorizontalStackLayout>
+                                    <Label Text="Ongoing" TextColor="#000000"/>
+                                    <Image Source="attention16.png"/>
+                                    </HorizontalStackLayout>
+                                </Border>
+                                <Border Stroke="DarkGreen"
+                                        StrokeThickness="1"
+                                        Background="DarkGreen"
+                                        Padding="5,1,5,1"
+                                        HorizontalOptions="Center"
+                                        IsVisible="{Binding Path=received}">
+                                    <Border.StrokeShape>
+                                        <RoundRectangle CornerRadius="10,10,10,10" />
+                                    </Border.StrokeShape>
+                                    <HorizontalStackLayout>
+                                    <Label Text="Received" TextColor="#000000"/>
+                                    </HorizontalStackLayout>
+                                </Border>
+                                <Border Stroke="#5c00e6"
+                                        StrokeThickness="1"
+                                        Background="#5c00e6"
+                                        Padding="5,1,5,1"
+                                        HorizontalOptions="Center"
+                                        IsVisible="{Binding Path=notReceived}">
+                                    <Border.StrokeShape>
+                                        <RoundRectangle CornerRadius="10,10,10,10" />
+                                    </Border.StrokeShape>
+                                    <Label x:Name="Confirm" Text="Confirm" TextColor="#ffffff">
+                                        <Label.GestureRecognizers>
+                                            <TapGestureRecognizer Tapped="ReceivedBtn" />
+                                        </Label.GestureRecognizers>
+                                    </Label>
+                                </Border>
+                            </HorizontalStackLayout>
+                            <ListView x:Name="CompoListView" ItemsSource="{Binding Path=ordersList}" Margin="50,0,0,0" BackgroundColor="#ededed">
+                                <ListView.ItemTemplate>
+                                    <DataTemplate>
+                                        <ViewCell>
+                                            <StackLayout>
+                                                <HorizontalStackLayout Padding="10" Spacing="10">
+                                                    <Label Text="{Binding Path=code}" HorizontalOptions="FillAndExpand" WidthRequest="90" VerticalOptions="Center"/>
+                                                    <Label Text="{Binding Path=id}" HorizontalOptions="FillAndExpand" WidthRequest="100" VerticalOptions="Center"/>
+                                                    <Label Text="{Binding Path=price}" HorizontalOptions="FillAndExpand" WidthRequest="50" VerticalOptions="Center"/>
+                                                    <Label Text="{Binding Path=delay}" HorizontalOptions="FillAndExpand" WidthRequest="50" VerticalOptions="Center"/>
+                                                    <Label Text="{Binding Path=quantity}" HorizontalOptions="FillAndExpand" WidthRequest="70" VerticalOptions="Center"/>                                
+                                                </HorizontalStackLayout >
+                                            </StackLayout>
+                                        </ViewCell>
+                                    </DataTemplate>
+                                </ListView.ItemTemplate>
+                            </ListView>
+                        </StackLayout>
+                    </ViewCell>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+        <Button x:Name="Disconnect" Margin="10,0,0,0" BackgroundColor="#4D8075" HeightRequest= "3" WidthRequest=" 200" Text="Disconnect" TextColor="#C5FCEF" Clicked="disconnect"></Button>
+    </StackLayout>
+</ContentPage>
+

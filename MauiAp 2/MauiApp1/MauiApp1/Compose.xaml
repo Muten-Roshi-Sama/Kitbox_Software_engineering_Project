@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="MauiApp1.Compose">
+    <ContentPage.Content>
+        <ScrollView>
+            <Grid x:Name="MyGrid" ColumnSpacing="20" RowSpacing="20">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="Auto" />
+            </Grid.ColumnDefinitions>
+           <Button
+                        Text="My basket"
+                        HorizontalOptions="End"
+                        VerticalOptions="Start"
+                        Margin="0,20,20,0"
+                        HeightRequest="25"
+                        WidthRequest="110"
+                        Clicked="giveBasket"
+                        BackgroundColor="#65BAA9" TextColor="#C5FCEF">
+                    </Button>
+            <Label Grid.Row="1" Grid.Column="0" 
+                   Text="Number of boxes : " 
+                   FontSize="14" TextColor="Black" 
+                   HorizontalTextAlignment="Start" 
+                   Margin="10,10,0,0" />
+            <Picker Grid.Row="1" Grid.Column="0" x:Name="AddPartPicker2" SelectedItem="{Binding Selection}" WidthRequest="200"
+                    Margin="135,0,0,0" TextColor="Black" BackgroundColor="#EFEFEF">
+            </Picker>
+            
+            <Label Grid.Row="2" Grid.Column="0" 
+                   Text="Width of boxes : " 
+                   FontSize="14" TextColor="Black" 
+                   HorizontalTextAlignment="Start" 
+                   Margin="10,0,0,0" />
+            <Picker Grid.Row="2" Grid.Column="0" x:Name="AddPartPicker" SelectedItem="{Binding Selection}" WidthRequest="200"
+                    Margin="135,0,0,0" BackgroundColor="#EFEFEF">
+            </Picker>
+            
+            <Label Grid.Row="3" Grid.Column="0" 
+                   Text="Depth of boxes : " 
+                   FontSize="14" TextColor="Black" 
+                   HorizontalTextAlignment="Start" 
+                   Margin="10,0,0,0" />
+            <Picker Grid.Row="3" Grid.Column="0" x:Name="AddPartPicker1" SelectedItem="{Binding Selection}" WidthRequest="200"
+                    Margin="135,0,0,0" BackgroundColor="#EFEFEF">
+            </Picker>
+            <Label Grid.Row="4" Grid.Column="0" 
+                   Text="Color of boxes : " 
+                   FontSize="14" TextColor="Black" 
+                   HorizontalTextAlignment="Start" 
+                   Margin="10,0,0,0" />
+            <Picker Grid.Row="4" Grid.Column="0" x:Name="ColorsPicker" SelectedItem="{Binding Selection}" WidthRequest="200"
+                    Margin="135,0,0,0" BackgroundColor="#EFEFEF">
+            </Picker>
+            
+            <Label Grid.Row="5" Grid.Column="0" 
+                   Text="Color of the iron : " 
+                   FontSize="14" TextColor="Black" 
+                   HorizontalTextAlignment="Start" 
+                   Margin="10,0,0,0" />
+            <Picker Grid.Row="5" Grid.Column="0" x:Name="Colors2Picker" SelectedItem="{Binding Selection}" WidthRequest="200"
+                    Margin="135,0,0,0" BackgroundColor="#EFEFEF">
+            </Picker>
+            
+            <Button Grid.Row="6" Grid.Column="0" x:Name="Next" Margin="10,0,0,0" Text="NEXT" Clicked="DisplayBoxes" BackgroundColor="#65BAA9" TextColor="#C5FCEF"></Button>
+        </Grid>
+        </ScrollView>
+    </ContentPage.Content>
+</ContentPage>

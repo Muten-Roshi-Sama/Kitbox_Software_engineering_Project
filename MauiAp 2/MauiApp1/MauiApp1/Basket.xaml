@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="MauiApp1.Basket"
+             >
+    <ContentPage.Content>
+        
+           <StackLayout>
+    
+        <!-- Libellés en haut -->
+        <StackLayout Orientation="Horizontal" Padding="10" Spacing="10" BackgroundColor="#65BAA9">
+            <Label Text="Casier" WidthRequest="60" FontAttributes="Bold" TextColor="White"/>
+            <Label Text="Depth" WidthRequest="60" FontAttributes="Bold" TextColor="White"/>
+            <Label Text="length" WidthRequest="90" FontAttributes="Bold" TextColor="White"/>
+            <Label Text="nbCasier" WidthRequest="90" FontAttributes="Bold" TextColor="White"/>
+            <Label Text="Color" WidthRequest="70" FontAttributes="Bold" TextColor="White"/>
+            <Label Text="Height" WidthRequest="50" FontAttributes="Bold" TextColor="White"/>
+            <Label Text="Doors" WidthRequest="40" FontAttributes="Bold" TextColor="White"/>
+            <Label Text="TypeDoors" WidthRequest="40" FontAttributes="Bold" TextColor="White"/>
+            <Label Text="ColorDoors" WidthRequest="40" FontAttributes="Bold" TextColor="White"/>
+        </StackLayout>
+        <Line Stroke="black" X2="1000" />
+             <ListView x:Name="MyListView">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <ViewCell>
+                        <HorizontalStackLayout Padding="10" Spacing="10" HorizontalOptions="FillAndExpand" >
+                            <Label Text="{Binding Path=Casier}" HorizontalOptions="FillAndExpand" WidthRequest="60"/>
+                            <Label Text="{Binding Path=depth}" IsVisible="{Binding Path=isEditingL}" HorizontalOptions="FillAndExpand" WidthRequest="60"/>
+                            <Picker SelectedItem="{Binding Depth}" IsVisible="{Binding Path=isEditingE}" ItemsSource="{Binding DepthsOptions}" />
+                            <Label Text="{Binding Path=length}" IsVisible="{Binding Path=isEditingL}" HorizontalOptions="FillAndExpand" WidthRequest="90"/>
+                            <Entry x:Name="myEntry" Text="{Binding Path=length}" IsVisible="{Binding Path=isEditingE}" HorizontalOptions="FillAndExpand" WidthRequest="90"/>
+                            <Label Text="{Binding Path=nbBoxe}" HorizontalOptions="FillAndExpand" WidthRequest="90"/>
+                            <Label Text="{Binding Path=color}"  IsVisible="{Binding Path=isEditingL}" HorizontalOptions="FillAndExpand" WidthRequest="70"/>
+                            <Entry Text="{Binding Path=color}"  IsVisible="{Binding Path=isEditingE}" HorizontalOptions="FillAndExpand" WidthRequest="70"/>
+                            <Label Text="{Binding Path=heigth}" IsVisible="{Binding Path=isEditingL}" HorizontalOptions="FillAndExpand" WidthRequest="50"/>
+                            <Entry Text="{Binding Path=heigth}" IsVisible="{Binding Path=isEditingE}" HorizontalOptions="FillAndExpand" WidthRequest="50"/>
+                            <Label Text="{Binding Path=doors}"  IsVisible="{Binding Path=isEditingL}" HorizontalOptions="FillAndExpand" WidthRequest="45"/>
+                            <Entry Text="{Binding Path=doors}"  IsVisible="{Binding Path=isEditingE}" HorizontalOptions="FillAndExpand" WidthRequest="45"/>
+                            <Label Text="{Binding Path=typeDoors}" IsVisible="{Binding Path=isEditingL}" HorizontalOptions="FillAndExpand" WidthRequest="40"/>
+                            <Entry Text="{Binding Path=typeDoors}" IsVisible="{Binding Path=isEditingE}" HorizontalOptions="FillAndExpand" WidthRequest="40"/>
+                            <Label Text="{Binding Path=colorDoors}" IsVisible="{Binding Path=isEditingL}" HorizontalOptions="FillAndExpand" WidthRequest="50"/>
+                            <Entry Text="{Binding Path=colorDoors}" IsVisible="{Binding Path=isEditingE}" HorizontalOptions="FillAndExpand" WidthRequest="50"/>
+                            <ImageButton Source="edit.png" ClassId="Button1" IsVisible="{Binding Path=isEditingL}" Clicked="OnImageButtonClicked" CommandParameter="{Binding .}" WidthRequest="30" HeightRequest="30" />
+                            <ImageButton Source="cross.png" ClassId="Button2" IsVisible="{Binding Path=isEditingL}" Clicked="OnImageButtonClicked" CommandParameter="{Binding .}" WidthRequest="30" HeightRequest="30" />
+                            <ImageButton Source="checked.png" ClassId="Button3" IsVisible="{Binding Path=isEditingE}" Clicked="OnImageButtonClicked" CommandParameter="{Binding .}" WidthRequest="30" HeightRequest="30"/>
+                        </HorizontalStackLayout >
+                    </ViewCell>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+        
+        <Button Text="Confirm" 
+                VerticalOptions="End" 
+                Clicked="ConfirmCommand" BackgroundColor="#65BAA9" TextColor="#C5FCEF"/>
+            <Button Text="Close" 
+                    VerticalOptions="End" 
+                    Clicked="OnCloseButtonClicked" BackgroundColor="#65BAA9" TextColor="#C5FCEF"/>
+           </StackLayout>
+    </ContentPage.Content>
+</ContentPage>
+
+

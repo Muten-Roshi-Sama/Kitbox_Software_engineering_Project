@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<Shell
+    x:Class="MauiApp1.AppShell"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:local="clr-namespace:MauiApp1"
+    xmlns:views="clr-namespace:MauiApp1"
+    Shell.FlyoutBehavior="Disabled"
+    Shell.TabBarBackgroundColor="#65BAA9"
+    Shell.TabBarTitleColor="#4D8075"
+    Shell.TabBarUnselectedColor="Black"
+    Shell.TabBarForegroundColor="White"
+    Title="MauiApp1">
+    
+
+    <TabBar>
+        <ShellContent
+            ContentTemplate="{DataTemplate views:Compose}"
+            Icon="{OnPlatform 'compose.png', iOS='compose.png', MacCatalyst='compose.png'}" />
+        
+        <ShellContent
+            ContentTemplate="{DataTemplate views:Admin}"
+            Icon="{OnPlatform 'admin.png', iOS='admin.png', MacCatalyst='admin.png'}" />
+        <ShellContent
+            ContentTemplate="{DataTemplate views:Help}"
+            Icon="{OnPlatform 'help.png', iOS='help.png', MacCatalyst='help.png'}" />
+        
+
+    </TabBar>
+    
+</Shell>
