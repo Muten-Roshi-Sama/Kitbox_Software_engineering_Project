@@ -36,6 +36,8 @@ public partial class SupplierOrderView : ContentPage
                 break;
             case "deleteBtn":
                 this.componentsList.Remove(component);
+                OrderListView.ItemsSource = null;
+                OrderListView.ItemsSource = componentsList;
                 break;
             default:break;
         }
