@@ -67,11 +67,9 @@ public partial class Manager : ContentPage,INotifyPropertyChanged
         }
     }
 
-    async void OnAddLineButtonClicked(object sender, EventArgs e)
-{
-    SimplePopup popup = new SimplePopup();
-    try
-    {
+    async void OnAddLineButtonClicked(object sender, EventArgs e){
+        SimplePopup popup = new SimplePopup();
+        try{
         Component result = (Component)await this.ShowPopupAsync(popup, CancellationToken.None);
         this.connection.addComponent(result);
         this.components.Add(result);
@@ -79,14 +77,12 @@ public partial class Manager : ContentPage,INotifyPropertyChanged
         MyListView.ItemsSource = components;
         // Information log
         Log.Information("Component added successfully");
-    }
-    catch (Exception ex)
-    {
+        }catch (Exception ex){
         // Error log
         Log.Error(ex, "Error inserting component");
         await DisplayAlert("Error", "Failed to add the component. Please try again.", "OK");
+        }
     }
-}
 
 
     void FiltreLabelClicked(object sender, EventArgs e){
