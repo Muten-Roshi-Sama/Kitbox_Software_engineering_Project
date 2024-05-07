@@ -8,6 +8,7 @@ using System.Windows.Markup;
 using aaa;
 using CommunityToolkit.Maui.Views;
 using System.ComponentModel;
+using Serilog;
 
 namespace MauiApp1;
 
@@ -66,19 +67,26 @@ public partial class Manager : ContentPage,INotifyPropertyChanged
         }
     }
 
-    async void OnAddLineButtonClicked(object sender, EventArgs e){
-        SimplePopup popup = new SimplePopup();
-        //this.ShowPopup(new SimplePopup());
-        try{
-            Component result = (Component) await this.ShowPopupAsync(popup, CancellationToken.None);
-            this.connection.addComponent(result);
-            this.components.Add(result);
-            MyListView.ItemsSource = null;
-            MyListView.ItemsSource = components;
-        }catch(Exception ex){
-            Console.WriteLine($"Erreur lors de l'insertion : {ex.Message}");
-        }
+    async void OnAddLineButtonClicked(object sender, EventArgs e)
+{
+    SimplePopup popup = new SimplePopup();
+    try
+    {
+        Component result = (Component)await this.ShowPopupAsync(popup, CancellationToken.None);
+        this.connection.addComponent(result);
+        this.components.Add(result);
+        MyListView.ItemsSource = null;
+        MyListView.ItemsSource = components;
+        // Information log
+        Log.Information("Component added successfully");
     }
+    catch (Exception ex)
+    {
+        // Error log
+        Log.Error(ex, "Error inserting component");
+        await DisplayAlert("Error", "Failed to add the component. Please try again.", "OK");
+    }
+}
 
 
     void FiltreLabelClicked(object sender, EventArgs e){
