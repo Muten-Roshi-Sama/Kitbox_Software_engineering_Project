@@ -1,0 +1,45 @@
+2024-05-07 02:56:03.367 +02:00 [ERR] Error inserting component
+System.NullReferenceException: Object reference not set to an instance of an object.
+   at DBConnection.addComponent(Component compo) in C:\Kitbox_Software_engineering_Project\MauiAp 2\MauiApp1\MauiApp1\DBConnection.cs:line 125
+   at MauiApp1.Manager.OnAddLineButtonClicked(Object sender, EventArgs e) in C:\Kitbox_Software_engineering_Project\MauiAp 2\MauiApp1\MauiApp1\Manager.xaml.cs:line 74
+2024-05-07 02:56:10.766 +02:00 [ERR] Error inserting component
+System.NullReferenceException: Object reference not set to an instance of an object.
+   at DBConnection.addComponent(Component compo) in C:\Kitbox_Software_engineering_Project\MauiAp 2\MauiApp1\MauiApp1\DBConnection.cs:line 125
+   at MauiApp1.Manager.OnAddLineButtonClicked(Object sender, EventArgs e) in C:\Kitbox_Software_engineering_Project\MauiAp 2\MauiApp1\MauiApp1\Manager.xaml.cs:line 74
+2024-05-07 02:59:06.185 +02:00 [WRN] '' cannot be converted to type 'System.Int32'
+2024-05-07 02:59:15.892 +02:00 [WRN] '' cannot be converted to type 'System.Int32'
+2024-05-07 02:59:25.739 +02:00 [INF] Component added successfully
+2024-05-07 02:59:59.955 +02:00 [WRN] 'idSupplier' property not found on 'Component', target property: 'Microsoft.Maui.Controls.Label.Text'
+2024-05-07 02:59:59.955 +02:00 [WRN] 'priceSupplier' property not found on 'Component', target property: 'Microsoft.Maui.Controls.Label.Text'
+2024-05-07 02:59:59.955 +02:00 [WRN] 'isSuppEditingL' property not found on 'Component', target property: 'Microsoft.Maui.Controls.Label.IsVisible'
+2024-05-07 02:59:59.955 +02:00 [WRN] 'priceSupplier' property not found on 'Component', target property: 'Microsoft.Maui.Controls.Entry.Text'
+2024-05-07 02:59:59.955 +02:00 [WRN] 'isSuppEditingE' property not found on 'Component', target property: 'Microsoft.Maui.Controls.Entry.IsVisible'
+2024-05-07 02:59:59.955 +02:00 [WRN] 'delaySupplier' property not found on 'Component', target property: 'Microsoft.Maui.Controls.Label.Text'
+2024-05-07 02:59:59.955 +02:00 [WRN] 'isSuppEditingL' property not found on 'Component', target property: 'Microsoft.Maui.Controls.Label.IsVisible'
+2024-05-07 02:59:59.955 +02:00 [WRN] 'delaySupplier' property not found on 'Component', target property: 'Microsoft.Maui.Controls.Entry.Text'
+2024-05-07 02:59:59.955 +02:00 [WRN] 'isSuppEditingE' property not found on 'Component', target property: 'Microsoft.Maui.Controls.Entry.IsVisible'
+2024-05-07 02:59:59.955 +02:00 [WRN] 'stockAvailable' property not found on 'Component', target property: 'Microsoft.Maui.Controls.Label.Text'
+2024-05-07 02:59:59.955 +02:00 [WRN] 'isSuppEditingL' property not found on 'Component', target property: 'Microsoft.Maui.Controls.Label.IsVisible'
+2024-05-07 02:59:59.955 +02:00 [WRN] 'stockAvailable' property not found on 'Component', target property: 'Microsoft.Maui.Controls.Entry.Text'
+2024-05-07 02:59:59.955 +02:00 [WRN] 'isSuppEditingE' property not found on 'Component', target property: 'Microsoft.Maui.Controls.Entry.IsVisible'
+2024-05-07 02:59:59.955 +02:00 [WRN] 'stockOrdered' property not found on 'Component', target property: 'Microsoft.Maui.Controls.Label.Text'
+2024-05-07 02:59:59.955 +02:00 [WRN] 'stockReserved' property not found on 'Component', target property: 'Microsoft.Maui.Controls.Label.Text'
+2024-05-07 02:59:59.955 +02:00 [WRN] 'isSuppEditingL' property not found on 'Component', target property: 'Microsoft.Maui.Controls.Label.IsVisible'
+2024-05-07 02:59:59.956 +02:00 [WRN] 'stockReserved' property not found on 'Component', target property: 'Microsoft.Maui.Controls.Entry.Text'
+2024-05-07 02:59:59.956 +02:00 [WRN] 'isSuppEditingE' property not found on 'Component', target property: 'Microsoft.Maui.Controls.Entry.IsVisible'
+2024-05-07 02:59:59.956 +02:00 [WRN] 'minimumStock' property not found on 'Component', target property: 'Microsoft.Maui.Controls.Label.Text'
+2024-05-07 02:59:59.956 +02:00 [WRN] 'isSuppEditingL' property not found on 'Component', target property: 'Microsoft.Maui.Controls.Label.IsVisible'
+2024-05-07 02:59:59.956 +02:00 [WRN] 'minimumStock' property not found on 'Component', target property: 'Microsoft.Maui.Controls.Entry.Text'
+2024-05-07 02:59:59.956 +02:00 [WRN] 'isSuppEditingE' property not found on 'Component', target property: 'Microsoft.Maui.Controls.Entry.IsVisible'
+2024-05-07 02:59:59.956 +02:00 [WRN] 'isSuppEditingL' property not found on 'Component', target property: 'Microsoft.Maui.Controls.Image.IsVisible'
+2024-05-07 02:59:59.956 +02:00 [WRN] 'isSuppEditingE' property not found on 'Component', target property: 'Microsoft.Maui.Controls.Image.IsVisible'
+2024-05-07 02:59:59.956 +02:00 [WRN] 'showOrderBtn' property not found on 'Component', target property: 'Microsoft.Maui.Controls.Button.IsVisible'
+2024-05-07 02:59:59.956 +02:00 [WRN] 'showRemoveOrderBtn' property not found on 'Component', target property: 'Microsoft.Maui.Controls.Button.IsVisible'
+2024-05-07 03:00:21.368 +02:00 [ERR] Error inserting component
+System.NullReferenceException: Object reference not set to an instance of an object.
+   at DBConnection.addComponent(Component compo) in C:\Kitbox_Software_engineering_Project\MauiAp 2\MauiApp1\MauiApp1\DBConnection.cs:line 125
+   at MauiApp1.Manager.OnAddLineButtonClicked(Object sender, EventArgs e) in C:\Kitbox_Software_engineering_Project\MauiAp 2\MauiApp1\MauiApp1\Manager.xaml.cs:line 74
+2024-05-07 03:01:06.781 +02:00 [ERR] Error inserting component
+System.NullReferenceException: Object reference not set to an instance of an object.
+   at DBConnection.addComponent(Component compo) in C:\Kitbox_Software_engineering_Project\MauiAp 2\MauiApp1\MauiApp1\DBConnection.cs:line 125
+   at MauiApp1.Manager.OnAddLineButtonClicked(Object sender, EventArgs e) in C:\Kitbox_Software_engineering_Project\MauiAp 2\MauiApp1\MauiApp1\Manager.xaml.cs:line 74
