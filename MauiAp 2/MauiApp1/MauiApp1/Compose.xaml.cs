@@ -378,7 +378,8 @@ public partial class Compose : ContentPage
             
                 if (Casiers.Count == 0)
                 {
-                    // Display an alert instead of navigating to a new page
+                    Page menu1 = new Basket();
+                    Navigation.PushModalAsync(menu1); // Display an alert instead of navigating to a new page
                     DisplayAlert("Empty basket", "Your basket is currently empty. Add items before viewing the basket", "OK");
                 }
                 else

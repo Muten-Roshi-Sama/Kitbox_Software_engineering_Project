@@ -167,6 +167,11 @@ public partial class Basket : ContentPage
                     elements.Remove(itemToDelete);
                     
                     compose.setCasiers(int.Parse(itemToDelete.Casier), int.Parse(itemToDelete.boxe));
+
+                    if(!elements.Any())
+                    {
+                        await DisplayAlert("Panier vide", "Votre panier est maintenant vide.", "OK");
+                    }
                 }
                 break;
         }
