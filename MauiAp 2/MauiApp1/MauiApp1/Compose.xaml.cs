@@ -94,20 +94,7 @@ public partial class Compose : ContentPage
     }
 
 
-    public void OnPicker1SelectedIndexChanged(object sender, EventArgs e)
-    {
-        var picker2 = sender as Picker;
-        if (picker2.SelectedItem == "No")
-        {
-            choixVerre.IsEnabled = false;
-            choiceColor.IsEnabled = false;
-        }
-        else
-        {
-            choixVerre.IsEnabled = true;
-            choiceColor.IsEnabled = true;
-        }
-    }    
+
         private void DisplayBoxes(object sender, EventArgs e)
         {
             int space = 0;
@@ -126,7 +113,7 @@ public partial class Compose : ContentPage
                 Colors2Picker.Background = new Microsoft.Maui.Graphics.Color(1.0f, 0.0f, 0.0f);
 
                 DisplayAlert("Selection required", "Please select all the necessary options before configuring the boxes", "OK");
-                return; // Sortir de la méthode si toutes les sélections n'ont pas été faites
+                return; 
 
                 
             }
@@ -163,11 +150,27 @@ public partial class Compose : ContentPage
                     choixPorte.Items.Add("No");
                     DoorsBoxes.Add(choixPorte);
 
+                    choixPorte.SelectedIndexChanged += (s, args) =>
+                    {
+                        var picker = (Picker)s;
+                        int index = DoorsBoxes.IndexOf(picker); 
+                        if (picker.SelectedIndex == 1) // Si "No" est sélectionné
+                        {
+                            TypeDoors[index].IsEnabled = false; // Désactiver le Picker de verre correspondant
+                            ColorsDoors[index].IsEnabled = false; 
+                        }
+                        else
+                        {
+                            TypeDoors[index].IsEnabled = true; // Activer le Picker de verre correspondant
+                            ColorsDoors[index].IsEnabled = true; 
+                        }
+                    };
+
                     choixVerre = new Picker();
                     choixVerre.Items.Add("Yes");
                     choixVerre.Items.Add("No");
                     TypeDoors.Add(choixVerre);
-                    choixPorte.SelectedIndexChanged += OnPicker1SelectedIndexChanged; 
+                    
 
                     Label color = new Label();
                     labels.Add(color);
