@@ -264,77 +264,91 @@ public partial class Compose : ContentPage
 
         private async void AddToBasket(object sender, EventArgs e)
         {
-            try
+            List<String> ReceiptContent = new List<string>();
+            String Titre = "Command number 1234";
+            ReceiptContent.Add(Titre);
+            /*for (int i = 0; i < int.Parse(AddPartPicker2.SelectedItem.ToString()); i++)
             {
-                List<String> ReceiptContent = new List<string>();
-                String Titre = "Command number 1234";
-                ReceiptContent.Add(Titre);
+                String Boxe = "Box "+ i.ToString();
+                String Doors= "Doors: "+DoorsBoxes[i].SelectedItem.ToString();
+                String TypeDoor= "Type of the door: "+TypeDoors[i].SelectedItem.ToString(); 
+                String ColorDoor= "Colors of the door: "+ColorsDoors[i].SelectedItem.ToString();
+                String HeightDoor= "Height of the door: "+HeightBoxes[i].SelectedItem.ToString(); 
+                ReceiptContent.Add(Boxe);
+                ReceiptContent.Add(Doors);
+                ReceiptContent.Add(TypeDoor);
+                ReceiptContent.Add(ColorDoor);
+                ReceiptContent.Add(HeightDoor);
+            }*/
 
-                List<Box> boxes = new List<Box>();
-                int numberOfBoxes = int.Parse(AddPartPicker2.SelectedItem?.ToString() ?? "0");
-
-                for (int i = 0; i < numberOfBoxes; i++)
+            List<Box> _boxxes = new List<Box>();
+            Box tBox= new Box(); 
+            for (int i = 0; i < int.Parse(AddPartPicker2.SelectedItem.ToString()); i++)
+            {
+                if (DoorsBoxes[i].SelectedItem.ToString() == "Yes")
                 {
-                    string height = HeightBoxes[i].SelectedItem?.ToString() ?? "/";
-                    string color = ColorsDoors[i].SelectedItem?.ToString() ?? "/";
-                    string type = TypeDoors[i].SelectedItem?.ToString() ?? "/";
-                    bool hasDoors = DoorsBoxes[i].SelectedItem?.ToString() == "Yes";
-
-                    Box box = new Box(height, color, type, hasDoors);
-                    boxes.Add(box);
+                    tBox = new Box(HeightBoxes[i].SelectedItem.ToString(), ColorsDoors[i].SelectedItem.ToString(),
+                    TypeDoors[i].SelectedItem.ToString(), true);
                 }
-
-                Casier cas = new Casier(AddPartPicker.SelectedItem?.ToString(), AddPartPicker1.SelectedItem?.ToString(), 
-                    ColorsPicker.SelectedItem?.ToString(), AddPartPicker2.SelectedItem?.ToString(), boxes, Colors2Picker.SelectedItem?.ToString());
-
-                Casiers.Add(cas);
-                WriteFile("OK");
-
-                // Clear UI elements after adding to basket
-                ClearUIElements();
-
-                await DisplayAlert("Success", "Cabinet added. Consult your basket.", "OK");
+                else
+                { 
+                    tBox = new Box(HeightBoxes[i].SelectedItem.ToString(), "/",
+                        "/", false);
+                }
+                
+                _boxxes.Add(tBox);
             }
-            catch (Exception ex)
+            
+            
+
+            Casier cas = new Casier(AddPartPicker.SelectedItem.ToString(), AddPartPicker1.SelectedItem.ToString(), 
+                ColorsPicker.SelectedItem.ToString(), AddPartPicker2.SelectedItem.ToString(), _boxxes,Colors2Picker.SelectedItem.ToString()); 
+
+
+            Casiers.Add(cas);
+            WriteFile("OK"); 
+            for (int i = 0; i < HeightBoxes.Count; i++)
             {
-                await DisplayAlert("Error", $"Failed to add items to the basket: {ex.Message}", "OK");
+                
+                MyGrid.Children.Remove(HeightBoxes[i]);
+                MyGrid.Children.Remove(TypeDoors[i]);
+                MyGrid.Children.Remove(DoorsBoxes[i]);
+                MyGrid.Children.Remove(ColorsDoors[i]);
+                
+        
+                
             }
-        }
-
-        private void ClearUIElements()
-        {
-            foreach (var item in HeightBoxes)
-                MyGrid.Children.Remove(item);
-            foreach (var item in TypeDoors)
-                MyGrid.Children.Remove(item);
-            foreach (var item in DoorsBoxes)
-                MyGrid.Children.Remove(item);
-            foreach (var item in ColorsDoors)
-                MyGrid.Children.Remove(item);
-
             HeightBoxes.Clear();
             TypeDoors.Clear();
             DoorsBoxes.Clear();
             ColorsDoors.Clear();
-
-            if (confirm.Any())
-                MyGrid.Children.Remove(confirm.First());
+            MyGrid.Children.Remove(confirm[0]);
             confirm.Clear();
-
-            foreach (var item in labels)
-                MyGrid.Children.Remove(item);
-            labels.Clear();
-
-            ResetPickers();
-        }
-
-        private void ResetPickers()
-        {
+            
+            for (int i = 0; i < labels.Count; i++)
+            {
+                
+                MyGrid.Children.Remove(labels[i]);
+            }
+            
+            //Remettre a jour les pickers
+            AddPartPicker.ItemsSource = null;
+            AddPartPicker1.ItemsSource = null;
+            AddPartPicker2.ItemsSource = null;
+            ColorsPicker.ItemsSource = null;
+            Colors2Picker.ItemsSource = null; 
+            
             AddPartPicker.ItemsSource = largeur;
             AddPartPicker1.ItemsSource = profondeur;
             AddPartPicker2.ItemsSource = nombreBox;
             ColorsPicker.ItemsSource = colors;
-            Colors2Picker.ItemsSource = colors;
+            Colors2Picker.ItemsSource = colors; 
+
+
+            await DisplayAlert("Basket","Cabinet added. Consult your basket.", "OK");
+
+
+
         }
 
         public void giveBasket(object sender, EventArgs e)
