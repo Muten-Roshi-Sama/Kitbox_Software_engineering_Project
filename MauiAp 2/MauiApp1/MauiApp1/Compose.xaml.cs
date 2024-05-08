@@ -112,13 +112,31 @@ public partial class Compose : ContentPage
         {
             int space = 0;
             int rowDecale = 0;
-            if (AddPartPicker2.SelectedItem == null)
+            
+            if (AddPartPicker.SelectedItem == null || 
+                AddPartPicker1.SelectedItem == null || 
+                AddPartPicker2.SelectedItem == null || 
+                ColorsPicker.SelectedItem == null || 
+                Colors2Picker.SelectedItem == null)
             {
+                AddPartPicker.BackgroundColor = new Microsoft.Maui.Graphics.Color(1.0f, 0.0f, 0.0f);
+                AddPartPicker1.BackgroundColor = new Microsoft.Maui.Graphics.Color(1.0f, 0.0f, 0.0f);
                 AddPartPicker2.BackgroundColor = new Microsoft.Maui.Graphics.Color(1.0f, 0.0f, 0.0f);
+                ColorsPicker.Background = new Microsoft.Maui.Graphics.Color(1.0f, 0.0f, 0.0f);
+                Colors2Picker.Background = new Microsoft.Maui.Graphics.Color(1.0f, 0.0f, 0.0f);
+
+                DisplayAlert("Selection required", "Please select all the necessary options before configuring the boxes", "OK");
+                return; // Sortir de la méthode si toutes les sélections n'ont pas été faites
+
+                
             }
             else
             {
+                AddPartPicker.BackgroundColor = new Microsoft.Maui.Graphics.Color(1.0f, 1.0f, 1.0f);
+                AddPartPicker1.BackgroundColor = new Microsoft.Maui.Graphics.Color(1.0f, 1.0f, 1.0f);
                 AddPartPicker2.BackgroundColor = new Microsoft.Maui.Graphics.Color(1.0f, 1.0f, 1.0f);
+                ColorsPicker.Background = new Microsoft.Maui.Graphics.Color(1.0f, 1.0f, 1.0f);
+                Colors2Picker.Background = new Microsoft.Maui.Graphics.Color(1.0f, 1.0f, 1.0f);
                 
                 for (int i = 1; i <= int.Parse(AddPartPicker2.SelectedItem.ToString()); i++)
                 {
@@ -351,14 +369,14 @@ public partial class Compose : ContentPage
 
         }
 
-        public async void giveBasket(object sender, EventArgs e)
+        public  void giveBasket(object sender, EventArgs e)
         {
             try{
             
                 if (Casiers.Count == 0)
                 {
                     // Display an alert instead of navigating to a new page
-                    await DisplayAlert("Empty basket", "Your basket is currently empty. Add items before viewing the basket", "OK");
+                    DisplayAlert("Empty basket", "Your basket is currently empty. Add items before viewing the basket", "OK");
                 }
                 else
                 {
@@ -368,7 +386,7 @@ public partial class Compose : ContentPage
             }   
             catch (Exception ex)
             {
-                 await DisplayAlert("Erreur", "Un problème est survenu: " + ex.Message, "OK");
+                 DisplayAlert("Erreur", "Un problème est survenu: " + ex.Message, "OK");
 
             }
         }
