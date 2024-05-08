@@ -351,20 +351,26 @@ public partial class Compose : ContentPage
 
         }
 
-        public void giveBasket(object sender, EventArgs e)
+        public async void giveBasket(object sender, EventArgs e)
         {
+            try{
             
-            if (Casiers.Count == 0)
+                if (Casiers.Count == 0)
+                {
+                    // Display an alert instead of navigating to a new page
+                    await DisplayAlert("Empty basket", "Your basket is currently empty. Add items before viewing the basket", "OK");
+                }
+                else
+                {
+                    Page menu = new Basket(Casiers,this);
+                    Navigation.PushModalAsync(menu); 
+                }
+            }   
+            catch (Exception ex)
             {
-                Page menu1 = new Basket();
-                Navigation.PushModalAsync(menu1);
+                 await DisplayAlert("Erreur", "Un problème est survenu: " + ex.Message, "OK");
+
             }
-            else
-            {
-                Page menu = new Basket(Casiers,this);
-                Navigation.PushModalAsync(menu); 
-            }
-                
         }
         
         static void WriteFile(string text)
