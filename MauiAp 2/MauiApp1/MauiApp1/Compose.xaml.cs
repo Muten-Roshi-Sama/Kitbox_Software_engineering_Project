@@ -321,27 +321,43 @@ public partial class Compose : ContentPage
 
             List<Box> _boxxes = new List<Box>();
             Box tBox= new Box(); 
+            
+
             for (int i = 0; i < int.Parse(AddPartPicker2.SelectedItem.ToString()); i++)
             {
-                if (DoorsBoxes[i].SelectedItem.ToString() == "Yes" && TypeDoors[i].SelectedItem.ToString()== "Yes")
+                string height = HeightBoxes[i].SelectedItem?.ToString() ?? "/";
+                string typeDoor = TypeDoors[i].SelectedItem?.ToString() ?? "/";
+                string color = "/"; // Défaut
+                bool hasDoors = DoorsBoxes[i].SelectedItem?.ToString() == "Yes";
+
+                // Vérifier d'abord si une sélection est nulle
+                if (DoorsBoxes[i].SelectedItem == null || HeightBoxes[i].SelectedItem == null)
                 {
-                    tBox = new Box(HeightBoxes[i].SelectedItem.ToString(), "/",
-                    TypeDoors[i].SelectedItem.ToString(), true);
+                    await DisplayAlert("Incomplete Selection", "Please complete all selections before adding to basket.", "OK");
+                    return; // Sort de la méthode si une sélection est nulle
+                }
+                
+
+                // Configuration en fonction du type de porte et du verre
+                if (hasDoors)
+                {
+                    if (typeDoor == "Yes") // Verre
+                    {
+                        color = "/"; // Pas de couleur si porte en verre
+                    }
+                    else // Porte normale
+                    {
+                        color = ColorsDoors[i].SelectedItem?.ToString(); // Récupère la couleur choisie
+                        if (string.IsNullOrWhiteSpace(color)) // Vérifie si la couleur n'est pas sélectionnée
+                        {
+                            await DisplayAlert("Incomplete Selection", "Please select a color for the door.", "OK");
+                            return; // Sort de la méthode si la couleur n'est pas validée
+                        }
+                    }
                 }
 
-                else if (DoorsBoxes[i].SelectedItem.ToString() == "Yes")
-                {
-                    tBox = new Box(HeightBoxes[i].SelectedItem.ToString(), ColorsDoors[i].SelectedItem.ToString(),
-                    TypeDoors[i].SelectedItem.ToString(), true);
-                }
-                
-                else
-                { 
-                    tBox = new Box(HeightBoxes[i].SelectedItem.ToString(), "/",
-                        "/", false);
-                }
-                
-                _boxxes.Add(tBox);
+                Box box = new Box(height, color, typeDoor, hasDoors);
+                _boxxes.Add(box);
             }
             
             
