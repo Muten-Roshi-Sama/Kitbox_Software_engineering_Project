@@ -166,10 +166,27 @@ public partial class Compose : ContentPage
                         }
                     };
 
+
+                    
+
                     choixVerre = new Picker();
                     choixVerre.Items.Add("Yes");
                     choixVerre.Items.Add("No");
                     TypeDoors.Add(choixVerre);
+
+                    choixVerre.SelectedIndexChanged += (s, args) =>
+                    {
+                        var picker = (Picker)s;
+                        int index = TypeDoors.IndexOf(picker);
+                        if (picker.SelectedIndex == 0)
+                        {
+                            ColorsDoors[index].IsEnabled = false; // Désactiver le choix de couleur si verre est "Yes"
+                        }
+                        else
+                        {
+                            ColorsDoors[index].IsEnabled = true;
+                        }           
+                    };
                     
 
                     Label color = new Label();
@@ -306,11 +323,18 @@ public partial class Compose : ContentPage
             Box tBox= new Box(); 
             for (int i = 0; i < int.Parse(AddPartPicker2.SelectedItem.ToString()); i++)
             {
-                if (DoorsBoxes[i].SelectedItem.ToString() == "Yes")
+                if (DoorsBoxes[i].SelectedItem.ToString() == "Yes" && TypeDoors[i].SelectedItem.ToString()== "Yes")
+                {
+                    tBox = new Box(HeightBoxes[i].SelectedItem.ToString(), "/",
+                    TypeDoors[i].SelectedItem.ToString(), true);
+                }
+
+                else if (DoorsBoxes[i].SelectedItem.ToString() == "Yes")
                 {
                     tBox = new Box(HeightBoxes[i].SelectedItem.ToString(), ColorsDoors[i].SelectedItem.ToString(),
                     TypeDoors[i].SelectedItem.ToString(), true);
                 }
+                
                 else
                 { 
                     tBox = new Box(HeightBoxes[i].SelectedItem.ToString(), "/",
