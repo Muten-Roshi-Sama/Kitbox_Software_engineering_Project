@@ -106,11 +106,11 @@ public partial class Compose : ContentPage
                 ColorsPicker.SelectedItem == null || 
                 Colors2Picker.SelectedItem == null)
             {
-                AddPartPicker.BackgroundColor = new Microsoft.Maui.Graphics.Color(1.0f, 0.0f, 0.0f);
-                AddPartPicker1.BackgroundColor = new Microsoft.Maui.Graphics.Color(1.0f, 0.0f, 0.0f);
-                AddPartPicker2.BackgroundColor = new Microsoft.Maui.Graphics.Color(1.0f, 0.0f, 0.0f);
-                ColorsPicker.Background = new Microsoft.Maui.Graphics.Color(1.0f, 0.0f, 0.0f);
-                Colors2Picker.Background = new Microsoft.Maui.Graphics.Color(1.0f, 0.0f, 0.0f);
+                AddPartPicker.BackgroundColor = new Microsoft.Maui.Graphics.Color(0.7f, 0.7f, 0.7f);
+                AddPartPicker1.BackgroundColor = new Microsoft.Maui.Graphics.Color(0.7f, 0.7f, 0.7f);
+                AddPartPicker2.BackgroundColor = new Microsoft.Maui.Graphics.Color(0.7f, 0.7f, 0.7f);
+                ColorsPicker.Background = new Microsoft.Maui.Graphics.Color(0.7f, 0.7f, 0.7f);
+                Colors2Picker.Background = new Microsoft.Maui.Graphics.Color(0.7f, 0.7f, 0.7f);
 
                 DisplayAlert("Selection required", "Please select all the necessary options before configuring the boxes", "OK");
                 return; 
