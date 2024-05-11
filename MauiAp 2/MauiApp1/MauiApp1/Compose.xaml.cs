@@ -157,12 +157,14 @@ public partial class Compose : ContentPage
                         if (picker.SelectedIndex == 1) // Si "No" est sélectionné
                         {
                             TypeDoors[index].IsEnabled = false; // Désactiver le Picker de verre correspondant
-                            ColorsDoors[index].IsEnabled = false; 
+                            ColorsDoors[index].IsEnabled = false; //Désactiver le Picker de couleur
+                            TypeDoors[index].SelectedIndex = -1; // reinitialise le choix
+                            ColorsDoors[index].SelectedIndex = -1;
                         }
                         else
                         {
                             TypeDoors[index].IsEnabled = true; // Activer le Picker de verre correspondant
-                            ColorsDoors[index].IsEnabled = true; 
+                            ColorsDoors[index].IsEnabled = TypeDoors[index].SelectedItem?.ToString() != "Yes"; // Activer si verre n'est pas "Yes"
                         }
                     };
 
@@ -181,10 +183,11 @@ public partial class Compose : ContentPage
                         if (picker.SelectedIndex == 0)
                         {
                             ColorsDoors[index].IsEnabled = false; // Désactiver le choix de couleur si verre est "Yes"
+                            ColorsDoors[index].SelectedIndex = -1; // Réinitialise le choix 
                         }
                         else
                         {
-                            ColorsDoors[index].IsEnabled = true;
+                           ColorsDoors[index].IsEnabled = DoorsBoxes[index].SelectedItem?.ToString() == "Yes";  // Activer le choix de couleur seulement si la porte est à "Yes"
                         }           
                     };
                     
