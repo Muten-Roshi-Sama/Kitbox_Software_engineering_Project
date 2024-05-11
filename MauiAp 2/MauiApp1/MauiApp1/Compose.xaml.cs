@@ -345,6 +345,11 @@ public partial class Compose : ContentPage
                     {
                         color = "/"; // Pas de couleur si porte en verre
                     }
+                    else if(typeDoor == "/")
+                    {
+                        await DisplayAlert("Incomplete Selection", "Please select a type of door.", "OK");
+                        return; // Sort de la méthode si le type de porte n'est pas validé
+                    }
                     else // Porte normale
                     {
                         color = ColorsDoors[i].SelectedItem?.ToString(); // Récupère la couleur choisie
@@ -420,7 +425,6 @@ public partial class Compose : ContentPage
                 {
                     Page menu1 = new Basket();
                     Navigation.PushModalAsync(menu1); // Display an alert instead of navigating to a new page
-                    DisplayAlert("Empty basket", "Your basket is currently empty. Add items before viewing the basket", "OK");
                 }
                 else
                 {
