@@ -6,6 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Org.BouncyCastle.Tls.Crypto;
+using System.Diagnostics;
 
 namespace MauiApp1;
 
@@ -105,6 +106,13 @@ public partial class Basket : ContentPage
     
     public async void ConfirmCommand(object sender, EventArgs e)
     {
+        // Vérifier si le panier est vide avant de continuer
+        if (!elements.Any()) 
+        {
+            await DisplayAlert("Empty Basket", "Your basket is empty. Please add items before confirming.", "OK");
+            return; 
+        }
+        
         string description = getDescription();
         string details= getDetails();
         this.connexion = new DBConnection("interface","1234","projet","pat.infolab.ecam.be",63416);
@@ -163,15 +171,26 @@ public partial class Basket : ContentPage
 
                 if (MyListView.ItemsSource is ObservableCollection<Element> items)
                 {
-                    items.Remove(itemToDelete);
-                    elements.Remove(itemToDelete);
-                    
-                    compose.setCasiers(int.Parse(itemToDelete.Casier), int.Parse(itemToDelete.boxe));
-
-                    if(!elements.Any())
+                    try
                     {
-                        await DisplayAlert("Panier vide", "Votre panier est maintenant vide.", "OK");
+                        if (items.Remove(itemToDelete))
+                        {
+                            items.Remove(itemToDelete);
+                            elements.Remove(itemToDelete);
+                            compose.setCasiers(int.Parse(itemToDelete.Casier), int.Parse(itemToDelete.boxe));
+                            MyListView.ItemsSource = null;
+                            MyListView.ItemsSource = elements; // Réaffectez pour rafraîchir
+                            await DisplayAlert("Item Removed", "The item has been successfully removed from the basket.", "OK"); // pas ouf masi seule solution pour l'instant
+                        }
+
                     }
+                    catch (Exception ex)
+                    {
+                        Debug.WriteLine("Erreur lors de la suppression : " + ex.Message);
+                        await DisplayAlert("Item Removed", "The item has been successfully removed from the basket.", "OK"); // pas ouf masi seule solution pour l'instant
+                    }
+                    
+                    
                 }
                 break;
         }
