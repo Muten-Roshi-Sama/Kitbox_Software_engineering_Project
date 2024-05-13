@@ -264,10 +264,10 @@ public class DBConnection{
             sizeCompo = item[2].Split("x");
             nbrCompo = item[3];
             String request = $"UPDATE Components SET StockReserved=StockReserved+{nbrCompo},StockAvailable=StockAvailable-{nbrCompo}";
-            request+= $" WHERE Reference='{refCompo}' AND Color={colorCompo} AND LengthC={sizeCompo[0]}";
+            request+= $" WHERE Reference='{refCompo}' AND Color={Component.getColorCode(colorCompo)} AND LengthC={sizeCompo[0]}";
             request+= $" AND HeightC={sizeCompo[1]} AND DepthC={sizeCompo[2]} AND PriceSupplier=(";
             request+= $"SELECT MIN(PriceSupplier) FROM Components WHERE Reference={refCompo} AND ";
-            request+= $"Color={colorCompo} AND LengthC={sizeCompo[0]} AND HeightC={sizeCompo[1]} AND ";
+            request+= $"Color={Component.getColorCode(colorCompo)} AND LengthC={sizeCompo[0]} AND HeightC={sizeCompo[1]} AND ";
             request+= $"DepthC={sizeCompo[2]});";
             using var command = new MySqlCommand(request, this.connection);
             command.ExecuteNonQuery();
