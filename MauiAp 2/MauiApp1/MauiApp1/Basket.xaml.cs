@@ -106,7 +106,7 @@ public partial class Basket : ContentPage
     public async void ConfirmCommand(object sender, EventArgs e)
     {
         string description = getDescription();
-        string details= getDetails();
+        (string details, string commandDB)= getDetails();
         this.connexion = new DBConnection("interface","1234","projet","pat.infolab.ecam.be",63416);
         List<Command> c =connexion.getAllCommand();
         DateTime currentdate= DateTime.Now;
@@ -206,15 +206,16 @@ public String getNbArmoir()
     
 
 
-    public String getDetails()
+    public (String,String) getDetails()
     {
         String details = "";
+        String commandDB = "";        //pour chaque commande: Reference:color:size:nbre;
 
         for (int i = 0; i < casier.Count(); i++)
         {
             details += "Locker " + i.ToString() +": \n";
             for (int j = 0; j < casier[i]._boxes.Count(); j++)
-            { 
+            {
 
                 String color = casier[i].color;
                 String height = casier[i]._boxes[j].getHeight();
@@ -224,16 +225,30 @@ public String getNbArmoir()
 
                 details += "Boxe " + j.ToString() + ": \n";
                 details +=" 4 Vertical Batten, " +color +", "+ height +"\n" ;
+                commandDB += "Vertical batten:"+color+":0x"+height+"x0:4;";
+
                 details +=" 2 Front crossbars, " +color +", "+ length +" \n" ;
+                commandDB += "Crossbar front:"+color+":"+length+"x0x0:2;";
+
                 details +=" 2 Back crossbars, "  +color +", "+ length +" \n" ;
+                commandDB += "Crossbar back:"+color+":"+length+"x0x0:2;";
+
                 details +=" 4 Side crossbars, "  +color +", "+ depth +"\n" ;
+                commandDB += "Crossbar left or right:"+color+":0x0x"+depth+":4;";
+
                 details +=" 2 Horizontal panels, " +color +", "+ depth + "x" + length +"\n";
+                commandDB += "Panel horizontal:"+color+":"+length+"x0x"+depth+":2;";
+
                 details +=" 2 Side panels, " +color +", "+ depth + "X" + height +"\n" ;
+                commandDB += "Panel left or right:"+color+":0x"+height+"x"+depth+":2;";
+
                 details +=" 1 Back panels, " +color +", "+ length + "X" + height +" \n" ;
+                commandDB += "Panel back:"+color+":"+length+"x"+height+"x0:1;";
 
                 if (casier[i]._boxes[j].getDoors())
                 {
                     details +=" 1 Doors, " +color +", "+ length + "X" + height +" \n" ;
+                    commandDB += "Door:"+color+":"+length+"x"+height+"x0:1;";
                 }
 
                 details += "\n";
@@ -242,6 +257,6 @@ public String getNbArmoir()
             }
         }
 
-        return details;
+        return (details,commandDB);
     }
 }

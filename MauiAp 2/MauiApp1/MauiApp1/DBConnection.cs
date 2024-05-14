@@ -245,4 +245,32 @@ public class DBConnection{
         
     }
 
+    public void reserverCustomerCompo(String commandDB){
+        String[] componentProv = commandDB.Split(";");
+        List<String[]> listCompo = new List<string[]>();
+
+        for (int i = 0; i < componentProv.Length; i++)
+        {
+            listCompo.Add(componentProv[i].Split(":"));
+        }
+        String refCompo = "";
+        String colorCompo = "";
+        String[]sizeCompo;
+        String nbrCompo = "";
+        foreach (String[] item in listCompo)
+        {
+            refCompo = item[0];
+            colorCompo = item[1];
+            sizeCompo = item[2].Split("x");
+            nbrCompo = item[3];
+            String request = $"UPDATE Components SET StockReserved=StockReserved+{nbrCompo},StockAvailable=StockAvailable-{nbrCompo}";
+            request+= $" WHERE Reference='{refCompo}' AND Color={Component.getColorCode(colorCompo)} AND LengthC={sizeCompo[0]}";
+            request+= $" AND HeightC={sizeCompo[1]} AND DepthC={sizeCompo[2]} AND PriceSupplier=(";
+            request+= $"SELECT MIN(PriceSupplier) FROM Components WHERE Reference={refCompo} AND ";
+            request+= $"Color={Component.getColorCode(colorCompo)} AND LengthC={sizeCompo[0]} AND HeightC={sizeCompo[1]} AND ";
+            request+= $"DepthC={sizeCompo[2]});";
+            using var command = new MySqlCommand(request, this.connection);
+            command.ExecuteNonQuery();
+        }
+    }
 }
