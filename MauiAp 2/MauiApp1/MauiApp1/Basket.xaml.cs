@@ -123,8 +123,15 @@ public partial class Basket : ContentPage
         List<Command> c =connexion.getAllCommand();
         DateTime currentdate= DateTime.Now;
         String reference =currentdate.Day+currentdate.Month+currentdate.Year+ "_"+ (c.Count + 1 ).ToString();
-        connexion.reserverCustomerCompo(commandDB);
-        connexion.addComand(new Command(1, reference, " ", description, details,false));
+        List<(String,int, int)> listCommandDB = connexion.reserverCustomerCompo(commandDB);
+        Console.WriteLine(listCommandDB.Count());
+        String Struct="";
+        foreach (var item in listCommandDB)
+        {
+            Struct += $"{item.Item1}:{item.Item2}:{item.Item3};";
+        }
+        Console.WriteLine(Struct);
+        connexion.addComand(new Command(1, reference, " ", description, details,false),Struct);
         await DisplayAlert("Order confirmed", "Order confirmed with great succes ! ", "Proceed to payment");
         LaunchAppShell();
         //this.connexion.disconnection();
@@ -249,13 +256,13 @@ public String getNbArmoir()
                 commandDB += "Vertical batten:No:0x"+height+"x0:4;";
 
                 details +=" 2 Front crossbars, " +color +", "+ length +" \n" ;
-                commandDB += "Crossbar front:"+color+":"+length+"x0x0:2;";
+                commandDB += "Crossbar front:NO:"+length+"x0x0:2;";
 
                 details +=" 2 Back crossbars, "  +color +", "+ length +" \n" ;
-                commandDB += "Crossbar back:"+color+":"+length+"x0x0:2;";
+                commandDB += "Crossbar back:NO:"+length+"x0x0:2;";
 
                 details +=" 4 Side crossbars, "  +color +", "+ depth +"\n" ;
-                commandDB += "Crossbar left or right:"+color+":0x0x"+depth+":4;";
+                commandDB += "Crossbar left or right:NO:0x0x"+depth+":4;";
 
                 details +=" 2 Horizontal panels, " +color +", "+ depth + "x" + length +"\n";
                 commandDB += "Panel horizontal:"+color+":"+length+"x0x"+depth+":2;";

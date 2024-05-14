@@ -164,10 +164,10 @@ public class DBConnection{
         }
         
     }
-    public void addComand(Command com)
+    public void addComand(Command com, String structCommand)
     {
-        Console.WriteLine($"INSERT INTO Commands (Reference, Description, NameFile) VALUES({com.Id},'{com.Reference}',{com.Description},{com.NameFile});");
-        using var command = new MySqlCommand($"INSERT INTO Commands (Reference, Description, NameFile) VALUES('{com.Reference}','{com.Description}','{com.NameFile}');",this.connection);
+        Console.WriteLine($"INSERT INTO Commands (Reference, Description, NameFile, StructCommand) VALUES({com.Id},'{com.Reference}',{com.Description},{com.NameFile},{structCommand});");
+        using var command = new MySqlCommand($"INSERT INTO Commands (Reference, Description, NameFile, StructCommand) VALUES('{com.Reference}','{com.Description}','{com.NameFile}','{structCommand}');",this.connection);
         command.ExecuteNonQuery();
         Console.WriteLine("INSERT");
     }
@@ -245,9 +245,10 @@ public class DBConnection{
         
     }
 
-    public void reserverCustomerCompo(String commandDB){
+    public List<(String,int, int)> reserverCustomerCompo(String commandDB){
         Console.WriteLine(commandDB);
         String[] componentProv = commandDB.Split(";");
+        List<(String,int,int)> listCodeClient = new List<(string, int, int)>();
         List<String[]> listCompo = new List<string[]>();
 
         for (int i = 0; i < componentProv.Length; i++)
@@ -259,39 +260,68 @@ public class DBConnection{
         String[]sizeCompo;
         String nbrCompo = "";
         try{
-        foreach (String[] item in listCompo)
-        {
-            refCompo = item[0];
-            colorCompo = item[1];
-            sizeCompo = item[2].Split("x");
-            for (int i = 0; i < sizeCompo.Length; i++)
+            foreach (String[] item in listCompo)
             {
-                sizeCompo[i]=sizeCompo[i].Replace("cm","");
+                refCompo = item[0];
+                colorCompo = item[1];
+                sizeCompo = item[2].Split("x");
+                for (int i = 0; i < sizeCompo.Length; i++)
+                {
+                    sizeCompo[i]=sizeCompo[i].Replace("cm","");
+                }
+                Console.WriteLine($"size:{sizeCompo[0]}xsize:{sizeCompo[1]}xsize:{sizeCompo[2]}");
+                nbrCompo = item[3];
+
+                String request = $"UPDATE Components AS c1 JOIN (SELECT MIN(PriceSupplier) AS MinPrice ";
+                request += $"FROM Components WHERE Reference='{refCompo}' AND Color={Component.getColorCode(colorCompo)} ";
+                request += $"AND LengthC={sizeCompo[0]} AND HeightC={sizeCompo[1]} AND DepthC={sizeCompo[2]} ) AS c2 ";
+                request += $"SET c1.StockReserved=c1.StockReserved+{nbrCompo}, c1.StockAvailable=c1.StockAvailable-{nbrCompo} ";
+                request += $"WHERE c1.Reference='{refCompo}' AND c1.Color={Component.getColorCode(colorCompo)} ";
+                request += $"AND c1.LengthC={sizeCompo[0]} AND c1.HeightC={sizeCompo[1]} AND c1.DepthC={sizeCompo[2]} ";
+                request += $"AND c1.PriceSupplier = c2.MinPrice;";
+                Console.WriteLine(request);
+                using var command = new MySqlCommand(request, this.connection);
+                command.ExecuteNonQuery();
+                String requestGet = $"SELECT Code, IdSupplier FROM Components WHERE ";
+                requestGet += $"Reference='{refCompo}' AND Color={Component.getColorCode(colorCompo)} ";
+                requestGet += $"AND LengthC={sizeCompo[0]} AND HeightC={sizeCompo[1]} AND DepthC={sizeCompo[2]} ";
+                requestGet += $"AND PriceSupplier = (SELECT MIN(PriceSupplier) FROM Components WHERE ";
+                requestGet += $"Reference='{refCompo}' AND Color={Component.getColorCode(colorCompo)} ";
+                requestGet += $"AND LengthC={sizeCompo[0]} AND HeightC={sizeCompo[1]} AND DepthC={sizeCompo[2]});";
+                Console.WriteLine(" HEREEEEEEEEEEEEEE");
+                Console.WriteLine(requestGet);
+                using var command2 = new MySqlCommand(requestGet, this.connection);
+                using (var reader = command2.ExecuteReader()){
+                    while(reader.Read()){
+                        Console.WriteLine($"{reader.GetString("Code")}:{reader.GetInt32("IdSupplier")}:{Int32.Parse(nbrCompo)}");
+                        listCodeClient.Add((reader.GetString("Code"),reader.GetInt32("IdSupplier"), Int32.Parse(nbrCompo)));
+                    }
+                }
             }
-            nbrCompo = item[3];
-            /*String request = $"UPDATE Components SET StockReserved=StockReserved+{nbrCompo},StockAvailable=StockAvailable-{nbrCompo}";
-            request+= $" WHERE Reference='{refCompo}' AND Color={Component.getColorCode(colorCompo)} AND LengthC={sizeCompo[0]}";
-            request+= $" AND HeightC={sizeCompo[1]} AND DepthC={sizeCompo[2]} AND PriceSupplier=(";
-            request+= $"SELECT MIN(PriceSupplier) FROM Components WHERE Reference='{refCompo}' AND ";
-            request+= $"Color={Component.getColorCode(colorCompo)} AND LengthC={sizeCompo[0]} AND HeightC={sizeCompo[1]} AND ";
-            request+= $"DepthC={sizeCompo[2]});";*/
-            String request = $"UPDATE Components AS c1 JOIN (SELECT MIN(PriceSupplier) AS MinPrice ";
-            request += $"FROM Components WHERE Reference='{refCompo}' AND Color={Component.getColorCode(colorCompo)} ";
-            request += $"AND LengthC={sizeCompo[0]} AND HeightC={sizeCompo[1]} AND DepthC={sizeCompo[2]} ) AS c2 ";
-            request += $"SET c1.StockReserved=c1.StockReserved+{nbrCompo}, c1.StockAvailable=c1.StockAvailable-{nbrCompo} ";
-            request += $"WHERE c1.Reference='{refCompo}' AND c1.Color={Component.getColorCode(colorCompo)} ";
-            request += $"AND c1.LengthC={sizeCompo[0]} AND c1.HeightC={sizeCompo[1]} AND c1.DepthC={sizeCompo[2]} ";
-            request += $"AND c1.PriceSupplier = c2.MinPrice;";
-            Console.WriteLine(request);
-            using var command = new MySqlCommand(request, this.connection);
-            command.ExecuteNonQuery();
-        }}catch(Exception ex){
+        }catch(Exception ex){
             Console.WriteLine(ex.Message);
         }
+        return listCodeClient;
     }
 
     public void confirmPayementCustomer(string reference){
-        using var command = new MySqlCommand($"UPDATE Commands SET Payed=1 WHERE Reference='{reference}';", this.connection);
-        command.ExecuteNonQuery();
+        try{
+            using var command = new MySqlCommand($"UPDATE Commands SET Payed=1 WHERE Reference='{reference}';", this.connection);
+            command.ExecuteNonQuery();
+            using var command2 = new MySqlCommand($"SELECT StructCommand FROM Commands WHERE Reference='{reference}';", this.connection);
+            String structDB ="";
+            using (var reader = command2.ExecuteReader()){
+                while(reader.Read()){
+                    structDB = reader.GetString("StructCommand");
+                }
+            }
+            String[] tab = structDB.Split(";");
+            foreach (var item in tab)
+            {
+                String[] tab2 = item.Split(":");
+                using var command3 = new MySqlCommand($"UPDATE Components SET StockReserved=StockReserved-{tab2[2]} WHERE Code='{tab2[0]}' AND IdSupplier={tab2[1]};", this.connection);
+                command3.ExecuteNonQuery();
+            }
+        }catch{}
     }
 }
