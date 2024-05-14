@@ -46,4 +46,8 @@ public partial class Seller : ContentPage
         }
         
     }
+
+    public void ConfirmPay(object sender, EventArgs e){
+
+    }
 }

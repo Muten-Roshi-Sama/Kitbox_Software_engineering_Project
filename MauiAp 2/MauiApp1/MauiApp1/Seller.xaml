@@ -43,6 +43,7 @@
                                         </Label.GestureRecognizers>
                                     </Label>
                                 </Border>
+                                <Button Text="Confirmer" Clicked="ConfirmPay"/>
                             </HorizontalStackLayout>
                             <StackLayout IsVisible="{Binding Path=showDescr}">
                                 <Label Text="{Binding Path=NameFile}" HorizontalOptions="FillAndExpand"/>
