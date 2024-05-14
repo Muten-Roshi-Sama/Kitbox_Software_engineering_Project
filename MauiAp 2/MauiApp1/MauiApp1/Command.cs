@@ -11,6 +11,8 @@ public class Command: INotifyPropertyChanged
    
    public String NameFile { get; set; }
 
+   public Boolean Payed { get; set; }
+
    private bool _showDescr;
    public bool showDescr{
         get { return _showDescr; }
@@ -26,7 +28,7 @@ public class Command: INotifyPropertyChanged
 
 
 
-   public Command(int id, String Reference ,String DateC, String description, String NameFile)
+   public Command(int id, String Reference ,String DateC, String description, String NameFile, Boolean payed)
    {
       
       this.Id = id;
@@ -35,6 +37,7 @@ public class Command: INotifyPropertyChanged
       this.Description = description;
       this.NameFile = NameFile; 
       this.showDescr = false;
+      this.Payed = payed;
 
    }
 

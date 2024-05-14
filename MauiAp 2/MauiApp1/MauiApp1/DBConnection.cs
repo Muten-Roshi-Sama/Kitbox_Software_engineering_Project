@@ -156,7 +156,7 @@ public class DBConnection{
             using (var reader = command.ExecuteReader()){
                 while (reader.Read()){
                     Command com = new Command(reader.GetInt16("Id"),reader.GetString("Reference"),
-                        reader.GetDateTime("DateC").ToString(),reader.GetString("Description"),reader.GetString("NameFile"));
+                        reader.GetDateTime("DateC").ToString(),reader.GetString("Description"),reader.GetString("NameFile"), reader.GetBoolean("Payed"));
                     commands.Add(com);
                 }
                 return commands;
@@ -272,5 +272,10 @@ public class DBConnection{
             using var command = new MySqlCommand(request, this.connection);
             command.ExecuteNonQuery();
         }
+    }
+
+    public void confirmPayementCustomer(string reference){
+        using var command = new MySqlCommand($"UPDATE Commands SET Payed=1 WHERE Reference='{reference}';", this.connection);
+        command.ExecuteNonQuery();
     }
 }
