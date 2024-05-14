@@ -7,3 +7,5 @@ insert into Account(Name,Password,Fonction) values
 ("Secretary","Secretary","Secretary"),
 ("StockKeeper","StockKeeper", "Stock Keeper"),
 ("Seller","Seller","Seller");
+
+ALTER TABLE Commands ADD Payed BOOLEAN DEFAULT 0;
