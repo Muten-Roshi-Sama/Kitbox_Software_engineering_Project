@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Microsoft.UI.Xaml;
+
 
 namespace MauiApp1;
 
@@ -16,6 +18,7 @@ public partial class ModifyBasket : ContentPage
     private Compose compose;
     private Element elem;
     private int index; 
+
     
     public ModifyBasket()
     {
@@ -61,6 +64,7 @@ public partial class ModifyBasket : ContentPage
 
     public ModifyBasket(Compose compose, Element elem, int index)
     {
+
         this.compose = compose;
         this.elem = elem;
         this.index = index; 
@@ -112,7 +116,7 @@ public partial class ModifyBasket : ContentPage
 
     public async void ConfirmModification(object sender, EventArgs e)
     {
-       /* Boolean yes;
+        Boolean yes;
         if (AddPartPicker.SelectedItem.ToString() == "Yes")
         {
            yes = true; 
@@ -124,8 +128,10 @@ public partial class ModifyBasket : ContentPage
         compose.SetHeight(int.Parse(elem.Casier),index,AddPartPicker2.SelectedItem.ToString());
         compose.setDoors(int.Parse(elem.Casier),index,yes);
         compose.setTypeDoors(int.Parse(elem.Casier),index,AddPartPicker1.SelectedItem.ToString());
-        compose.SetColor(int.Parse(elem.Casier),index,ColorsPicker.SelectedItem.ToString());*/
+        compose.SetColor(int.Parse(elem.Casier),index,ColorsPicker.SelectedItem.ToString());
         
+
+
         await Navigation.PopModalAsync();
     }
 }

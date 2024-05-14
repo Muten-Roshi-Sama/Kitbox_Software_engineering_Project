@@ -43,17 +43,21 @@ public partial class Basket : ContentPage
             for (int j = 0; j < this.casier[i]._boxes.Count(); j++)
             {
                 Element elem; 
-                if (this.casier[i]._boxes[j].getTypeDoors().ToString() == "Yes")
+                if (this.casier[i]._boxes[j].getTypeDoors().ToString() == "Yes" && this.casier[i]._boxes[j].getDoors().ToString() == "Yes")
                 {
                     elem = new Element(i.ToString(), this.casier[i].depth, this.casier[i].length, this.casier[i]._boxes.Count.ToString(),
                         this.casier[i].color, this.casier[i]._boxes[j].getHeight(), this.casier[i]._boxes[j].getDoors().ToString(), "Glas"
-                        ,this.casier[i]._boxes[j].getColor(), j.ToString(), isEditL, isEditE); 
+                        ,"/", j.ToString(), isEditL, isEditE); 
                 }
-                else
+                else if (this.casier[i]._boxes[j].getTypeDoors().ToString() == "No" && this.casier[i]._boxes[j].getDoors().ToString() == "Yes")
                 {
                     elem = new Element(i.ToString(), this.casier[i].depth, this.casier[i].length, this.casier[i]._boxes.Count.ToString(),
                         this.casier[i].color, this.casier[i]._boxes[j].getHeight(), this.casier[i]._boxes[j].getDoors().ToString(), "Normal"
                         ,this.casier[i]._boxes[j].getColor(),j.ToString(),isEditL, isEditE);  
+                }else{
+                    elem = new Element(i.ToString(), this.casier[i].depth, this.casier[i].length, this.casier[i]._boxes.Count.ToString(),
+                        this.casier[i].color, this.casier[i]._boxes[j].getHeight(), this.casier[i]._boxes[j].getDoors().ToString(), "/"
+                        ,"/",j.ToString(),isEditL, isEditE);  
                 }
                 
                 
@@ -111,6 +115,7 @@ public partial class Basket : ContentPage
         List<Command> c =connexion.getAllCommand();
         DateTime currentdate= DateTime.Now;
         String reference =currentdate.Day+currentdate.Month+currentdate.Year+ "_"+ (c.Count + 1 ).ToString();
+        connexion.reserverCustomerCompo(commandDB);
         connexion.addComand(new Command(1, reference, " ", description, details,false));
         await DisplayAlert("Order confirmed", "Order confirmed with great succes ! ", "Proceed to payment");
         LaunchAppShell();
@@ -139,18 +144,10 @@ public partial class Basket : ContentPage
                 await Navigation.PushModalAsync(new ModifyBasket(compose, itemToDelete12, index)); 
                 break;
             case "Button3":
+
                 component.isEditingL = true;
                 component.isEditingE = false;
-                
-                var button3 = (ImageButton)sender;
-                
-                var itemToDelete1 = (Element)button3.CommandParameter;
-                if (MyListView.ItemsSource is ObservableCollection<Element> items1)
-                {
-                    //myEntry.Text = "10";
-                    compose.SetHeight(int.Parse(itemToDelete1.Casier), int.Parse(itemToDelete1.boxe), "52");
-                    //compose.setCasiers(int.Parse(itemToDelete.Casier), int.Parse(itemToDelete.boxe));
-                }
+
                 MyListView.ItemsSource = null;
                 MyListView.ItemsSource = elements;
                 
@@ -225,7 +222,7 @@ public String getNbArmoir()
 
                 details += "Boxe " + j.ToString() + ": \n";
                 details +=" 4 Vertical Batten, " +color +", "+ height +"\n" ;
-                commandDB += "Vertical batten:"+color+":0x"+height+"x0:4;";
+                commandDB += "Vertical batten:No:0x"+height+"x0:4;";
 
                 details +=" 2 Front crossbars, " +color +", "+ length +" \n" ;
                 commandDB += "Crossbar front:"+color+":"+length+"x0x0:2;";
@@ -247,8 +244,14 @@ public String getNbArmoir()
 
                 if (casier[i]._boxes[j].getDoors())
                 {
-                    details +=" 1 Doors, " +color +", "+ length + "X" + height +" \n" ;
-                    commandDB += "Door:"+color+":"+length+"x"+height+"x0:1;";
+                    if(casier[i]._boxes[j].getTypeDoors() == "Normal" ){
+                        details +=" 1 Doors, " +color +", "+ length + "X" + height +" \n" ;
+                        commandDB += "Door:"+color+":"+length+"x"+height+"x0:1;";
+                    }else{
+                         details +=" 1 Doors, " +"Glas" +", "+ length + "X" + height +" \n" ;
+                         commandDB += "Door glass:No:"+length+"x"+height+"x0:1;";
+                    }
+                   
                 }
 
                 details += "\n";
