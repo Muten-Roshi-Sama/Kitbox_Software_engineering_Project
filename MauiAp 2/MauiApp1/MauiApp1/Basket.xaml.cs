@@ -111,7 +111,7 @@ public partial class Basket : ContentPage
         List<Command> c =connexion.getAllCommand();
         DateTime currentdate= DateTime.Now;
         String reference =currentdate.Day+currentdate.Month+currentdate.Year+ "_"+ (c.Count + 1 ).ToString();
-        connexion.addComand(new Command(1, reference, " ", description, details));
+        connexion.addComand(new Command(1, reference, " ", description, details,false));
         await DisplayAlert("Order confirmed", "Order confirmed with great succes ! ", "Proceed to payment");
         LaunchAppShell();
         //this.connexion.disconnection();

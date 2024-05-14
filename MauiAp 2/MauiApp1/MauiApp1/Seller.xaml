@@ -15,6 +15,7 @@
             <Label Text="DateC" WidthRequest="100"/>
             <Label Text="Description" WidthRequest="100"/>
             <Label Text="NameFile" WidthRequest="100"/>
+            <Label Text="Payed " WidthRequest="100"/>
         </StackLayout>
         <Line Stroke="black" X2="1000" />
         <ListView x:Name="MyListView">
@@ -27,6 +28,7 @@
                                 <Label Text="{Binding Path=Reference}" HorizontalOptions="FillAndExpand" WidthRequest="100"/>
                                 <Label Text="{Binding Path=DateC}" HorizontalOptions="FillAndExpand" WidthRequest="100"/>
                                 <Label Text="{Binding Path=Description}" HorizontalOptions="FillAndExpand" WidthRequest="100"/>
+                                <Label Text="{Binding Path=Payed}" HorizontalOptions="FillAndExpand" WidthRequest="100"/>
                                 <ImageButton Source="sort_down.png" ClassId="Button3" IsVisible="{Binding Path=infoSupOff}" WidthRequest="20" HeightRequest="20" />
                                 
                                 <Border Stroke="#000000"
