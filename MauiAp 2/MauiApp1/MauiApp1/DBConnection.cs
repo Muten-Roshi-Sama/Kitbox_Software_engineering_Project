@@ -258,6 +258,7 @@ public class DBConnection{
         String colorCompo = "";
         String[]sizeCompo;
         String nbrCompo = "";
+        try{
         foreach (String[] item in listCompo)
         {
             refCompo = item[0];
@@ -268,15 +269,24 @@ public class DBConnection{
                 sizeCompo[i]=sizeCompo[i].Replace("cm","");
             }
             nbrCompo = item[3];
-            String request = $"UPDATE Components SET StockReserved=StockReserved+{nbrCompo},StockAvailable=StockAvailable-{nbrCompo}";
+            /*String request = $"UPDATE Components SET StockReserved=StockReserved+{nbrCompo},StockAvailable=StockAvailable-{nbrCompo}";
             request+= $" WHERE Reference='{refCompo}' AND Color={Component.getColorCode(colorCompo)} AND LengthC={sizeCompo[0]}";
             request+= $" AND HeightC={sizeCompo[1]} AND DepthC={sizeCompo[2]} AND PriceSupplier=(";
             request+= $"SELECT MIN(PriceSupplier) FROM Components WHERE Reference='{refCompo}' AND ";
             request+= $"Color={Component.getColorCode(colorCompo)} AND LengthC={sizeCompo[0]} AND HeightC={sizeCompo[1]} AND ";
-            request+= $"DepthC={sizeCompo[2]});";
+            request+= $"DepthC={sizeCompo[2]});";*/
+            String request = $"UPDATE Components AS c1 JOIN (SELECT MIN(PriceSupplier) AS MinPrice ";
+            request += $"FROM Components WHERE Reference='{refCompo}' AND Color={Component.getColorCode(colorCompo)} ";
+            request += $"AND LengthC={sizeCompo[0]} AND HeightC={sizeCompo[1]} AND DepthC={sizeCompo[2]} ) AS c2 ";
+            request += $"SET c1.StockReserved=c1.StockReserved+{nbrCompo}, c1.StockAvailable=c1.StockAvailable-{nbrCompo} ";
+            request += $"WHERE c1.Reference='{refCompo}' AND c1.Color={Component.getColorCode(colorCompo)} ";
+            request += $"AND c1.LengthC={sizeCompo[0]} AND c1.HeightC={sizeCompo[1]} AND c1.DepthC={sizeCompo[2]} ";
+            request += $"AND c1.PriceSupplier = c2.MinPrice;";
             Console.WriteLine(request);
             using var command = new MySqlCommand(request, this.connection);
             command.ExecuteNonQuery();
+        }}catch(Exception ex){
+            Console.WriteLine(ex.Message);
         }
     }
 
