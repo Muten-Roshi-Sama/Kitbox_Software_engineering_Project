@@ -94,31 +94,36 @@ public partial class Compose : ContentPage
     }
 
 
-    public void OnPicker1SelectedIndexChanged(object sender, EventArgs e)
-    {
-        var picker2 = sender as Picker;
-        if (picker2.SelectedItem == "No")
-        {
-            choixVerre.IsEnabled = false;
-            choiceColor.IsEnabled = false;
-        }
-        else
-        {
-            choixVerre.IsEnabled = true;
-            choiceColor.IsEnabled = true;
-        }
-    }    
+    
         private void DisplayBoxes(object sender, EventArgs e)
         {
             int space = 0;
             int rowDecale = 0;
-            if (AddPartPicker2.SelectedItem == null)
+            
+            if (AddPartPicker.SelectedItem == null || 
+                AddPartPicker1.SelectedItem == null || 
+                AddPartPicker2.SelectedItem == null || 
+                ColorsPicker.SelectedItem == null || 
+                Colors2Picker.SelectedItem == null)
             {
-                AddPartPicker2.BackgroundColor = new Microsoft.Maui.Graphics.Color(1.0f, 0.0f, 0.0f);
+                AddPartPicker.BackgroundColor = new Microsoft.Maui.Graphics.Color(0.7f, 0.7f, 0.7f);
+                AddPartPicker1.BackgroundColor = new Microsoft.Maui.Graphics.Color(0.7f, 0.7f, 0.7f);
+                AddPartPicker2.BackgroundColor = new Microsoft.Maui.Graphics.Color(0.7f, 0.7f, 0.7f);
+                ColorsPicker.Background = new Microsoft.Maui.Graphics.Color(0.7f, 0.7f, 0.7f);
+                Colors2Picker.Background = new Microsoft.Maui.Graphics.Color(0.7f, 0.7f, 0.7f);
+
+                DisplayAlert("Selection required", "Please select all the necessary options before configuring the boxes", "OK");
+                return; 
+
+                
             }
             else
             {
+                AddPartPicker.BackgroundColor = new Microsoft.Maui.Graphics.Color(1.0f, 1.0f, 1.0f);
+                AddPartPicker1.BackgroundColor = new Microsoft.Maui.Graphics.Color(1.0f, 1.0f, 1.0f);
                 AddPartPicker2.BackgroundColor = new Microsoft.Maui.Graphics.Color(1.0f, 1.0f, 1.0f);
+                ColorsPicker.Background = new Microsoft.Maui.Graphics.Color(1.0f, 1.0f, 1.0f);
+                Colors2Picker.Background = new Microsoft.Maui.Graphics.Color(1.0f, 1.0f, 1.0f);
                 
                 for (int i = 1; i <= int.Parse(AddPartPicker2.SelectedItem.ToString()); i++)
                 {
@@ -145,11 +150,47 @@ public partial class Compose : ContentPage
                     choixPorte.Items.Add("No");
                     DoorsBoxes.Add(choixPorte);
 
+                    choixPorte.SelectedIndexChanged += (s, args) =>
+                    {
+                        var picker = (Picker)s;
+                        int index = DoorsBoxes.IndexOf(picker); 
+                        if (picker.SelectedIndex == 1) // Si "No" est sélectionné
+                        {
+                            TypeDoors[index].IsEnabled = false; // Désactiver le Picker de verre correspondant
+                            ColorsDoors[index].IsEnabled = false; //Désactiver le Picker de couleur
+                            TypeDoors[index].SelectedIndex = -1; // reinitialise le choix
+                            ColorsDoors[index].SelectedIndex = -1;
+                        }
+                        else
+                        {
+                            TypeDoors[index].IsEnabled = true; // Activer le Picker de verre correspondant
+                            ColorsDoors[index].IsEnabled = TypeDoors[index].SelectedItem?.ToString() != "Yes"; // Activer si verre n'est pas "Yes"
+                        }
+                    };
+
+
+                    
+
                     choixVerre = new Picker();
                     choixVerre.Items.Add("Yes");
                     choixVerre.Items.Add("No");
                     TypeDoors.Add(choixVerre);
-                    choixPorte.SelectedIndexChanged += OnPicker1SelectedIndexChanged; 
+
+                    choixVerre.SelectedIndexChanged += (s, args) =>
+                    {
+                        var picker = (Picker)s;
+                        int index = TypeDoors.IndexOf(picker);
+                        if (picker.SelectedIndex == 0)
+                        {
+                            ColorsDoors[index].IsEnabled = false; // Désactiver le choix de couleur si verre est "Yes"
+                            ColorsDoors[index].SelectedIndex = -1; // Réinitialise le choix 
+                        }
+                        else
+                        {
+                           ColorsDoors[index].IsEnabled = DoorsBoxes[index].SelectedItem?.ToString() == "Yes";  // Activer le choix de couleur seulement si la porte est à "Yes"
+                        }           
+                    };
+                    
 
                     Label color = new Label();
                     labels.Add(color);
@@ -283,20 +324,48 @@ public partial class Compose : ContentPage
 
             List<Box> _boxxes = new List<Box>();
             Box tBox= new Box(); 
+            
+
             for (int i = 0; i < int.Parse(AddPartPicker2.SelectedItem.ToString()); i++)
             {
-                if (DoorsBoxes[i].SelectedItem.ToString() == "Yes")
+                string height = HeightBoxes[i].SelectedItem?.ToString() ?? "/";
+                string typeDoor = TypeDoors[i].SelectedItem?.ToString() ?? "/";
+                string color = "/"; // Défaut
+                bool hasDoors = DoorsBoxes[i].SelectedItem?.ToString() == "Yes";
+
+                // Vérifier d'abord si une sélection est nulle
+                if (DoorsBoxes[i].SelectedItem == null || HeightBoxes[i].SelectedItem == null)
                 {
-                    tBox = new Box(HeightBoxes[i].SelectedItem.ToString(), ColorsDoors[i].SelectedItem.ToString(),
-                    TypeDoors[i].SelectedItem.ToString(), true);
-                }
-                else
-                { 
-                    tBox = new Box(HeightBoxes[i].SelectedItem.ToString(), "/",
-                        "/", false);
+                    await DisplayAlert("Incomplete Selection", "Please complete all selections before adding to basket.", "OK");
+                    return; // Sort de la méthode si une sélection est nulle
                 }
                 
-                _boxxes.Add(tBox);
+
+                // Configuration en fonction du type de porte et du verre
+                if (hasDoors)
+                {
+                    if (typeDoor == "Yes") // Verre
+                    {
+                        color = "/"; // Pas de couleur si porte en verre
+                    }
+                    else if(typeDoor == "/")
+                    {
+                        await DisplayAlert("Incomplete Selection", "Please select a type of door.", "OK");
+                        return; // Sort de la méthode si le type de porte n'est pas validé
+                    }
+                    else // Porte normale
+                    {
+                        color = ColorsDoors[i].SelectedItem?.ToString(); // Récupère la couleur choisie
+                        if (string.IsNullOrWhiteSpace(color)) // Vérifie si la couleur n'est pas sélectionnée
+                        {
+                            await DisplayAlert("Incomplete Selection", "Please select a color for the door.", "OK");
+                            return; // Sort de la méthode si la couleur n'est pas validée
+                        }
+                    }
+                }
+
+                Box box = new Box(height, color, typeDoor, hasDoors);
+                _boxxes.Add(box);
             }
             
             
