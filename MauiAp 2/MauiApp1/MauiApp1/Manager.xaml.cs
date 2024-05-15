@@ -168,12 +168,16 @@ public partial class Manager : ContentPage,INotifyPropertyChanged
                 connection.updateStockComponents(supp,component.code);
                 break;
             case "deleteBtn":
-                component.deleteSupplier(supp.idSupplier);
-                connection.deleteSuppOfComponent(supp.idSupplier, component.code);
-                component.setGeneralStock();
-                var SuppListView = viewCell2.FindByName<ListView>("SuppListView");
-                SuppListView.ItemsSource  = null;
-                SuppListView.ItemsSource  = component.listSuppliers;
+                try{
+                    component.deleteSupplier(supp.idSupplier);
+                    connection.deleteSuppOfComponent(supp.idSupplier, component.code);
+                    component.setGeneralStock();
+                    var SuppListView = viewCell2.FindByName<ListView>("SuppListView");
+                    SuppListView.ItemsSource  = null;
+                    SuppListView.ItemsSource  = component.listSuppliers;
+                }catch(Exception ex){
+                    Console.WriteLine(ex.Message);
+                }
                 break;
         }
     }

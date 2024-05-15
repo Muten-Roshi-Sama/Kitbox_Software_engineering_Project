@@ -113,7 +113,6 @@
                                                             <TapGestureRecognizer Tapped="OnSuppButtonClicked" />
                                                         </Image.GestureRecognizers>
                                                     </Image>
-                                                    <Button x:Name="OrderCompoSupplBtn" Text="Order" Clicked="OrderCompoSuppl" IsVisible="{Binding Path=showOrderBtn}" />
                                                 </HorizontalStackLayout >
                                             </StackLayout>
                                         </ViewCell>

@@ -9,3 +9,7 @@ insert into Account(Name,Password,Fonction) values
 ("Seller","Seller","Seller");
 
 ALTER TABLE Commands ADD Payed BOOLEAN DEFAULT 0;
+GRANT UPDATE, SELECT ON Components TO 'interface'@'%';
+FLUSH PRIVILEGES;
+
+ALTER TABLE Commands ADD StructCommand LONGTEXT;

@@ -95,7 +95,8 @@ public partial class Secretary : ContentPage
                 component.setGeneralStock();
                 var SuppListView = viewCell2.FindByName<ListView>("SuppListView");
                 SuppListView.ItemsSource  = null;
-                SuppListView.ItemsSource  = component.listSuppliers;}catch(Exception ex){
+                SuppListView.ItemsSource  = component.listSuppliers;
+                }catch(Exception ex){
                     Console.WriteLine(ex.Message);
                 }
                 break;
