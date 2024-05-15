@@ -246,7 +246,6 @@ public class DBConnection{
     }
 
     public List<(String,int, int)> reserverCustomerCompo(String commandDB){
-        Console.WriteLine(commandDB);
         String[] componentProv = commandDB.Split(";");
         List<(String,int,int)> listCodeClient = new List<(string, int, int)>();
         List<String[]> listCompo = new List<string[]>();
@@ -269,7 +268,6 @@ public class DBConnection{
                 {
                     sizeCompo[i]=sizeCompo[i].Replace("cm","");
                 }
-                Console.WriteLine($"size:{sizeCompo[0]}xsize:{sizeCompo[1]}xsize:{sizeCompo[2]}");
                 nbrCompo = item[3];
 
                 String request = $"UPDATE Components AS c1 JOIN (SELECT MIN(PriceSupplier) AS MinPrice ";
@@ -279,7 +277,6 @@ public class DBConnection{
                 request += $"WHERE c1.Reference='{refCompo}' AND c1.Color={Component.getColorCode(colorCompo)} ";
                 request += $"AND c1.LengthC={sizeCompo[0]} AND c1.HeightC={sizeCompo[1]} AND c1.DepthC={sizeCompo[2]} ";
                 request += $"AND c1.PriceSupplier = c2.MinPrice;";
-                Console.WriteLine(request);
                 using var command = new MySqlCommand(request, this.connection);
                 command.ExecuteNonQuery();
                 String requestGet = $"SELECT Code, IdSupplier FROM Components WHERE ";
@@ -288,12 +285,9 @@ public class DBConnection{
                 requestGet += $"AND PriceSupplier = (SELECT MIN(PriceSupplier) FROM Components WHERE ";
                 requestGet += $"Reference='{refCompo}' AND Color={Component.getColorCode(colorCompo)} ";
                 requestGet += $"AND LengthC={sizeCompo[0]} AND HeightC={sizeCompo[1]} AND DepthC={sizeCompo[2]});";
-                Console.WriteLine(" HEREEEEEEEEEEEEEE");
-                Console.WriteLine(requestGet);
                 using var command2 = new MySqlCommand(requestGet, this.connection);
                 using (var reader = command2.ExecuteReader()){
                     while(reader.Read()){
-                        Console.WriteLine($"{reader.GetString("Code")}:{reader.GetInt32("IdSupplier")}:{Int32.Parse(nbrCompo)}");
                         listCodeClient.Add((reader.GetString("Code"),reader.GetInt32("IdSupplier"), Int32.Parse(nbrCompo)));
                     }
                 }
