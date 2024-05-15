@@ -35,7 +35,7 @@
                 <Image Source="lock.png" HeightRequest="20" WidthRequest="20" />
             </Frame>
             <Frame HeightRequest="45" Margin="-5,0,0,0" Padding="0" HasShadow="True" BorderColor="#65BAA9" BackgroundColor="White" HorizontalOptions="FillAndExpand">
-                <Entry x:Name="myEntry" Placeholder="Entrez votre mot de passe ici"/>
+                <Entry x:Name="myEntry" Placeholder="Entrez votre mot de passe ici" IsPassword="true"/>
             </Frame>
         </StackLayout>
         <StackLayout>
