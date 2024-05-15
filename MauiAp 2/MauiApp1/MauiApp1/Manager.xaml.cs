@@ -169,8 +169,11 @@ public partial class Manager : ContentPage,INotifyPropertyChanged
                 break;
             case "deleteBtn":
                 component.deleteSupplier(supp.idSupplier);
+                Console.WriteLine("here");
                 connection.deleteSuppOfComponent(supp.idSupplier, component.code);
+                Console.WriteLine("here");
                 component.setGeneralStock();
+                Console.WriteLine("here");
                 var SuppListView = viewCell2.FindByName<ListView>("SuppListView");
                 SuppListView.ItemsSource  = null;
                 SuppListView.ItemsSource  = component.listSuppliers;

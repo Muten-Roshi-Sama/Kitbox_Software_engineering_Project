@@ -14,7 +14,7 @@ public partial class StockKeeper : ContentPage
     List<Component> components;
     DBConnection connection;
     static int valueLimiteStock = 20;
-    Dictionary<string,SupplierCompoOrder> supplierOrder;
+    List<SupplierCompoOrder> supplierOrder;
 
 
     public StockKeeper()
@@ -109,32 +109,33 @@ public partial class StockKeeper : ContentPage
         switch (choice.Text)
         {
             case "Missing Stock":
+                //orderSuppBtn.IsVisible=true;
                 List<Component> compoFiltre = new List<Component>();
-                supplierOrder = new Dictionary<string, SupplierCompoOrder>();
+                supplierOrder = new List<SupplierCompoOrder>();
                 
                 foreach (var item in components)
                 {
-                    if(item.GlobalStockAvailable < valueLimiteStock){
-                        foreach (var supp in item.listSuppliers)
-                        {
+                    Component compo = new Component(item.reference,item.code,item.length,item.height,
+                    item.depth, Component.getColorCode(item.color),true,false);
+                    compo.GlobalStockAvailable = item.GlobalStockAvailable;
+                    compo.GlobalStockOrdered = item.GlobalStockOrdered;
+                    compo.GlobalStockReserved = item.GlobalStockReserved;
+                    foreach (var supp in item.listSuppliers)
+                    {
+                        if((supp.stockAvailable+supp.stockOrdered) < supp.minimumStock){
                             supp.showOrderBtn = true;
+                            compo.addSupplier(supp);
                         }
-                        compoFiltre.Add(item);
+                    }
+                    if(compo.listSuppliers.Count !=0){
+                        compoFiltre.Add(compo);
                     }
                 }
                 MyListView.ItemsSource  = null;
                 MyListView.ItemsSource  = compoFiltre;
                 break;
             case "All":
-                foreach (var item in components)
-                {
-                    if(item.GlobalStockAvailable < valueLimiteStock){
-                        foreach (var supp in item.listSuppliers)
-                        {
-                            supp.showOrderBtn = false;
-                        }
-                    }
-                }
+                //orderSuppBtn.IsVisible=false;
                 MyListView.ItemsSource = null;
                 MyListView.ItemsSource = components;
                 break;
@@ -142,22 +143,30 @@ public partial class StockKeeper : ContentPage
             default:break;
         }
     }
-
     public void OrderCompoSuppl(object sender, EventArgs e){
         var button = (Button)sender;
         var supplier = (CompoSupplier)button.BindingContext;
         var component = (Component) button.Parent.Parent.Parent.Parent.BindingContext;
         Console.WriteLine(component.reference);
-        supplierOrder.Remove(component.code);
-        foreach (var supp in component.listSuppliers)
-        {
-            if(supp.idSupplier==supplier.idSupplier){
-                supp.showOrderBtn = false;
-            }else{
-                supp.showOrderBtn = true;
-            }
+
+        switch(button.Text){
+            case "Order":
+                supplierOrder.Add(new SupplierCompoOrder(component.code,component.reference,supplier.idSupplier,supplier.priceSupplier,supplier.delaySupplier,supplier.minimumStock));
+                supplier.showOrderBtn = false;
+                supplier.showRemoveOrderBtn = true;
+                break;
+            case "Remove":
+                foreach (var item in supplierOrder)
+                {
+                    if(item.id==supplier.idSupplier && item.code==component.code){
+                        supplierOrder.Remove(item);
+                        break;
+                    }
+                }
+                supplier.showOrderBtn = true;
+                supplier.showRemoveOrderBtn = false;
+                break;
         }
-        supplierOrder.Add(component.code,new SupplierCompoOrder(component.code,component.reference,supplier.idSupplier,supplier.priceSupplier,supplier.delaySupplier,30));
     }
     
 }

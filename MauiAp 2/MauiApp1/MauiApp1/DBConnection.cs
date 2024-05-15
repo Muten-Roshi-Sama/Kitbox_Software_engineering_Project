@@ -144,9 +144,13 @@ public class DBConnection{
         Console.WriteLine($"DELETE FROM Components WHERE Code = {Code};");
     }
     public void deleteSuppOfComponent(int idSupplier, string Code){
+        try{
         using var command = new MySqlCommand($"DELETE FROM Components WHERE Code = '{Code}' AND IdSupplier = {idSupplier};",this.connection);
         command.ExecuteNonQuery();
         Console.WriteLine($"DELETE FROM Components WHERE Code = '{Code}' AND IdSupplier = {idSupplier};");
+        }catch(Exception ex){
+            Console.WriteLine(ex.Message);
+        }
     }
 
     public List<Command> getAllCommand()
